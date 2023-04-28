@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class RiceBallsMove : MonoBehaviour
 {
+
+    Transform _riceBaby;
     //目標のオブジェクト
-    public string targetObjectName;
+    //public string targetObjectName;
     //おにぎりのスピード
     public float _speed = 1f;
 
@@ -13,20 +15,17 @@ public class RiceBallsMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _targetObject = GameObject.Find(targetObjectName);
+        _riceBaby = GameObject.FindGameObjectWithTag("kome").transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //米との距離を調べる
-        float dis = Vector2.Distance(this.transform.position, _targetObject.transform.position);
-        Debug.Log("距離 ; " + dis);
-        //一定の個数を獲得したら速度上昇
-        //
-        //
-        //
-        //
-        //
+        /*if (Vector2.Distance(transform.position, _riceBaby.position) < 0.1f)
+            return;*/
+        transform.position = Vector2.MoveTowards
+            (transform.position,
+            new Vector2(_riceBaby.position.x, _riceBaby.position.y),
+            _speed * Time.deltaTime);
     }
 }
