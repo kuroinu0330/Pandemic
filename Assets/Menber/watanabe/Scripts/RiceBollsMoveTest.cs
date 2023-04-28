@@ -6,24 +6,29 @@ public class RiceBollsMoveTest : MonoBehaviour
 {
     #region　米獲得
     [SerializeField]
-    private int _score = 0;
+    private int _level = 0; //レベル
+    [SerializeField]
+    private int _HighScore = 0; //米の獲得数
 
     #endregion
     #region 移動関係
     private GameObject _nearObj; //最も近いオブジェクト
-    private float _serchTime;　　　　//
+    private float _serchTime;　
     [SerializeField]
-    private float _speed;
+    private float _speed;　//速度
     #endregion
     // Start is called before the first frame updSate
     void Start()
     {
-        _score = 0;
+        _level = 0;
         //最も近いオブジェクトを取得
         _nearObj = serchTag(gameObject, "kome");
     }
 
     // Update is called once per frame
+    /// <summary>
+    /// 近くにいる米Objの方向に向いて追従する。
+    /// </summary>
     void Update()
     {
         _serchTime += Time.deltaTime;
@@ -45,82 +50,87 @@ public class RiceBollsMoveTest : MonoBehaviour
 
         }
     }
+    /// <summary>
+    /// 一個米を取得するごとに10%速度が上昇
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("kome"))
         {
-            _score += 1;
+            _level += 1;
+            _HighScore += 1;
             other.gameObject.SetActive(false);
             #region スコア
-            if (_score == 1)
+            if (_level == 1)
             {
                
                 //コルーチンStart
                 StartCoroutine(CountCoroutine());
-                Debug.Log("1個目だよ");
+                Debug.Log("1レベルだよ");
                 _speed = 1.1f;
             }
-            if (_score == 2)
+            if (_level == 2)
             {
                
                 StartCoroutine(CountCoroutine());
-                Debug.Log("2個目だよ");
+                Debug.Log("2レベルだよ");
                 _speed = 1.2f;
             }
-            if (_score == 3)
+            if (_level == 3)
             {
                
                 StartCoroutine(CountCoroutine());
-                Debug.Log("3個目だよ");
+                Debug.Log("3レベルだよ");
                 _speed = 1.3f;
             }
-            if (_score == 4)
+            if (_level == 4)
             {
                 
                 StartCoroutine(CountCoroutine());
-                Debug.Log("4個目だよ");
+                Debug.Log("4レベルだよ");
                 _speed = 1.4f;
             }
-            if (_score == 5)
+            if (_level == 5)
             {
                
                 StartCoroutine(CountCoroutine());
-                Debug.Log("5個目だよ");
+                Debug.Log("5レベルだよ");
                 _speed = 1.5f;
             }
-            if (_score == 6)
+            if (_level == 6)
             {
              
                 StartCoroutine(CountCoroutine());
-                Debug.Log("6個目だよ");
+                Debug.Log("6レベルだよ");
                 _speed = 1.6f;
             }
-            if (_score == 7)
+            if (_level == 7)
             {
                 
                 StartCoroutine(CountCoroutine());
-                Debug.Log("7個目だよ");
+                Debug.Log("7レベルだよ");
                 _speed = 1.7f;
             }
-            if (_score == 8)
+            if (_level == 8)
             {
               
                 StartCoroutine(CountCoroutine());
-                Debug.Log("8個目だよ");
+                Debug.Log("8レベルだよ");
                 _speed = 1.8f;
             }
-            if (_score == 9)
+            if (_level == 9)
             {
              
                 StartCoroutine(CountCoroutine());
-                Debug.Log("9個目だよ");
+                Debug.Log("9レベルだよ");
                 _speed = 1.9f;
             }
-            if (_score == 10)
+            if (_level == 10)
             {
                 
                 StartCoroutine(CountCoroutine());
-                Debug.Log("10個目だよ");
+                Debug.Log("10レベルだよ");
                 _speed = 2.0f;
             }
             #endregion
@@ -128,6 +138,10 @@ public class RiceBollsMoveTest : MonoBehaviour
     }
     //一秒間米を獲得できなかったらスコアを0にする。
     bool _Clear =  false;
+    /// <summary>
+    /// 3秒間米を獲得できなかったらスコアと速度を初期化にする。
+    /// </summary>
+    /// <returns></returns>
     IEnumerator CountCoroutine()
     {
         _Clear = true;
@@ -139,7 +153,7 @@ public class RiceBollsMoveTest : MonoBehaviour
             timer += Time.deltaTime;
             if (timer >= 2.0f)
             {
-                _score = 0;
+                _level = 0;
                 _speed = 1f;
                 _Clear = false;
                 yield break;
@@ -162,6 +176,12 @@ public class RiceBollsMoveTest : MonoBehaviour
         _Clear = true;
     }
  
+    /// <summary>
+    /// 米とおにぎりの距離を計算して近くにある米objに追従する
+    /// </summary>
+    /// <param name="nowObj">自分自身</param>
+    /// <param name="tagName">米を探知</param>
+    /// <returns></returns>
     #region 探知系
     GameObject serchTag(GameObject nowObj, string tagName)
     {
