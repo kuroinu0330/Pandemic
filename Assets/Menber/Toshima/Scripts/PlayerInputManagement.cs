@@ -9,8 +9,17 @@ public class PlayerInputManagement : MonoBehaviour
     [SerializeField]
     private float _playerInputDeadzone = 0f;
 
-    [SerializeField]
-    private GameObject _riceBaby;
+    // //米粒のプレハブ(別ソースコードに転移)
+    // [SerializeField]
+    // private GameObject _riceBaby;
+
+    // //当たり判定を取得するためのプレハブ
+    // [SerializeField]
+    // private GameObject _riceBabyPhantomPrefab;
+
+    // //生成したプレハブの実体をいじるための変数
+    // [SerializeField]
+    // private GameObject _riceBabyPhantomObject;
 
     //プレイヤーがタッチを始めた最初の座標
     [SerializeField]
@@ -20,13 +29,16 @@ public class PlayerInputManagement : MonoBehaviour
     [SerializeField]
     private InputType _inputType = InputType.None;
 
-    //現在プレイヤーの入力を受け付けるかの変数
+    //現在プレイヤーの入力による処理を受け付けるかの変数
     [SerializeField]
-    private bool _inputReady = false;
+    private bool _actionReady = false;
 
     //現在入力中化を判断する変数
     [SerializeField]
     private bool _touchNow = false;
+
+    //生成処理との兼ね合いをとるシングルトン処理
+    public static PlayerInputManagement Instance;
 
     //入力方法の一覧
     private enum InputType
@@ -36,24 +48,33 @@ public class PlayerInputManagement : MonoBehaviour
         Flick
     }
 
+    void Awake()
+    {
+        //シングルトン化
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+    }
+
     void Start() 
     {
+        //_riceBabyPhantomObject = GameObject.Instantiate(_riceBabyPhantomPrefab,Vector2.zero,Quaternion.identity);
+
         //デバック用の強制許可処理
-        InputSwitching();
+        //InputSwitching();
+        PlayerActionOn();
     }
 
     void Update()
     {
-        //プレイヤーの操作を受け付ける場合に実行
-        if(_inputReady)
-        {
-            InputTypejudgement();
-        }
+        //プレイヤーの操作を受け付ける関数
+        InputTypejudgement();
     }
 
     //プレイヤーの入力が「タッチ」か「フリック」かを判断する関数
     private void InputTypejudgement()
-    {
+    {   
         //エディターで起動時に分岐(マウス操作)
         if(Application.isEditor)
         {
@@ -77,10 +98,11 @@ public class PlayerInputManagement : MonoBehaviour
                 _originalTouchPosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, 
                                                                                     mousePos.y,10f));
 
-                //タップ時の処理を実行する
+                //生成処理を実行する
+                CreateAction(_originalTouchPosition);
 
-                //米を生成する
-                CreateRiceBaby(_originalTouchPosition);                
+                //米を生成する(別ソースコードに転移)
+                //CreateRiceBaby(_originalTouchPosition);                
             }
 
             //　プレイヤーの操作受け付け中に以下の処理を実行する
@@ -103,8 +125,13 @@ public class PlayerInputManagement : MonoBehaviour
                     _inputType = InputType.Flick;
                 }
 
-                //フリック時の処理を実行する
-                
+                //操作タイプが「フリック」の時以下の処理を実行する
+                if(_inputType == InputType.Flick)
+                {
+                    //生成処理を実行する
+                    CreateAction(mousePosOnScreen);
+                }
+                            
             }               
 
             //クリック終了時に以下の処理を実行
@@ -139,11 +166,11 @@ public class PlayerInputManagement : MonoBehaviour
                     _originalTouchPosition = Camera.main.ScreenToWorldPoint(new Vector2(touch.position.x,
                                                         touch.position.y));
 
-                    //米を生成する
-                    CreateRiceBaby(_originalTouchPosition);   
+                    //米を生成する(別ソースコードに転移)
+                    //CreateRiceBaby(_originalTouchPosition);   
 
-                    //タップ時の処理を実行する
-
+                    //生成処理を実行する
+                    CreateAction(_originalTouchPosition);
 
                 }                
 
@@ -164,8 +191,8 @@ public class PlayerInputManagement : MonoBehaviour
                         _inputType = InputType.Flick;
                     }
 
-                    //フリック時の処理を実行する
-
+                    //生成処理を実行する
+                    CreateAction(touchPosOnScreen);
 
                 }
                 
@@ -182,30 +209,72 @@ public class PlayerInputManagement : MonoBehaviour
     }
 
     /// <summary>
-    /// 米の生成処理
+    /// タップ時の処理を記述する関数
     /// </summary>
-    /// <param name="pos">米を生成する座標</param>
-    private void CreateRiceBaby(Vector2 pos)
+    private void CreateAction(Vector2 createPos)
     {
-        //動作確認用
-        //Debug.Log("ええやん！");
+        //枠とりお米の座標を更新する
+        //_riceBabyPhantom.transform.position = createPos;
 
-        //米の生成
-        Instantiate(_riceBaby,pos,Quaternion.identity);
-    }
+        //円形の光線を発射して当たったオブジェクトの情報を取得する
+        RaycastHit2D hit = 
+        Physics2D.CircleCast(Camera.main.ScreenToWorldPoint(Input.mousePosition), 0.25f,Vector2.zero,0.25f);
 
-    /// <summary>
-    /// プレイヤーの入力を受けるか弾くかを切り替える関数
-    /// </summary>
-    public void InputSwitching()
-    {
-        if(_inputReady)
+        //実行許可を持ちかつ光線がなんのオブジェクトも取得していない時に以下の処理を実行する
+        if(_actionReady && hit.collider == null)
         {
-            _inputReady = false;
+            //他のソースコードに転移させた米を生成する処理を呼び出す
+            RiceBabyCreateManager.Instance.CreateRiceBaby(createPos);
         }
         else
         {
-            _inputReady = true;
+            //オブジェクトを取得したときに流すログ
+            Debug.Log("超強力スーパーシュート！！");
         }
+    }
+    
+
+    // /// <summary>
+    // /// 米の生成処理(別ソースコードに転移)
+    // /// </summary>
+    // /// <param name="pos">米を生成する座標</param>
+    // private void CreateRiceBaby(Vector2 pos)
+    // {
+    //     //動作確認用
+    //     //Debug.Log("ええやん！");
+
+    //     //米の生成
+    //     Instantiate(_riceBaby,pos,Quaternion.identity);
+    // }
+
+    // /// <summary>
+    // /// プレイヤーの入力を受けるか弾くかを切り替える関数(設計に欠陥があったためボツ)
+    // /// </summary>
+    // public void InputSwitching()
+    // {
+    //     if(_actionReady)
+    //     {
+    //         _actionReady = false;
+    //     }
+    //     else
+    //     {
+    //         _actionReady = true;
+    //     }
+    // }
+
+    /// <summary>
+    /// 処理の実行許可証を有効にする
+    /// </summary>
+    public void PlayerActionOn()
+    {
+        _actionReady = true;
+    }
+
+    /// <summary>
+    /// 処理の実行許可証を無効にする
+    /// </summary>
+    public void PlayerActionOff()
+    {
+        _actionReady = false;
     }
 }
