@@ -1,21 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RiceBollsMoveTest : MonoBehaviour
 {
+    public Text ScoreText;
     #region　米獲得
     [SerializeField]
     private int _level = 0; //レベル
     [SerializeField]
     private int _HighScore = 0; //米の獲得数
-
     #endregion
     #region 移動関係
     private GameObject _nearObj; //最も近いオブジェクト
     private float _serchTime;　
     [SerializeField]
     private float _speed;　//速度
+
     #endregion
     // Start is called before the first frame updSate
     void Start()
@@ -49,6 +51,7 @@ public class RiceBollsMoveTest : MonoBehaviour
           _speed * Time.deltaTime);
 
         }
+        ScoreText.text = "米獲得数: " + _HighScore.ToString();
     }
     /// <summary>
     /// 一個米を取得するごとに10%速度が上昇
@@ -61,7 +64,7 @@ public class RiceBollsMoveTest : MonoBehaviour
             _level += 1;
             _HighScore += 1;
             other.gameObject.SetActive(false);
-            #region スコア
+            #region レベル
             if (_level == 1)
             {
                
@@ -155,6 +158,7 @@ public class RiceBollsMoveTest : MonoBehaviour
             {
                 _level = 0;
                 _speed = 1f;
+                Debug.Log("速度とレベルを初期に戻したぞい");
                 _Clear = false;
                 yield break;
             }
