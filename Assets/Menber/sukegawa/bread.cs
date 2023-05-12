@@ -16,6 +16,14 @@ public class bread : MonoBehaviour
     public bool isSearching;
     public GameObject player;
     public GameObject rice;
+    public static bread instance;
+
+    void Awake()
+    {
+        if(instance ==null){
+            instance = this;
+        }
+    }
 
     void Start()
     {
@@ -33,17 +41,18 @@ public class bread : MonoBehaviour
         if (Vector2.Distance(transform.position, riceTr.position) < 0.1f)
             return;
 
-        // プレイヤーに向けて進む
+        // プレイヤーに向けて進む(おにぎり)
         Transform.position = Vector2.MoveTowards(
             transform.position,
             new Vector2(playerTr.position.x, playerTr.position.y),
             speed * Time.deltaTime);
-
+ 　　　　// プレイヤーに向けて進む(米)
         Transform.position = Vector2.MoveTowards(
             transform.position,
             new Vector2(riceTr.position.x, riceTr.position.y),
             speed * Time.deltaTime);
 
+        //スピードの変化
         if (int score < 21)
         {
             speed = 0.8;
@@ -65,9 +74,6 @@ public class bread : MonoBehaviour
         {
             isSearching = true;
             player = col.gameObject;
-        }else if(col.gameObject.tag == "rice"){
-            isSearching = true;
-            rice = col.gameObject;
         }
     }
 
@@ -77,10 +83,6 @@ public class bread : MonoBehaviour
         {
             isSearching = false;
             player = null;
-        }else if (col.gameObject.tag == "rice")
-        {
-            isSearching = false;
-            rice = null;
         }
     }
     //索敵範囲指定のプログラム終了地点
