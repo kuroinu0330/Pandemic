@@ -18,6 +18,11 @@ public class RiceBollsMoveTest : MonoBehaviour
     [SerializeField]
     private float _speed;　//速度
 
+    private bool _isArea;
+
+    float m_radius;
+    Vector3 m_poition;
+
     #endregion
     // Start is called before the first frame updSate
     void Start()
@@ -34,14 +39,20 @@ public class RiceBollsMoveTest : MonoBehaviour
     void Update()
     {
         _serchTime += Time.deltaTime;
-
         if (_serchTime >= 0)
         {
             _nearObj = serchTag(gameObject, "kome");
             _serchTime = 0;
             //対象の位置の方向を向く
             //transform.LookAt(_nearObj.transform);
+            if (_nearObj == null)
+            {
+                return;
+
+            }
+     
             Vector3 diff = (this.gameObject.transform.position - _nearObj.transform.position);
+
             this.transform.rotation = Quaternion.FromToRotation(Vector3.up, -diff);
             //自分自身の位置から相対的に移動する
             //transform.Translate(Vector3.forward * 0.1f);
@@ -53,6 +64,16 @@ public class RiceBollsMoveTest : MonoBehaviour
         }
         ScoreText.text = "米獲得数: " + _HighScore.ToString();
     }
+    public void blowoff()
+    {
+        Debug.Log("Explosion");
+        Collider[] hitColliders = Physics.OverlapSphere(m_poition,m_radius);
+        for (int i = 0; i < hitColliders.Length; i++)
+        {
+
+        }
+    }
+    
     /// <summary>
     /// 一個米を取得するごとに10%速度が上昇
     /// </summary>
@@ -67,22 +88,20 @@ public class RiceBollsMoveTest : MonoBehaviour
             #region レベル
             if (_level == 1)
             {
-               
                 //コルーチンStart
                 StartCoroutine(CountCoroutine());
                 Debug.Log("1レベルだよ");
                 _speed = 1.1f;
+                _nearObj = null;
             }
             if (_level == 2)
             {
-               
                 StartCoroutine(CountCoroutine());
                 Debug.Log("2レベルだよ");
                 _speed = 1.2f;
             }
             if (_level == 3)
             {
-               
                 StartCoroutine(CountCoroutine());
                 Debug.Log("3レベルだよ");
                 _speed = 1.3f;
@@ -194,8 +213,12 @@ public class RiceBollsMoveTest : MonoBehaviour
         GameObject targetObj = null;
         foreach (GameObject obs in GameObject.FindGameObjectsWithTag(tagName))
         {
+            /*メモ
+             * boolでfalseとtrueを使って画面内に要るときはtrueいないときはfalse
+             *Vector2.DistanceではなくsqrMagnitudeを使った方が処理が軽い
+             */
             //自身と取得したオブジェクトの距離を取得
-            tmpDis = Vector2.Distance(obs.transform.position, nowObj.transform.position);
+             tmpDis = Vector3.Distance(obs.transform.position, nowObj.transform.position);
 
             //オブジェクトの距離が近いか、距離0であればオブジェクト名を取得
             //一時変数に距離を格納
