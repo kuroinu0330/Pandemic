@@ -18,6 +18,7 @@ public class SoundManager : MonoBehaviour
 
     void Awake()
     {
+        // スピーカーを用意
         bgmAudioSource = gameObject.AddComponent<AudioSource>();
 
         // 配列の数だけAudioSourceを生成して格納
@@ -30,6 +31,7 @@ public class SoundManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
+    // 未使用のAudioSourceを取得
     private AudioSource GetUnusedAudioSource()
     {
         for (int i = 0; i < seAudioSourceList.Count; i++)
@@ -64,6 +66,19 @@ public class SoundManager : MonoBehaviour
         }
         audioSource.clip = clip;
         audioSource.Play();
+
+        /*
+        // SEの再生が終わったらaudioSourceを削除
+        float endSE = clip.length;
+        Destroy(audioSource, endSE);
+        */
+    }
+
+    public void DestroyAudioSource()
+    {
+        var audioSource = GetUnusedAudioSource();
+        float endSE = audioSource.clip.length;
+        Destroy(audioSource, endSE);
     }
 
 }

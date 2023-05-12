@@ -29,5 +29,10 @@ public class SoundTest : MonoBehaviour
         {
             soundManager.PlaySE(1);
         }
+
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            soundManager.DestroyAudioSource();
+        }
     }
 }
