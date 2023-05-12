@@ -4,7 +4,7 @@ using System.Security.Cryptography;
 using System.Threading;
 using UnityEngine;
 
-public class bread : MonoBehaviour
+/*public class bread : MonoBehaviour
 {
     Transform playerTr;//プレイヤーのTransform
     [SerializeField] float speed = 0.8;//敵の動くスピード
@@ -60,4 +60,4 @@ public class bread : MonoBehaviour
             player = null;
         }
     }
-}
+}*/
