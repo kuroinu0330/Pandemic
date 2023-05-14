@@ -17,10 +17,11 @@ public class bread : MonoBehaviour
     public GameObject player;
     public GameObject rice;
     public static bread instance;
-
+        //instance化の設定
     void Awake()
     {
-        if(instance ==null){
+        if(instance ==null)
+        {
             instance = this;
         }
     }
@@ -75,10 +76,24 @@ public class bread : MonoBehaviour
             isSearching = true;
             player = col.gameObject;
         }
+        if (col.gameObject.tag == "rice")
+        {
+            isSearching = true;
+            rice = col.gameObject;
+        }
     }
 
     private void OnTriggerExit(Collider col)
     {
+         if (col.gameObject.tag == "rice")
+        {
+            //1秒停止
+            Time.timeScale=0;
+            yield return new WaitForSecondsRealtime(1.0f);
+            //再開
+            Time.timeScale=1;
+
+        }
         if (col.gameObject.tag == "Player")
         {
             isSearching = false;
@@ -86,4 +101,7 @@ public class bread : MonoBehaviour
         }
     }
     //索敵範囲指定のプログラム終了地点
+    public void breadIn(){
+        Instamtiate(bread);
+    }
 }

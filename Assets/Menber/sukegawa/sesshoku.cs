@@ -27,7 +27,7 @@ public class sesshoku : MonoBehaviour
             void ChangeScene()
                 {
                     SceneManager.LoadScene("MainScene");//sceneの変更
-                    bread.instance.Update();//breadの引用
+                    bread.instance.breadIn();//breadの引用
                 }
         }   
     }
