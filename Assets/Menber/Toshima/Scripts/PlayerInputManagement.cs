@@ -7,7 +7,11 @@ public class PlayerInputManagement : MonoBehaviour
 {
     //入力判定用のデッドゾーン
     [SerializeField]
-    private float _playerInputDeadzone = 0f;
+    private float _playerInputDeadzone = 500f;
+
+    //米粒の半径
+    [SerializeField]
+    private float _riceBabyRadius = 500;
 
     // //米粒のプレハブ(別ソースコードに転移)
     // [SerializeField]
@@ -218,10 +222,10 @@ public class PlayerInputManagement : MonoBehaviour
 
         //円形の光線を発射して当たったオブジェクトの情報を取得する
         RaycastHit2D hit = 
-        Physics2D.CircleCast(Camera.main.ScreenToWorldPoint(Input.mousePosition), 0.25f,Vector2.zero,0.25f);
+        Physics2D.CircleCast(Camera.main.ScreenToWorldPoint(Input.mousePosition), _riceBabyRadius,Vector2.zero,_riceBabyRadius);
 
         //実行許可を持ちかつ光線がなんのオブジェクトも取得していない時に以下の処理を実行する
-        if(_actionReady && hit.collider == null)
+        if(_actionReady && hit.collider.tag == "MapTile")
         {
             //他のソースコードに転移させた米を生成する処理を呼び出す
             RiceBabyCreateManager.Instance.CreateRiceBaby(createPos);
@@ -229,7 +233,7 @@ public class PlayerInputManagement : MonoBehaviour
         else
         {
             //オブジェクトを取得したときに流すログ
-            Debug.Log("超強力スーパーシュート！！");
+            //Debug.Log("超強力スーパーシュート！！");
         }
     }
     

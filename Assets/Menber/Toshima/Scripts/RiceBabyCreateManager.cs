@@ -21,10 +21,6 @@ public class RiceBabyCreateManager : MonoBehaviour
     [SerializeField]
     private float _createCost;
 
-    //クリエイトポイントの回復を始めるかの判定処理
-    [SerializeField]
-    private bool _healReady = false;
-
     //クリエイトポイントの回復効率
     [SerializeField]
     private float _recoveryEfficiencyCreateEnergy;
