@@ -28,7 +28,7 @@ public class SoundManager : MonoBehaviour
         }
 
         // シーン遷移しても破棄されない
-        DontDestroyOnLoad(this);
+        DontDestroyOnLoad(gameObject);
     }
 
     // 未使用のAudioSourceを取得
@@ -36,7 +36,7 @@ public class SoundManager : MonoBehaviour
     {
         for (int i = 0; i < seAudioSourceList.Count; i++)
         {
-            if (seAudioSourceList[i].isPlaying == false)
+            if (!seAudioSourceList[i].isPlaying)
             {
                 return seAudioSourceList[i];
             }
@@ -67,18 +67,17 @@ public class SoundManager : MonoBehaviour
         audioSource.clip = clip;
         audioSource.Play();
 
-        /*
+
         // SEの再生が終わったらaudioSourceを削除
-        float endSE = clip.length;
-        Destroy(audioSource, endSE);
-        */
+        StartCoroutine(DestroyAudioSourceWhenFinished(audioSource));
     }
 
-    public void DestroyAudioSource()
+    private IEnumerator DestroyAudioSourceWhenFinished(AudioSource audioSource)
     {
-        var audioSource = GetUnusedAudioSource();
-        float endSE = audioSource.clip.length;
-        Destroy(audioSource, endSE);
-    }
+        yield return new WaitForSeconds(audioSource.clip.length);
 
+        // SEの再生が終わったら関連するAudioSourceを削除
+        seAudioSourceList.Remove(audioSource);
+        Destroy(audioSource);
+    }
 }
