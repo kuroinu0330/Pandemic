@@ -5,6 +5,11 @@ using UnityEngine.UI;
 
 public class RiceBollsMoveTest : MonoBehaviour
 {
+    /*
+    private Collider2D _collider01;
+    private Collider2D _collider02;
+    */
+
     public Text ScoreText;
     #region@•ÄŠl“¾
     [SerializeField]
@@ -21,7 +26,7 @@ public class RiceBollsMoveTest : MonoBehaviour
     private bool _isArea;
 
     float m_radius;
-    Vector3 m_poition;
+    Vector3 center;
 
     #endregion
     // Start is called before the first frame updSate
@@ -66,13 +71,14 @@ public class RiceBollsMoveTest : MonoBehaviour
     }
     public void blowoff()
     {
-        Debug.Log("Explosion");
-        Collider[] hitColliders = Physics.OverlapSphere(m_poition,m_radius);
+        Collider[] hitColliders = Physics.OverlapSphere(center,m_radius);
         for (int i = 0; i < hitColliders.Length; i++)
         {
+            //kome‚ª”ÍˆÍ‚É“ü‚Á‚½‚ç’Ç‚¢‚©‚¯‚é
 
         }
     }
+
     
     /// <summary>
     /// ˆêŒÂ•Ä‚ğæ“¾‚·‚é‚²‚Æ‚É10%‘¬“x‚ªã¸

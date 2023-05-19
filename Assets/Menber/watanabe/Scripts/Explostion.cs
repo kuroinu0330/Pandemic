@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
-
+    private Collider2D _collider01;
+    private Collider2D _collider02;
     float m_force;
     float m_radius;
     float m_upwards;
@@ -23,7 +24,6 @@ public class Explosion : MonoBehaviour
     {
         if (j == 0)
         {
-            Debug.Log("Explosion!");
             m_position = this.gameObject.transform.position;
 
             // 範囲内のRigidbodyにAddExplosionForce
@@ -33,12 +33,7 @@ public class Explosion : MonoBehaviour
 
                 var rb = hitColliders[i].GetComponent<Rigidbody>();
                 float distance = Vector3.Distance(hitColliders[i].transform.position, this.gameObject.transform.position);
-                if (rb)
-                {
-                    // カルタの枠撃っても動かないギリギリの数値のため、カルタのサイズ変更した場合はここも変えること。
- 
 
-                }
 
             }
 
