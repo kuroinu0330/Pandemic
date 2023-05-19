@@ -34,7 +34,7 @@ public class RiceBollsMoveTest : MonoBehaviour
     {
         _level = 0;
         //最も近いオブジェクトを取得
-        _nearObj = serchTag(gameObject, "kome");
+        _nearObj = serchTag(gameObject, "RiseBaby");
     }
 
     // Update is called once per frame
@@ -46,7 +46,7 @@ public class RiceBollsMoveTest : MonoBehaviour
         _serchTime += Time.deltaTime;
         if (_serchTime >= 0)
         {
-            _nearObj = serchTag(gameObject, "kome");
+            _nearObj = serchTag(gameObject, "RiseBaby");
             _serchTime = 0;
             //対象の位置の方向を向く
             //transform.LookAt(_nearObj.transform);
@@ -86,7 +86,7 @@ public class RiceBollsMoveTest : MonoBehaviour
     /// <param name="other"></param>
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("kome"))
+        if (other.gameObject.CompareTag("RiseBaby"))
         {
             _level += 1;
             _HighScore += 1;
