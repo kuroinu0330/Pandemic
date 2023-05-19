@@ -83,6 +83,9 @@ public class TileScrollManager : MonoBehaviour
                 //タイルのエディター上での名前を決める
                 obj.name = "MapTile" + (y * 3 + x);
 
+                //タイルの縦横幅を調整
+                obj.GetComponent<SpriteRenderer>().size = DisplayResolution;
+
                 //タイルの柄を元々用意していたものに置き換える
                 obj.GetComponent<SpriteRenderer>().sprite = _mapTileTextures[y * 3 + x];
 

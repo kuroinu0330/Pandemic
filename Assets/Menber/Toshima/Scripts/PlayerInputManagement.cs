@@ -222,7 +222,7 @@ public class PlayerInputManagement : MonoBehaviour
 
         //円形の光線を発射して当たったオブジェクトの情報を取得する
         RaycastHit2D hit = 
-        Physics2D.CircleCast(Camera.main.ScreenToWorldPoint(Input.mousePosition), _riceBabyRadius,Vector2.zero,_riceBabyRadius);
+        Physics2D.CircleCast(Camera.main.ScreenToWorldPoint(Input.mousePosition), _riceBabyRadius,Vector2.zero,0);
 
         //実行許可を持ちかつ光線がなんのオブジェクトも取得していない時に以下の処理を実行する
         if(_actionReady && hit.collider.tag == "MapTile")
