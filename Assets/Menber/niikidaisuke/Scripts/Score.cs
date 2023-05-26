@@ -1,23 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Score : MonoBehaviour
 {
-    public Text ScoreText;
-    int score;
+    public TextMeshProUGUI ScoreText;
+    public int _HighScore;
     // Start is called before the first frame update
     void Start()
     {
-        score = ScoreData.getscore();
+        _HighScore = RiceBollsMoveTest.getscore();
 
-        ScoreText.text = string.Format("{0}", score);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        ScoreText.text = string.Format("{0}", _HighScore);
     }
 }

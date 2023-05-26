@@ -8,4 +8,9 @@ public class InstantScripts : MonoBehaviour
     {
         PlayerInputManagement.Instance.PlayerActionOn();
     }
+
+    void InstantActionOn2()
+    {
+        bread.instance.ActionOnTheWay();
+    }
 }

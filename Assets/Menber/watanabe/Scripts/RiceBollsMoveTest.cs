@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,13 +10,14 @@ public class RiceBollsMoveTest : MonoBehaviour
     private Collider2D _collider01;
     private Collider2D _collider02;
     */
-
-    public Text ScoreText;
+    [SerializeField]
+    SoundManager soundManager;
+    public TextMeshProUGUI ScoreText;
     #region　米獲得
     [SerializeField]
     private int _level = 0;//レベル
     [SerializeField]
-    private int _HighScore = 0;//米の獲得数
+    public static int _HighScore ;//米の獲得数
     #endregion
     #region 移動関係
     private GameObject _nearObj;//最も近いオブジェクト
@@ -69,8 +71,10 @@ public class RiceBollsMoveTest : MonoBehaviour
           _nearObj.transform.position,
           _speed * Time.deltaTime);
 
+          //soundManager.PlaySE(0);
+
         }
-        ScoreText.text = "米獲得数: " + _HighScore.ToString();
+        ScoreText.text = _HighScore.ToString();
     }
     public void blowoff()
     {
@@ -244,4 +248,8 @@ public class RiceBollsMoveTest : MonoBehaviour
         return targetObj;
     }
     #endregion
+    public static int getscore()
+    {
+        return _HighScore;
+    }
 }

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Threading;
-<<<<<<< HEAD
 using UnityEngine;
 
 /*public class bread : MonoBehaviour
@@ -62,15 +61,17 @@ using UnityEngine;
         }
     }
 }*/
-=======
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class bread : MonoBehaviour
 {
     Transform playerTr;//プレイヤーのTransform
     Transform riceTr;//米のTransform
-    [SerializeField] float speed = 0.8f;//敵の動くスピード
+    [SerializeField] float speed = 120f;//敵の動くスピ�EチE
+
+    private bool _actionOn = false;
 
 
     [SerializeField] private bread Bread;
@@ -81,12 +82,12 @@ public class bread : MonoBehaviour
 
     public char[] charArray;
     public string str;
-    //索敵範囲指定最初のプログラム
+    //索敵篁E��持E��最初�Eプログラム
     public bool isSearching;
     public GameObject player;
     public GameObject rice;
     public static bread instance;
-    //instance化の設定
+    //instance化�E設宁E
     void Awake()
     {
         if (instance == null)
@@ -97,7 +98,7 @@ public class bread : MonoBehaviour
 
     void Start()
     {
-        // プレイヤーのTransformを取得（プレイヤーのタグをPlayerに設定必要）
+        // プレイヤーのTransformを取得（�EレイヤーのタグをPlayerに設定忁E��E��E
         playerTr = GameObject.FindGameObjectWithTag("Player").transform;
         //riceTr = GameObject.FindGameObjectWithTag("RiceBaby").transform;
         StartCoroutine ("firststop");
@@ -108,22 +109,37 @@ public class bread : MonoBehaviour
     {
 
     }
-   
+
+    public void ActionOnTheWay()
+    {
+        _actionOn = true;
+    }
+
+    public void ActionOffTheWay()
+    {
+        _actionOn = false;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        // プレイヤーとの距離が0.1f未満になったらそれ以上実行しない
+        // プレイヤーとの距離ぁE.1f未満になったらそれ以上実行しなぁE
 
         if (Vector2.Distance(transform.position, playerTr.position) < 0.1f)
             return;
 
 
     }
-    //索敵範囲指定のプログラム開始地点
+    //索敵篁E��持E���Eプログラム開始地点
    
-     void OnTriggerEnter2D(Collider2D col)
+     void OnTriggerEnter2D(Collider2D other)
      {
-        if (col.gameObject.tag == "Player")
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("��������");
+            SceneManager.LoadScene("rizaruto");
+        }
+        /*if (col.gameObject.tag == "Player")
         {
 
         }
@@ -131,7 +147,7 @@ public class bread : MonoBehaviour
         if(col.gameObject.tag == "RiceBaby")
         {
             firststop();
-        }
+        }*/
      }
 
     private IEnumerator firststop()
@@ -141,10 +157,12 @@ public class bread : MonoBehaviour
         yield return new WaitForSecondsRealtime(1.0f);
         //再開
         Time.timeScale = 1;
-    
 
-        
-            while (true)
+
+
+        while (true)
+        {
+            if (_actionOn)
             {
                 // プレイヤーに向けて進む(おにぎり)
                 this.transform.position = Vector2.MoveTowards(
@@ -160,10 +178,10 @@ public class bread : MonoBehaviour
 
                 int score = 0;
 
-                //スピードの変化
+                //スピ�Eド�E変化
                 if (score < 21f)
                 {
-                    speed = 0.8f;
+                    speed = 130f;
                 }
                 else if (score < 41f)
                 {
@@ -177,15 +195,15 @@ public class bread : MonoBehaviour
                 {
                     speed = 1.5f;
                 }
-                yield return null;
             }
-            //yield break;
+                yield return null;
+            
         }
-        //索敵範囲指定のプログラム終了地点
+            //yield break;
+    }
+        //索敵篁E��持E���Eプログラム終亁E��点
         //public void breadIn(){
         //    //Instantiate(bread);
         //}
     
-   }
-
->>>>>>> origin/sukegawa
+}
