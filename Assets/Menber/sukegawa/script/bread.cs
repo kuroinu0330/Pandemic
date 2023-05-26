@@ -99,7 +99,7 @@ public class bread : MonoBehaviour
     {
         // プレイヤーのTransformを取得（プレイヤーのタグをPlayerに設定必要）
         playerTr = GameObject.FindGameObjectWithTag("Player").transform;
-        riceTr = GameObject.FindGameObjectWithTag("RiceBaby").transform;
+        //riceTr = GameObject.FindGameObjectWithTag("RiceBaby").transform;
         StartCoroutine ("firststop");
         
         //Bread = GetComponent<bread>();
@@ -114,7 +114,7 @@ public class bread : MonoBehaviour
     {
         // プレイヤーとの距離が0.1f未満になったらそれ以上実行しない
 
-        if (Vector2.Distance(transform.position, riceTr.position) < 0.1f)
+        if (Vector2.Distance(transform.position, playerTr.position) < 0.1f)
             return;
 
 
