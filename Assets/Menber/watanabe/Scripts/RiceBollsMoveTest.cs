@@ -13,15 +13,15 @@ public class RiceBollsMoveTest : MonoBehaviour
     public Text ScoreText;
     #region　米獲得
     [SerializeField]
-    private int _level = 0; //レベル
+    private int _level = 0;//レベル
     [SerializeField]
-    private int _HighScore = 0; //米の獲得数
+    private int _HighScore = 0;//米の獲得数
     #endregion
     #region 移動関係
-    private GameObject _nearObj; //最も近いオブジェクト
+    private GameObject _nearObj;//最も近いオブジェクト
     private float _serchTime;　
     [SerializeField]
-    private float _speed;　//速度
+    private float _speed;//速度
 
     private bool _isArea;
 
