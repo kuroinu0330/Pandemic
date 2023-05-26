@@ -216,7 +216,7 @@ public class PlayerInputManagement : MonoBehaviour
     /// タップ時の処理を記述する関数
     /// </summary>
     private void CreateAction(Vector2 createPos)
-    {
+    {    
         //枠とりお米の座標を更新する
         //_riceBabyPhantom.transform.position = createPos;
 
@@ -224,8 +224,10 @@ public class PlayerInputManagement : MonoBehaviour
         RaycastHit2D hit = 
         Physics2D.CircleCast(Camera.main.ScreenToWorldPoint(Input.mousePosition), _riceBabyRadius,Vector2.zero,0);
 
+        //Debug.Log(hit.collider.tag);
+
         //実行許可を持ちかつ光線がなんのオブジェクトも取得していない時に以下の処理を実行する
-        if(_actionReady && hit.collider.tag == "MapTile")
+        if (_actionReady && hit.collider.tag == "MapTile")
         {
             //他のソースコードに転移させた米を生成する処理を呼び出す
             RiceBabyCreateManager.Instance.CreateRiceBaby(createPos);
@@ -233,7 +235,7 @@ public class PlayerInputManagement : MonoBehaviour
         else
         {
             //オブジェクトを取得したときに流すログ
-            //Debug.Log("超強力スーパーシュート！！");
+            Debug.Log("超強力スーパーシュート！！");
         }
     }
     

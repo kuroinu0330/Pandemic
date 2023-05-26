@@ -34,7 +34,7 @@ public class RiceBollsMoveTest : MonoBehaviour
     {
         _level = 0;
         //最も近いオブジェクトを取得
-        _nearObj = serchTag(gameObject, "RiseBaby");
+        _nearObj = serchTag(gameObject, "RiceBaby");
     }
 
     // Update is called once per frame
@@ -46,7 +46,7 @@ public class RiceBollsMoveTest : MonoBehaviour
         _serchTime += Time.deltaTime;
         if (_serchTime >= 0)
         {
-            _nearObj = serchTag(gameObject, "RiseBaby");
+            _nearObj = serchTag(gameObject, "RiceBaby");
             _serchTime = 0;
             //対象の位置の方向を向く
             //transform.LookAt(_nearObj.transform);
@@ -59,9 +59,12 @@ public class RiceBollsMoveTest : MonoBehaviour
             Vector3 diff = (this.gameObject.transform.position - _nearObj.transform.position);
 
             this.transform.rotation = Quaternion.FromToRotation(Vector3.up, -diff);
+
+            CameraMoveController.Instance.CameraPositionUpdate();
+
             //自分自身の位置から相対的に移動する
             //transform.Translate(Vector3.forward * 0.1f);
-            transform.position = Vector2.MoveTowards(
+            transform.position = Vector3.MoveTowards(
           transform.position,
           _nearObj.transform.position,
           _speed * Time.deltaTime);
@@ -86,7 +89,7 @@ public class RiceBollsMoveTest : MonoBehaviour
     /// <param name="other"></param>
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("RiseBaby"))
+        if (other.gameObject.CompareTag("RiceBaby"))
         {
             _level += 1;
             _HighScore += 1;
@@ -97,69 +100,69 @@ public class RiceBollsMoveTest : MonoBehaviour
                 //コルーチンStart
                 StartCoroutine(CountCoroutine());
                 Debug.Log("1レベルだよ");
-                _speed = 1.1f;
+                _speed = 110f;
                 _nearObj = null;
             }
             if (_level == 2)
             {
                 StartCoroutine(CountCoroutine());
                 Debug.Log("2レベルだよ");
-                _speed = 1.2f;
+                _speed = 120f;
             }
             if (_level == 3)
             {
                 StartCoroutine(CountCoroutine());
                 Debug.Log("3レベルだよ");
-                _speed = 1.3f;
+                _speed = 130f;
             }
             if (_level == 4)
             {
                 
                 StartCoroutine(CountCoroutine());
                 Debug.Log("4レベルだよ");
-                _speed = 1.4f;
+                _speed = 140f;
             }
             if (_level == 5)
             {
                
                 StartCoroutine(CountCoroutine());
                 Debug.Log("5レベルだよ");
-                _speed = 1.5f;
+                _speed = 150f;
             }
             if (_level == 6)
             {
              
                 StartCoroutine(CountCoroutine());
                 Debug.Log("6レベルだよ");
-                _speed = 1.6f;
+                _speed = 160f;
             }
             if (_level == 7)
             {
                 
                 StartCoroutine(CountCoroutine());
                 Debug.Log("7レベルだよ");
-                _speed = 1.7f;
+                _speed = 170f;
             }
             if (_level == 8)
             {
               
                 StartCoroutine(CountCoroutine());
                 Debug.Log("8レベルだよ");
-                _speed = 1.8f;
+                _speed = 180f;
             }
             if (_level == 9)
             {
              
                 StartCoroutine(CountCoroutine());
                 Debug.Log("9レベルだよ");
-                _speed = 1.9f;
+                _speed = 190f;
             }
             if (_level == 10)
             {
                 
                 StartCoroutine(CountCoroutine());
                 Debug.Log("10レベルだよ");
-                _speed = 2.0f;
+                _speed = 200f;
             }
             #endregion
         }
@@ -182,7 +185,7 @@ public class RiceBollsMoveTest : MonoBehaviour
             if (timer >= 2.0f)
             {
                 _level = 0;
-                _speed = 1f;
+                _speed = 100f;
                 Debug.Log("速度とレベルを初期に戻したぞい");
                 _Clear = false;
                 yield break;

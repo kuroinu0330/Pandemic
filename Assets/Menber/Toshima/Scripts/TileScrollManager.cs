@@ -77,7 +77,7 @@ public class TileScrollManager : MonoBehaviour
                 var obj = Instantiate(TileBasePrefab,
                                         new Vector3(-DisplayResolution.x + DisplayResolution.x * x,
                                                     -DisplayResolution.y + DisplayResolution.y * y,
-                                                    10f),
+                                                    0f),
                                         Quaternion.identity) as GameObject;
 
                 //タイルのエディター上での名前を決める
