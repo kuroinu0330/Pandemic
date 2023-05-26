@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using System.Linq;
+using System;
 
 public class PlayerInputManagement : MonoBehaviour
 {
@@ -63,6 +65,7 @@ public class PlayerInputManagement : MonoBehaviour
 
     void Start() 
     {
+
         //_riceBabyPhantomObject = GameObject.Instantiate(_riceBabyPhantomPrefab,Vector2.zero,Quaternion.identity);
 
         //デバック用の強制許可処理
@@ -216,18 +219,21 @@ public class PlayerInputManagement : MonoBehaviour
     /// タップ時の処理を記述する関数
     /// </summary>
     private void CreateAction(Vector2 createPos)
-    {    
+    {
         //枠とりお米の座標を更新する
         //_riceBabyPhantom.transform.position = createPos;
 
-        //円形の光線を発射して当たったオブジェクトの情報を取得する
-        RaycastHit2D hit = 
-        Physics2D.CircleCast(Camera.main.ScreenToWorldPoint(Input.mousePosition), _riceBabyRadius,Vector2.zero,0);
+        Vector2 center = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        //Debug.Log(hit.collider.tag);
+        CapsuleDirection2D direction = new CapsuleDirection2D();
+
+        //円形の光線を発射する(Circle型のRayCast)
+        RaycastHit2D hit = 
+        //Physics2D.CircleCast(center, _riceBabyRadius,Vector2.zero);
+        Physics2D.CapsuleCast(center,new Vector2(0.75f,1f) * _riceBabyRadius,direction,0f,Vector2.zero,0f);
 
         //実行許可を持ちかつ光線がなんのオブジェクトも取得していない時に以下の処理を実行する
-        if (_actionReady && hit.collider.tag == "MapTile")
+        if(_actionReady && hit.collider == null)
         {
             //他のソースコードに転移させた米を生成する処理を呼び出す
             RiceBabyCreateManager.Instance.CreateRiceBaby(createPos);
@@ -237,6 +243,28 @@ public class PlayerInputManagement : MonoBehaviour
             //オブジェクトを取得したときに流すログ
             Debug.Log("超強力スーパーシュート！！");
         }
+
+        //円形の光線を発射して当たった全てのオブジェクトの情報を取得する(ボツ改善案)
+        // RaycastHit2D[] hits;
+        // var pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        // //hits = Physics2D.RaycastAll(pos, Vector2.zero);
+        // hits = Physics2D.CircleCastAll(pos, _riceBabyRadius,Vector2.zero);
+        // Debug.DrawRay(pos, Vector2.zero, Color.green);
+        // RaycastHit2D hit = hits.FirstOrDefault();
+
+        //Array.Sort (hits,(a, b) => a.distance.CompareTo(b.distance));
+
+        //実行許可を持ちかつ光線がなんのオブジェクトも取得していない時に以下の処理を実行する
+        // if(_actionReady && hits.Length == 0)
+        // {
+        //     //他のソースコードに転移させた米を生成する処理を呼び出す
+        //     RiceBabyCreateManager.Instance.CreateRiceBaby(createPos);
+        // }
+        // else
+        // {
+        //     //オブジェクトを取得したときに流すログ
+        //     Debug.Log("超強力スーパーシュート！！");
+        // }
     }
     
 
