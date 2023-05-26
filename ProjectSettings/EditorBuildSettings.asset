@@ -5,13 +5,22 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Menber/niikidaisuke/scenes test/rizaruto.unity
-    guid: 7884d73819694a94eb0f2e6d6f2f7ad6
+    path: Assets/Menber/niikidaisuke/Scenes/GameScenes.unity
+    guid: 28d6dd998a3fdac4fbc2e6d51fc6d3fb
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Menber/niikidaisuke/scenes test/stat(kari).unity
-    guid: bb28909ed4ffff444aa8d25c188ea834
+    path: Assets/Menber/niikidaisuke/Scenes/rizaruto.unity
+    guid: 6f319d532c1cad246803d7e3da61cc83
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Menber/niikidaisuke/scenes test/stezi(kari).unity
-    guid: bca0556a6272ebd49b58016354c7dbca
+    path: Assets/Menber/niikidaisuke/Scenes/taitoru.unity
+    guid: ca016840eba1a144dae8b64982711130
   m_configObjects: {}
