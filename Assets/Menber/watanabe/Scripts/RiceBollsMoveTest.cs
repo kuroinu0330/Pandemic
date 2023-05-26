@@ -56,9 +56,9 @@ public class RiceBollsMoveTest : MonoBehaviour
 
             }
      
-            Vector3 diff = (this.gameObject.transform.position - _nearObj.transform.position);
+            /*Vector3 diff = (this.gameObject.transform.position - _nearObj.transform.position);
 
-            this.transform.rotation = Quaternion.FromToRotation(Vector3.up, -diff);
+            this.transform.rotation = Quaternion.FromToRotation(Vector3.up, -diff);*/
 
             CameraMoveController.Instance.CameraPositionUpdate();
 

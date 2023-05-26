@@ -6,6 +6,6 @@ public class Seni : MonoBehaviour
 
 	public void OnClickStartButton()
 	{
-		SceneManager.LoadScene("GameScene");
+		SceneManager.LoadScene("TestSceneT001");
 	}
 }

@@ -70,7 +70,7 @@ public class PlayerInputManagement : MonoBehaviour
 
         //デバック用の強制許可処理
         //InputSwitching();
-        PlayerActionOn();
+        //PlayerActionOn();
     }
 
     void Update()

@@ -82,7 +82,7 @@ public class RiceBabyCreateManager : MonoBehaviour
             _createEnergy -= _createCost;
 
             //米を生成する
-            Instantiate(_riceBaby,new Vector3(createPos.x,createPos.y,1f),Quaternion.identity);
+            Instantiate(_riceBaby,new Vector3(createPos.x,createPos.y,0f),Quaternion.identity);
         }
         
     }
