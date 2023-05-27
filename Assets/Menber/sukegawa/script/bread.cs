@@ -137,7 +137,7 @@ public class bread : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Debug.Log("“–‚½‚Á‚½");
-            SceneManager.LoadScene("rizaruto");
+            SceneManager.LoadScene("Result");
         }
         /*if (col.gameObject.tag == "Player")
         {

@@ -21,14 +21,21 @@ public class SoundManager : MonoBehaviour
         // スピーカーを用意
         bgmAudioSource = gameObject.AddComponent<AudioSource>();
 
+        List<AudioSource> AudiioList = new List<AudioSource>();
+
         // 配列の数だけAudioSourceを生成して格納
         for (int i = 0; i < seAudioSourceList.Count; i++)
         {
-            seAudioSourceList.Add(gameObject.AddComponent<AudioSource>());
+            //seAudioSourceList.Add(gameObject.AddComponent<AudioSource>());
+
+            AudiioList.Add(gameObject.AddComponent<AudioSource>());
         }
+
+        seAudioSourceList = AudiioList;
 
         // シーン遷移しても破棄されない
         DontDestroyOnLoad(gameObject);
+        PlayBGM(0);
     }
 
     // 未使用のAudioSourceを取得

@@ -71,8 +71,6 @@ public class RiceBollsMoveTest : MonoBehaviour
           _nearObj.transform.position,
           _speed * Time.deltaTime);
 
-          //soundManager.PlaySE(0);
-
         }
         ScoreText.text = _HighScore.ToString();
     }
@@ -98,7 +96,7 @@ public class RiceBollsMoveTest : MonoBehaviour
             _level += 1;
             _HighScore += 1;
             other.gameObject.SetActive(false);
-            #region レベル
+            #region Level
             if (_level == 1)
             {
                 //コルーチンStart
@@ -221,6 +219,7 @@ public class RiceBollsMoveTest : MonoBehaviour
     #region 探知系
     GameObject serchTag(GameObject nowObj, string tagName)
     {
+        soundManager.PlaySE(0);
         float tmpDis = 0;           //距離用一時変数
         float nearDis = 0;          //最も近いオブジェクトの距離
         GameObject targetObj = null;

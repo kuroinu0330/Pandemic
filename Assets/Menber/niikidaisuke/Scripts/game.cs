@@ -7,6 +7,6 @@ public class game: MonoBehaviour
 {
     public void OnClickStartButton()
     {
-        SceneManager.LoadScene("TestSceneT001");
+        SceneManager.LoadScene("MainScene");
     }
 }
