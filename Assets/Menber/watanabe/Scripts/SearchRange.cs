@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SearchRange : MonoBehaviour
 {
-    CircleCollider2D _collider;
+    private CircleCollider2D _collider;
     [SerializeField]
     private int _sizeCount;
 
@@ -15,12 +15,8 @@ public class SearchRange : MonoBehaviour
         _collider = GetComponent<CircleCollider2D>();
     }
     private void Update()
-    {
-        if (Input.GetKeyDown("space"))
-        {
-            _sizeCount++;
-            //_collider.size = new Vector2(_sizeCount, _sizeCount);
-        }
+    {   
+
     }
 
 

@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -6,42 +6,30 @@ using UnityEngine.UI;
 
 public class RiceBollsMoveTest : MonoBehaviour
 {
-    /*
-    private Collider2D _collider01;
-    private Collider2D _collider02;
-    */
-    [SerializeField]
-    SoundManager soundManager;
     public TextMeshProUGUI ScoreText;
-    #region@•ÄŠl“¾
+    #regionã€€ç±³ç²å¾—
     [SerializeField]
-    private int _level = 0;//ƒŒƒxƒ‹
+    private int _level = 0;//ãƒ¬ãƒ™ãƒ«
     [SerializeField]
-    public static int _HighScore ;//•Ä‚ÌŠl“¾”
+    public static int _HighScore;//ç±³ã®ç²å¾—æ•°
     #endregion
-    #region ˆÚ“®ŠÖŒW
-    private GameObject _nearObj;//Å‚à‹ß‚¢ƒIƒuƒWƒFƒNƒg
-    private float _serchTime;@
+    #region ç§»å‹•é–¢ä¿‚
+    private GameObject _nearObj;//æœ€ã‚‚è¿‘ã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+    private float _serchTime;
     [SerializeField]
-    private float _speed;//‘¬“x
-
-    private bool _isArea;
-
-    float m_radius;
-    Vector3 center;
-
+    private float _speed;//é€Ÿåº¦
     #endregion
     // Start is called before the first frame updSate
     void Start()
     {
         _level = 0;
-        //Å‚à‹ß‚¢ƒIƒuƒWƒFƒNƒg‚ğæ“¾
+        //æœ€ã‚‚è¿‘ã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—
         _nearObj = serchTag(gameObject, "RiceBaby");
     }
 
     // Update is called once per frame
     /// <summary>
-    /// ‹ß‚­‚É‚¢‚é•ÄObj‚Ì•ûŒü‚ÉŒü‚¢‚Ä’Ç]‚·‚éB
+    /// è¿‘ãã«ã„ã‚‹ç±³Objã®æ–¹å‘ã«å‘ã„ã¦è¿½å¾“ã™ã‚‹ã€‚
     /// </summary>
     void Update()
     {
@@ -50,43 +38,32 @@ public class RiceBollsMoveTest : MonoBehaviour
         {
             _nearObj = serchTag(gameObject, "RiceBaby");
             _serchTime = 0;
-            //‘ÎÛ‚ÌˆÊ’u‚Ì•ûŒü‚ğŒü‚­
+            //å¯¾è±¡ã®ä½ç½®ã®æ–¹å‘ã‚’å‘ã
             //transform.LookAt(_nearObj.transform);
             if (_nearObj == null)
             {
                 return;
-
             }
-     
+
             /*Vector3 diff = (this.gameObject.transform.position - _nearObj.transform.position);
 
             this.transform.rotation = Quaternion.FromToRotation(Vector3.up, -diff);*/
 
             CameraMoveController.Instance.CameraPositionUpdate();
 
-            //©•ª©g‚ÌˆÊ’u‚©‚ç‘Š‘Î“I‚ÉˆÚ“®‚·‚é
+            //è‡ªåˆ†è‡ªèº«ã®ä½ç½®ã‹ã‚‰ç›¸å¯¾çš„ã«ç§»å‹•ã™ã‚‹
             //transform.Translate(Vector3.forward * 0.1f);
             transform.position = Vector3.MoveTowards(
-          transform.position,
-          _nearObj.transform.position,
-          _speed * Time.deltaTime);
+            transform.position,
+            _nearObj.transform.position,
+            _speed * Time.deltaTime);
 
         }
         ScoreText.text = _HighScore.ToString();
     }
-    public void blowoff()
-    {
-        Collider[] hitColliders = Physics.OverlapSphere(center,m_radius);
-        for (int i = 0; i < hitColliders.Length; i++)
-        {
-            //kome‚ª”ÍˆÍ‚É“ü‚Á‚½‚ç’Ç‚¢‚©‚¯‚é
 
-        }
-    }
-
-    
     /// <summary>
-    /// ˆêŒÂ•Ä‚ğæ“¾‚·‚é‚²‚Æ‚É10%‘¬“x‚ªã¸
+    /// ä¸€å€‹ç±³ã‚’å–å¾—ã™ã‚‹ã”ã¨ã«10%é€Ÿåº¦ãŒä¸Šæ˜‡
     /// </summary>
     /// <param name="other"></param>
     private void OnTriggerEnter2D(Collider2D other)
@@ -99,80 +76,80 @@ public class RiceBollsMoveTest : MonoBehaviour
             #region Level
             if (_level == 1)
             {
-                //ƒRƒ‹[ƒ`ƒ“Start
+                //ã‚³ãƒ«ãƒ¼ãƒãƒ³Start
                 StartCoroutine(CountCoroutine());
-                Debug.Log("1ƒŒƒxƒ‹‚¾‚æ");
+                Debug.Log("1ãƒ¬ãƒ™ãƒ«ã ã‚ˆ");
                 _speed = 110f;
                 _nearObj = null;
             }
             if (_level == 2)
             {
                 StartCoroutine(CountCoroutine());
-                Debug.Log("2ƒŒƒxƒ‹‚¾‚æ");
+                Debug.Log("2ãƒ¬ãƒ™ãƒ«ã ã‚ˆ");
                 _speed = 120f;
             }
             if (_level == 3)
             {
                 StartCoroutine(CountCoroutine());
-                Debug.Log("3ƒŒƒxƒ‹‚¾‚æ");
+                Debug.Log("3ãƒ¬ãƒ™ãƒ«ã ã‚ˆ");
                 _speed = 130f;
             }
             if (_level == 4)
             {
-                
+
                 StartCoroutine(CountCoroutine());
-                Debug.Log("4ƒŒƒxƒ‹‚¾‚æ");
+                Debug.Log("4ãƒ¬ãƒ™ãƒ«ã ã‚ˆ");
                 _speed = 140f;
             }
             if (_level == 5)
             {
-               
+
                 StartCoroutine(CountCoroutine());
-                Debug.Log("5ƒŒƒxƒ‹‚¾‚æ");
+                Debug.Log("5ãƒ¬ãƒ™ãƒ«ã ã‚ˆ");
                 _speed = 150f;
             }
             if (_level == 6)
             {
-             
+
                 StartCoroutine(CountCoroutine());
-                Debug.Log("6ƒŒƒxƒ‹‚¾‚æ");
+                Debug.Log("6ãƒ¬ãƒ™ãƒ«ã ã‚ˆ");
                 _speed = 160f;
             }
             if (_level == 7)
             {
-                
+
                 StartCoroutine(CountCoroutine());
-                Debug.Log("7ƒŒƒxƒ‹‚¾‚æ");
+                Debug.Log("7ãƒ¬ãƒ™ãƒ«ã ã‚ˆ");
                 _speed = 170f;
             }
             if (_level == 8)
             {
-              
+
                 StartCoroutine(CountCoroutine());
-                Debug.Log("8ƒŒƒxƒ‹‚¾‚æ");
+                Debug.Log("8ãƒ¬ãƒ™ãƒ«ã ã‚ˆ");
                 _speed = 180f;
             }
             if (_level == 9)
             {
-             
+
                 StartCoroutine(CountCoroutine());
-                Debug.Log("9ƒŒƒxƒ‹‚¾‚æ");
+                Debug.Log("9ãƒ¬ãƒ™ãƒ«ã ã‚ˆ");
                 _speed = 190f;
             }
             if (_level == 10)
             {
-                
+
                 StartCoroutine(CountCoroutine());
-                Debug.Log("10ƒŒƒxƒ‹‚¾‚æ");
+                Debug.Log("10ãƒ¬ãƒ™ãƒ«ã ã‚ˆ");
                 _speed = 200f;
             }
             #endregion
         }
     }
-    //ˆê•bŠÔ•Ä‚ğŠl“¾‚Å‚«‚È‚©‚Á‚½‚çƒXƒRƒA‚ğ0‚É‚·‚éB
-    bool _Clear =  false;
+    //ä¸€ç§’é–“ç±³ã‚’ç²å¾—ã§ããªã‹ã£ãŸã‚‰ã‚¹ã‚³ã‚¢ã‚’0ã«ã™ã‚‹ã€‚
+    bool _Clear = false;
     /// <summary>
-    /// 3•bŠÔ•Ä‚ğŠl“¾‚Å‚«‚È‚©‚Á‚½‚çƒXƒRƒA‚Æ‘¬“x‚ğ‰Šú‰»‚É‚·‚éB
+    /// 3ç§’é–“ç±³ã‚’ç²å¾—ã§ããªã‹ã£ãŸã‚‰ã‚¹ã‚³ã‚¢ã¨é€Ÿåº¦ã‚’åˆæœŸåŒ–ã«ã™ã‚‹ã€‚
     /// </summary>
     /// <returns></returns>
     IEnumerator CountCoroutine()
@@ -188,7 +165,7 @@ public class RiceBollsMoveTest : MonoBehaviour
             {
                 _level = 0;
                 _speed = 100f;
-                Debug.Log("‘¬“x‚ÆƒŒƒxƒ‹‚ğ‰Šú‚É–ß‚µ‚½‚¼‚¢");
+                Debug.Log("é€Ÿåº¦ã¨ãƒ¬ãƒ™ãƒ«ã‚’åˆæœŸã«æˆ»ã—ãŸãã„");
                 _Clear = false;
                 yield break;
             }
@@ -202,38 +179,38 @@ public class RiceBollsMoveTest : MonoBehaviour
         /*yield return new WaitForSeconds(1.0f);
         _score = 0;
         _speed = 1.0f;
-        Debug.Log("ƒRƒ‹[ƒ`ƒ“ŠJn");
+        Debug.Log("ã‚³ãƒ«ãƒ¼ãƒãƒ³é–‹å§‹");
         yield break;*/
     }
     public void ChallengeClear()
     {
         _Clear = true;
     }
- 
+
     /// <summary>
-    /// •Ä‚Æ‚¨‚É‚¬‚è‚Ì‹——£‚ğŒvZ‚µ‚Ä‹ß‚­‚É‚ ‚é•Äobj‚É’Ç]‚·‚é
+    /// ç±³ã¨ãŠã«ãã‚Šã®è·é›¢ã‚’è¨ˆç®—ã—ã¦è¿‘ãã«ã‚ã‚‹ç±³objã«è¿½å¾“ã™ã‚‹
     /// </summary>
-    /// <param name="nowObj">©•ª©g</param>
-    /// <param name="tagName">•Ä‚ğ’T’m</param>
+    /// <param name="nowObj">è‡ªåˆ†è‡ªèº«</param>
+    /// <param name="tagName">ç±³ã‚’æ¢çŸ¥</param>
     /// <returns></returns>
-    #region ’T’mŒn
+    #region æ¢çŸ¥ç³»
     GameObject serchTag(GameObject nowObj, string tagName)
     {
-        soundManager.PlaySE(0);
-        float tmpDis = 0;           //‹——£—pˆê•Ï”
-        float nearDis = 0;          //Å‚à‹ß‚¢ƒIƒuƒWƒFƒNƒg‚Ì‹——£
+
+        float tmpDis = 0;           //è·é›¢ç”¨ä¸€æ™‚å¤‰æ•°
+        float nearDis = 0;          //æœ€ã‚‚è¿‘ã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è·é›¢
         GameObject targetObj = null;
         foreach (GameObject obs in GameObject.FindGameObjectsWithTag(tagName))
         {
-            /*ƒƒ‚
-             * bool‚Åfalse‚Ætrue‚ğg‚Á‚Ä‰æ–Ê“à‚É—v‚é‚Æ‚«‚Ítrue‚¢‚È‚¢‚Æ‚«‚Ífalse
-             *Vector2.Distance‚Å‚Í‚È‚­sqrMagnitude‚ğg‚Á‚½•û‚ªˆ—‚ªŒy‚¢
+            /*ãƒ¡ãƒ¢
+             * boolã§falseã¨trueã‚’ä½¿ã£ã¦ç”»é¢å†…ã«è¦ã‚‹ã¨ãã¯trueã„ãªã„ã¨ãã¯false
+             *Vector2.Distanceã§ã¯ãªãsqrMagnitudeã‚’ä½¿ã£ãŸæ–¹ãŒå‡¦ç†ãŒè»½ã„
              */
-            //©g‚Ææ“¾‚µ‚½ƒIƒuƒWƒFƒNƒg‚Ì‹——£‚ğæ“¾
-             tmpDis = Vector3.Distance(obs.transform.position, nowObj.transform.position);
+            //è‡ªèº«ã¨å–å¾—ã—ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è·é›¢ã‚’å–å¾—
+            tmpDis = Vector3.Distance(obs.transform.position, nowObj.transform.position);
 
-            //ƒIƒuƒWƒFƒNƒg‚Ì‹——£‚ª‹ß‚¢‚©A‹——£0‚Å‚ ‚ê‚ÎƒIƒuƒWƒFƒNƒg–¼‚ğæ“¾
-            //ˆê•Ï”‚É‹——£‚ğŠi”[
+            //ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è·é›¢ãŒè¿‘ã„ã‹ã€è·é›¢0ã§ã‚ã‚Œã°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆåã‚’å–å¾—
+            //ä¸€æ™‚å¤‰æ•°ã«è·é›¢ã‚’æ ¼ç´
             if (nearDis == 0 || nearDis > tmpDis)
             {
                 nearDis = tmpDis;
@@ -242,7 +219,7 @@ public class RiceBollsMoveTest : MonoBehaviour
             }
 
         }
-        //Å‚à‹ß‚©‚Á‚½ƒIƒuƒWƒFƒNƒg‚ğ•Ô‚·
+        //æœ€ã‚‚è¿‘ã‹ã£ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è¿”ã™
         //return GameObject.Find(nearObjName);
         return targetObj;
     }
