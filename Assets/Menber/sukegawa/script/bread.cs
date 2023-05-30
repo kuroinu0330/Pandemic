@@ -6,8 +6,8 @@ using UnityEngine;
 
 /*public class bread : MonoBehaviour
 {
-    Transform playerTr;//�v���C���[��Transform
-    [SerializeField] float speed = 0.8;//�G�̓����X�s�[�h
+    Transform playerTr;//�v���C���[��Transform
+    [SerializeField] float speed = 0.8;//�G�̓����X�s�[�h
      // Start is called before the first frame update
     public bool isSearching;
     public GameObject player;
@@ -67,10 +67,13 @@ using UnityEngine.SceneManagement;
 
 public class bread : MonoBehaviour
 {
+    [SerializeField]
+    private SoundManager soundManager;
     Transform playerTr;//プレイヤーのTransform
     Transform riceTr;//米のTransform
-    [SerializeField] float speed = 120f;//敵の動くスピ�EチE
+    [SerializeField] float speed = 120f;//敵の動くスピ�EチE
 
+    [SerializeField]
     private bool _actionOn = false;
 
 
@@ -82,12 +85,12 @@ public class bread : MonoBehaviour
 
     public char[] charArray;
     public string str;
-    //索敵篁E��持E��最初�Eプログラム
+    //索敵篁E��持E��最初�Eプログラム
     public bool isSearching;
     public GameObject player;
     public GameObject rice;
     public static bread instance;
-    //instance化�E設宁E
+    //instance化�E設宁E
     void Awake()
     {
         if (instance == null)
@@ -98,7 +101,7 @@ public class bread : MonoBehaviour
 
     void Start()
     {
-        // プレイヤーのTransformを取得（�EレイヤーのタグをPlayerに設定忁E��E��E
+        // プレイヤーのTransformを取得（�EレイヤーのタグをPlayerに設定忁E��E��E
         playerTr = GameObject.FindGameObjectWithTag("Player").transform;
         //riceTr = GameObject.FindGameObjectWithTag("RiceBaby").transform;
         StartCoroutine ("firststop");
@@ -130,13 +133,14 @@ public class bread : MonoBehaviour
 
 
     }
-    //索敵篁E��持E���Eプログラム開始地点
+    //索敵篁E��持E���Eプログラム開始地点
    
      void OnTriggerEnter2D(Collider2D other)
      {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("��������");
+            Debug.Log("��������");
+            soundManager.AllMute();
             SceneManager.LoadScene("Result");
         }
         /*if (col.gameObject.tag == "Player")
@@ -178,7 +182,7 @@ public class bread : MonoBehaviour
 
                 int score = 0;
 
-                //スピ�Eド�E変化
+                //スピ�Eド�E変化
                 if (score < 21f)
                 {
                     speed = 130f;
@@ -201,7 +205,7 @@ public class bread : MonoBehaviour
         }
             //yield break;
     }
-        //索敵篁E��持E���Eプログラム終亁E��点
+        //索敵篁E��持E���Eプログラム終亁E��点
         //public void breadIn(){
         //    //Instantiate(bread);
         //}

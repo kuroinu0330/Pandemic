@@ -4,26 +4,26 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    // ƒI[ƒfƒBƒIƒ\[ƒX
+    // ï¿½Iï¿½[ï¿½fï¿½Bï¿½Iï¿½\ï¿½[ï¿½X
     private AudioSource bgmAudioSource;
-    // SE‚Í‰¹‚ªd‚È‚é‰Â”\«‚ª‚ ‚é‚Ì‚ÅƒŠƒXƒg‚É‚·‚é
+    // SEï¿½Í‰ï¿½ï¿½ï¿½ï¿½dï¿½È‚ï¿½Â”\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚Åƒï¿½ï¿½Xï¿½gï¿½É‚ï¿½ï¿½ï¿½
     private List<AudioSource> seAudioSourceList = new List<AudioSource>();
 
-    // BGM—pƒNƒŠƒbƒv
+    // BGMï¿½pï¿½Nï¿½ï¿½ï¿½bï¿½v
     [SerializeField]
     private List<AudioClip> bgmClipList = new List<AudioClip>();
-    // SE—pƒNƒŠƒbƒv
+    // SEï¿½pï¿½Nï¿½ï¿½ï¿½bï¿½v
     [SerializeField]
     private List<AudioClip> seClipList = new List<AudioClip>();
 
     void Awake()
     {
-        // ƒXƒs[ƒJ[‚ğ—pˆÓ
+        // ï¿½Xï¿½sï¿½[ï¿½Jï¿½[ï¿½ï¿½pï¿½ï¿½
         bgmAudioSource = gameObject.AddComponent<AudioSource>();
 
         List<AudioSource> AudiioList = new List<AudioSource>();
 
-        // ”z—ñ‚Ì”‚¾‚¯AudioSource‚ğ¶¬‚µ‚ÄŠi”[
+        // ï¿½zï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½AudioSourceï¿½ğ¶ï¿½ï¿½ï¿½ï¿½ÄŠiï¿½[
         for (int i = 0; i < seAudioSourceList.Count; i++)
         {
             //seAudioSourceList.Add(gameObject.AddComponent<AudioSource>());
@@ -33,12 +33,12 @@ public class SoundManager : MonoBehaviour
 
         seAudioSourceList = AudiioList;
 
-        // ƒV[ƒ“‘JˆÚ‚µ‚Ä‚à”jŠü‚³‚ê‚È‚¢
+        // ï¿½Vï¿½[ï¿½ï¿½ï¿½Jï¿½Ú‚ï¿½ï¿½Ä‚ï¿½ï¿½jï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½
         DontDestroyOnLoad(gameObject);
         PlayBGM(0);
     }
 
-    // –¢g—p‚ÌAudioSource‚ğæ“¾
+    // ï¿½ï¿½ï¿½gï¿½pï¿½ï¿½AudioSourceï¿½ï¿½ï¿½æ“¾
     private AudioSource GetUnusedAudioSource()
     {
         for (int i = 0; i < seAudioSourceList.Count; i++)
@@ -54,15 +54,16 @@ public class SoundManager : MonoBehaviour
         return audio;
     }
 
-    // bgmClipList‚Ìˆø””Ô–Ú‚É“o˜^‚µ‚Ä‚ ‚é‹È‚ğÄ¶
+    // bgmClipListï¿½Ìˆï¿½ï¿½ï¿½ï¿½Ô–Ú‚É“oï¿½^ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½È‚ï¿½ï¿½Äï¿½
     public void PlayBGM(int i)
     {
         var clip = bgmClipList[i];
         bgmAudioSource.clip = clip;
+        bgmAudioSource.volume = 0.5f;
         bgmAudioSource.Play();
     }
 
-    // seClipList‚Ìˆø””Ô–Ú‚É“o˜^‚µ‚Ä‚ ‚é‰¹‚ğÄ¶
+    // seClipListï¿½Ìˆï¿½ï¿½ï¿½ï¿½Ô–Ú‚É“oï¿½^ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½é‰¹ï¿½ï¿½ï¿½Äï¿½
     public void PlaySE(int i)
     {
         var audioSource = GetUnusedAudioSource();
@@ -72,18 +73,31 @@ public class SoundManager : MonoBehaviour
             return;
         }
         audioSource.clip = clip;
+        audioSource.loop = true;
+        audioSource.volume = 0.5f;
         audioSource.Play();
 
 
-        // SE‚ÌÄ¶‚ªI‚í‚Á‚½‚çaudioSource‚ğíœ
-        StartCoroutine(DestroyAudioSourceWhenFinished(audioSource));
+        // SEï¿½ÌÄï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½audioSourceï¿½ï¿½ï¿½íœ
+        //StartCoroutine(DestroyAudioSourceWhenFinished(audioSource));
+    }
+
+    public void TemporaryStopSE()
+    {
+        seAudioSourceList[0].Stop();
+    }
+
+    public void AllMute()
+    {
+        seAudioSourceList[0].Stop();
+        bgmAudioSource.Stop();
     }
 
     private IEnumerator DestroyAudioSourceWhenFinished(AudioSource audioSource)
     {
         yield return new WaitForSeconds(audioSource.clip.length);
 
-        // SE‚ÌÄ¶‚ªI‚í‚Á‚½‚çŠÖ˜A‚·‚éAudioSource‚ğíœ
+        // SEï¿½ÌÄï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö˜Aï¿½ï¿½ï¿½ï¿½AudioSourceï¿½ï¿½ï¿½íœ
         seAudioSourceList.Remove(audioSource);
         Destroy(audioSource);
     }

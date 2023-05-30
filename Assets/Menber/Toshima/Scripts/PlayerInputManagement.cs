@@ -230,7 +230,7 @@ public class PlayerInputManagement : MonoBehaviour
         //円形の光線を発射する(Circle型のRayCast)
         RaycastHit2D hit = 
         //Physics2D.CircleCast(center, _riceBabyRadius,Vector2.zero);
-        Physics2D.CapsuleCast(center,new Vector2(0.75f,1f) * _riceBabyRadius,direction,0f,Vector2.zero,0f);
+        Physics2D.CapsuleCast(center,new Vector2(0.5f,1f) * _riceBabyRadius,direction,0f,Vector2.zero,0f);
 
         //実行許可を持ちかつ光線がなんのオブジェクトも取得していない時に以下の処理を実行する
         if(_actionReady && hit.collider == null)

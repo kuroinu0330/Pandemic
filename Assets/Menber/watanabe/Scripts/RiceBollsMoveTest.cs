@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class RiceBollsMoveTest : MonoBehaviour
 {
     public TextMeshProUGUI ScoreText;
+    [SerializeField]
+    private SoundManager soundManager;
     #region　米獲得
     [SerializeField]
     private int _level = 0;//レベル
@@ -18,6 +20,10 @@ public class RiceBollsMoveTest : MonoBehaviour
     private float _serchTime;
     [SerializeField]
     private float _speed;//速度
+    [SerializeField]
+    private float _sppedRetio;//速度倍率(倍率を他所で持っておいて移動時にそれをかけた方が楽だよ！NEXT 72 CODELINE : 外島)
+    [SerializeField]
+    private bool _moveNow = false;
     #endregion
     // Start is called before the first frame updSate
     void Start()
@@ -45,25 +51,27 @@ public class RiceBollsMoveTest : MonoBehaviour
                 return;
             }
 
+            Vector3 distance = _nearObj.transform.position - this.transform.position;
+
             /*Vector3 diff = (this.gameObject.transform.position - _nearObj.transform.position);
 
             this.transform.rotation = Quaternion.FromToRotation(Vector3.up, -diff);*/
 
             CameraMoveController.Instance.CameraPositionUpdate();
 
-            //自分自身の位置から相対的に移動する
+            //自分自身の位置から相対的に移動する(_speedとdeltaTimeの間に速度倍率を挟んだけどこれは前のやつと同じ内容だよ : 外島)
             //transform.Translate(Vector3.forward * 0.1f);
             transform.position = Vector3.MoveTowards(
             transform.position,
             _nearObj.transform.position,
-            _speed * Time.deltaTime);
+            _speed * _sppedRetio * Time.deltaTime);
 
         }
         ScoreText.text = _HighScore.ToString();
     }
 
     /// <summary>
-    /// 一個米を取得するごとに10%速度が上昇
+    /// 一個米を取得するごとに10%速度が上昇(速度倍率を他所で持ってるおかげでこれから移動速度が変化してもここを変更する必要はないよ NEXT 60 CODELINE : 外島)
     /// </summary>
     /// <param name="other"></param>
     private void OnTriggerEnter2D(Collider2D other)
@@ -79,69 +87,69 @@ public class RiceBollsMoveTest : MonoBehaviour
                 //コルーチンStart
                 StartCoroutine(CountCoroutine());
                 Debug.Log("1レベルだよ");
-                _speed = 110f;
+                _sppedRetio = 1.1f;
                 _nearObj = null;
             }
             if (_level == 2)
             {
                 StartCoroutine(CountCoroutine());
                 Debug.Log("2レベルだよ");
-                _speed = 120f;
+                _sppedRetio = 1.2f;
             }
             if (_level == 3)
             {
                 StartCoroutine(CountCoroutine());
                 Debug.Log("3レベルだよ");
-                _speed = 130f;
+                _sppedRetio = 1.3f;
             }
             if (_level == 4)
             {
 
                 StartCoroutine(CountCoroutine());
                 Debug.Log("4レベルだよ");
-                _speed = 140f;
+                _sppedRetio = 1.4f;
             }
             if (_level == 5)
             {
 
                 StartCoroutine(CountCoroutine());
                 Debug.Log("5レベルだよ");
-                _speed = 150f;
+                _sppedRetio = 1.5f;
             }
             if (_level == 6)
             {
 
                 StartCoroutine(CountCoroutine());
                 Debug.Log("6レベルだよ");
-                _speed = 160f;
+                _sppedRetio = 1.6f;
             }
             if (_level == 7)
             {
 
                 StartCoroutine(CountCoroutine());
                 Debug.Log("7レベルだよ");
-                _speed = 170f;
+                _sppedRetio = 1.7f;
             }
             if (_level == 8)
             {
 
                 StartCoroutine(CountCoroutine());
                 Debug.Log("8レベルだよ");
-                _speed = 180f;
+                _sppedRetio = 1.8f;
             }
             if (_level == 9)
             {
 
                 StartCoroutine(CountCoroutine());
                 Debug.Log("9レベルだよ");
-                _speed = 190f;
+                _sppedRetio = 1.9f;
             }
             if (_level == 10)
             {
 
                 StartCoroutine(CountCoroutine());
                 Debug.Log("10レベルだよ");
-                _speed = 200f;
+                _sppedRetio = 2f;
             }
             #endregion
         }
@@ -149,7 +157,7 @@ public class RiceBollsMoveTest : MonoBehaviour
     //一秒間米を獲得できなかったらスコアを0にする。
     bool _Clear = false;
     /// <summary>
-    /// 3秒間米を獲得できなかったらスコアと速度を初期化にする。
+    /// 3秒間米を獲得できなかったらスコアと速度を初期化にする。([番外]ここも速度倍率に変えたよ)
     /// </summary>
     /// <returns></returns>
     IEnumerator CountCoroutine()
@@ -164,7 +172,7 @@ public class RiceBollsMoveTest : MonoBehaviour
             if (timer >= 2.0f)
             {
                 _level = 0;
-                _speed = 100f;
+                _sppedRetio = 1f;
                 Debug.Log("速度とレベルを初期に戻したぞい");
                 _Clear = false;
                 yield break;
@@ -207,6 +215,7 @@ public class RiceBollsMoveTest : MonoBehaviour
              *Vector2.DistanceではなくsqrMagnitudeを使った方が処理が軽い
              */
             //自身と取得したオブジェクトの距離を取得
+
             tmpDis = Vector3.Distance(obs.transform.position, nowObj.transform.position);
 
             //オブジェクトの距離が近いか、距離0であればオブジェクト名を取得
@@ -218,7 +227,18 @@ public class RiceBollsMoveTest : MonoBehaviour
                 targetObj = obs;
             }
 
+            Debug.Log(nearDis);
         }
+        if(nearDis >= 50f && !_moveNow)
+            {
+                soundManager.PlaySE(0);
+                _moveNow = true;
+            }
+            else if(nearDis < 50f && _moveNow)
+            {
+                soundManager.TemporaryStopSE();
+                _moveNow = false;
+            }
         //最も近かったオブジェクトを返す
         //return GameObject.Find(nearObjName);
         return targetObj;
