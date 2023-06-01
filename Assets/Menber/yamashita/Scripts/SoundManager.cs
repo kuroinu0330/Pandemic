@@ -7,6 +7,7 @@ public class SoundManager : MonoBehaviour
     // �I�[�f�B�I�\�[�X
     private AudioSource bgmAudioSource;
     // SE�͉����d�Ȃ�\��������̂Ń��X�g�ɂ���
+    [SerializeField]
     private List<AudioSource> seAudioSourceList = new List<AudioSource>();
 
     // BGM�p�N���b�v
@@ -15,6 +16,8 @@ public class SoundManager : MonoBehaviour
     // SE�p�N���b�v
     [SerializeField]
     private List<AudioClip> seClipList = new List<AudioClip>();
+
+    public static SoundManager instance;
 
     void Awake()
     {
@@ -34,8 +37,23 @@ public class SoundManager : MonoBehaviour
         seAudioSourceList = AudiioList;
 
         // �V�[���J�ڂ��Ă��j������Ȃ�
-        DontDestroyOnLoad(gameObject);
-        PlayBGM(0);
+        if(instance == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            instance = this;
+            for(int i=0;i<seClipList.Count;i++)
+            {
+                seAudioSourceList.Add(this.gameObject.AddComponent<AudioSource>());
+                seAudioSourceList[i].clip = seClipList[i];
+                seAudioSourceList[i].loop = (i == 0) ? true : false;
+                seAudioSourceList[i].volume = 0.5f;
+            }
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+        //PlayBGM(0);
     }
 
     // ���g�p��AudioSource���擾
@@ -66,30 +84,55 @@ public class SoundManager : MonoBehaviour
     // seClipList�̈����Ԗڂɓo�^���Ă��鉹���Đ�
     public void PlaySE(int i)
     {
-        var audioSource = GetUnusedAudioSource();
-        var clip = seClipList[i];
-        if (audioSource == null)
+        // var audioSource = GetUnusedAudioSource();
+        // var clip = seClipList[i];
+        // if (audioSource == null)
+        // {
+        //     return;
+        // }
+        // audioSource.clip = clip;
+        // audioSource.loop = true;
+        // audioSource.volume = 0.5f;
+
+        switch (i)
         {
-            return;
+            case 0:
+                seAudioSourceList[i].Play();
+            break;
+            case 1:
+
+                if(seAudioSourceList[i].isPlaying)
+                {
+                    AudioSource audioSource = gameObject.AddComponent<AudioSource>();
+                    seAudioSourceList.Add(audioSource);
+                    audioSource.clip = seClipList[1];
+                    audioSource.Play();
+                    StartCoroutine(DestroyAudioSourceWhenFinished(audioSource));
+                }
+                else
+                {
+                    seAudioSourceList[i].Play();
+                }
+
+            break;
         }
-        audioSource.clip = clip;
-        audioSource.loop = true;
-        audioSource.volume = 0.5f;
-        audioSource.Play();
 
 
         // SE�̍Đ����I�������audioSource���폜
         //StartCoroutine(DestroyAudioSourceWhenFinished(audioSource));
     }
 
-    public void TemporaryStopSE()
+    public void TemporaryStopSE(int i)
     {
-        seAudioSourceList[0].Stop();
+        seAudioSourceList[i].Stop();
     }
 
     public void AllMute()
     {
-        seAudioSourceList[0].Stop();
+        for(int i=0;i<seAudioSourceList.Count;i++ )
+        {
+            seAudioSourceList[i].Stop();
+        }
         bgmAudioSource.Stop();
     }
 

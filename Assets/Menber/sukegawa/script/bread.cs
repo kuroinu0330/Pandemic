@@ -140,7 +140,7 @@ public class bread : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Debug.Log("��������");
-            soundManager.AllMute();
+            SoundManager.instance.AllMute();
             SceneManager.LoadScene("Result");
         }
         /*if (col.gameObject.tag == "Player")

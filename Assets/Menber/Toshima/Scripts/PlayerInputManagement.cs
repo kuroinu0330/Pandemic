@@ -241,7 +241,7 @@ public class PlayerInputManagement : MonoBehaviour
         else
         {
             //オブジェクトを取得したときに流すログ
-            Debug.Log("超強力スーパーシュート！！");
+            //Debug.Log("超強力スーパーシュート！！");
         }
 
         //円形の光線を発射して当たった全てのオブジェクトの情報を取得する(ボツ改善案)

@@ -161,7 +161,7 @@ public class TileScrollManager : MonoBehaviour
         //ShiftTileToAdjacentPosition(direction,tilesNum,next);     
 
         //デバック用
-        Debug.Log(direction);
+        //Debug.Log(direction);
         //Debug.Log(tilesNum);
     }
 
