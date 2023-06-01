@@ -12,8 +12,8 @@ public class RiceBollsMoveTest : MonoBehaviour
     #region　米獲得
     [SerializeField]
     private int _level = 0;//レベル
-    [SerializeField]
-    public static int _HighScore;//米の獲得数
+    //[SerializeField]
+    //public static int _HighScore;//米の獲得数
     #endregion
     #region 移動関係
     private GameObject _nearObj;//最も近いオブジェクト
@@ -28,6 +28,8 @@ public class RiceBollsMoveTest : MonoBehaviour
     // Start is called before the first frame updSate
     void Start()
     {
+        GameSceneIndex.instance.ResetGameSceneScore();
+
         _level = 0;
         //最も近いオブジェクトを取得
         _nearObj = serchTag(gameObject, "RiceBaby");
@@ -67,7 +69,7 @@ public class RiceBollsMoveTest : MonoBehaviour
             _speed * _sppedRetio * Time.deltaTime);
 
         }
-        ScoreText.text = _HighScore.ToString();
+        //ScoreText.text = _HighScore.ToString();
     }
 
     /// <summary>
@@ -79,7 +81,8 @@ public class RiceBollsMoveTest : MonoBehaviour
         if (other.gameObject.CompareTag("RiceBaby"))
         {
             _level += 1;
-            _HighScore += 1;
+            //_HighScore += 1;
+            GameSceneIndex.instance.AddScore();
             other.gameObject.SetActive(false);
             #region Level
             if (_level == 1)
@@ -152,6 +155,9 @@ public class RiceBollsMoveTest : MonoBehaviour
                 _sppedRetio = 2f;
             }
             #endregion
+
+            ScoreText.text = string.Format("{0}", GameSceneIndex.instance.GetGameSceneScore());
+
         }
     }
     //一秒間米を獲得できなかったらスコアを0にする。
@@ -227,7 +233,7 @@ public class RiceBollsMoveTest : MonoBehaviour
                 targetObj = obs;
             }
 
-            Debug.Log(nearDis);
+            //Debug.Log(nearDis);
         }
         if(nearDis >= 50f && !_moveNow)
             {
@@ -244,8 +250,8 @@ public class RiceBollsMoveTest : MonoBehaviour
         return targetObj;
     }
     #endregion
-    public static int getscore()
-    {
-        return _HighScore;
-    }
+    //public static int getscore()
+    //{
+    //    return _HighScore;
+    //}
 }

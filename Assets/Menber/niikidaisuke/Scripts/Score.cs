@@ -11,8 +11,11 @@ public class Score : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _HighScore = RiceBollsMoveTest.getscore();
+        //_HighScore = RiceBollsMoveTest.getscore();
+
+        _HighScore = GameSceneIndex.instance.GetGameSceneScore();
 
         ScoreText.text = string.Format("{0}", _HighScore);
+
     }
 }
