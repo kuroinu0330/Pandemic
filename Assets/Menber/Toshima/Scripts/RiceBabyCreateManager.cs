@@ -28,6 +28,7 @@ public class RiceBabyCreateManager : MonoBehaviour
     //プレイヤー操作と兼ね合いをとるシングルトン処理
     public static RiceBabyCreateManager Instance;
 
+
     void Awake() 
     {       
         //初期化処理
