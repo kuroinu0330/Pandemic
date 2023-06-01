@@ -82,6 +82,8 @@ public class RiceBabyCreateManager : MonoBehaviour
             //現在のクリエイトポイントからコストを差し引く
             _createEnergy -= _createCost;
 
+            SoundManager.instance.PlaySE(1);
+
             //米を生成する
             Instantiate(_riceBaby,new Vector3(createPos.x,createPos.y,0f),Quaternion.identity);
         }
