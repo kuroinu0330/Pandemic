@@ -12,11 +12,16 @@ public class SearchRange : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _collider = GetComponent<CircleCollider2D>();
+
     }
     private void Update()
     {   
 
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        
     }
 
 
