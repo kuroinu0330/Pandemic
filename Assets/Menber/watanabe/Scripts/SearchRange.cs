@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+
 
 public class SearchRange : MonoBehaviour
 {
@@ -19,9 +21,12 @@ public class SearchRange : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        
+        if (other.gameObject.CompareTag("RiceBaby"))
+        {
+
+        }
     }
 
 

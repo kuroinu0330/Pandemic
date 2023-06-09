@@ -9,20 +9,24 @@ public class RiceBollsMoveTest : MonoBehaviour
     public TextMeshProUGUI ScoreText;
     [SerializeField]
     private SoundManager soundManager;
-    #region　米獲得
+    #region 米獲得
+    //レベル
     [SerializeField]
-    private int _level = 0;//レベル
+    private int _level = 0;
     //[SerializeField]
     //public static int _HighScore;//米の獲得数
     #endregion
     #region 移動関係
-    private GameObject _nearObj;//最も近いオブジェクト
+    //最も近いオブジェクト
+    private GameObject _nearObj;
     private float _serchTime;
+    //速度変数
     [SerializeField]
-    private float _speed;//速度
+    private float _speed;
+    /*(倍率を他所で持っておいて移動時にそれをかけた方が楽だよ！NEXT 72 CODELINE : 外島)*/
+    //速度倍率
     [SerializeField]
-    private float _sppedRetio;//速度倍率(倍率を他所で持っておいて移動時にそれをかけた方が楽だよ！NEXT 72 CODELINE : 外島)
-    [SerializeField]
+    private float _sppedRetio;
     private bool _moveNow = false;
     #endregion
     // Start is called before the first frame updSate
@@ -60,13 +64,15 @@ public class RiceBollsMoveTest : MonoBehaviour
             this.transform.rotation = Quaternion.FromToRotation(Vector3.up, -diff);*/
 
             CameraMoveController.Instance.CameraPositionUpdate();
+            //移動のメソッド
+            RiceBollsMove();
 
             //自分自身の位置から相対的に移動する(_speedとdeltaTimeの間に速度倍率を挟んだけどこれは前のやつと同じ内容だよ : 外島)
             //transform.Translate(Vector3.forward * 0.1f);
-            transform.position = Vector3.MoveTowards(
-            transform.position,
-            _nearObj.transform.position,
-            _speed * _sppedRetio * Time.deltaTime);
+            //transform.position = Vector3.MoveTowards(
+            //transform.position,
+            //_nearObj.transform.position,
+            //_speed * _sppedRetio * Time.deltaTime);
 
         }
         //ScoreText.text = _HighScore.ToString();
@@ -208,7 +214,7 @@ public class RiceBollsMoveTest : MonoBehaviour
     /// <param name="tagName">米を探知</param>
     /// <returns></returns>
     #region 探知系
-    GameObject serchTag(GameObject nowObj, string tagName)
+    public GameObject serchTag(GameObject nowObj, string tagName)
     {
 
         float tmpDis = 0;           //距離用一時変数
@@ -254,4 +260,14 @@ public class RiceBollsMoveTest : MonoBehaviour
     //{
     //    return _HighScore;
     //}
+    /// <summary>
+    /// 米に向かう関数
+    /// </summary>
+    public void RiceBollsMove()
+    {
+        transform.position = Vector3.MoveTowards(
+        transform.position,
+        _nearObj.transform.position,
+        _speed * _sppedRetio * Time.deltaTime);
+    }
 }
