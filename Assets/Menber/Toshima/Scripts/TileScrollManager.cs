@@ -154,6 +154,14 @@ public class TileScrollManager : MonoBehaviour
     }
 
     /// <summary>
+    /// コメのランダム生成を実質的にストップする関数
+    /// </summary>
+    public void RiceBabyRandomGenerationStop()
+    {
+        _raiceBabyGenerationStart = true;
+    }
+
+    /// <summary>
     /// タイルが接触を検知した時にタイルを管理する配列にタイルが自身を捩じ込むための関数
     /// </summary>
     /// <param name="tileObject">プレイヤーと接触したタイル</param>
