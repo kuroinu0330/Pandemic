@@ -10,6 +10,7 @@ public class SearchRange : MonoBehaviour
     [SerializeField]
     private int _sizeCount;
 
+    RiceBollsMoveTest riceBollsMoveTest;
     public int size;
     // Start is called before the first frame update
     void Start()
@@ -21,13 +22,12 @@ public class SearchRange : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerStay2D(Collider2D collider)
     {
-        if (other.gameObject.CompareTag("RiceBaby"))
+        if (collider.gameObject.CompareTag("RiceBaby"))
         {
-
+            Debug.Log("aaaa");
+            riceBollsMoveTest.RiceBollsMove();
         }
     }
-
-
 }

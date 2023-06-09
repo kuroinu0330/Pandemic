@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class RiceBollsMoveTest : MonoBehaviour
 {
+    private Animator anim;
+
     public TextMeshProUGUI ScoreText;
     [SerializeField]
     private SoundManager soundManager;
@@ -32,6 +34,8 @@ public class RiceBollsMoveTest : MonoBehaviour
     // Start is called before the first frame updSate
     void Start()
     {
+        anim = gameObject.GetComponent<Animator>();
+
         GameSceneIndex.instance.ResetGameSceneScore();
 
         _level = 0;
