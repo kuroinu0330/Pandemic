@@ -7,6 +7,6 @@ public class taitoru : MonoBehaviour
 {
     public void change_button()
     {
-        SceneManager.LoadScene("taitoru");
+        SceneManager.LoadScene("taitoruout");
     }
 }

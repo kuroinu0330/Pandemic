@@ -21,6 +21,12 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
+    path: Assets/Menber/niikidaisuke/Scenes/GameScenesout.unity
+    guid: a1d7dd99a73c4bf4cbf434abfb70877e
+  - enabled: 1
     path: Assets/Menber/niikidaisuke/Scenes/taitoru.unity
     guid: ca016840eba1a144dae8b64982711130
+  - enabled: 1
+    path: Assets/Menber/niikidaisuke/Scenes/taitoruout.unity
+    guid: 56b83a4591cab5a43ae5a1550451eb0c
   m_configObjects: {}
