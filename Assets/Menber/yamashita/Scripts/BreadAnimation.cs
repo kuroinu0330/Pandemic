@@ -22,8 +22,8 @@ public class BreadAnimation : MonoBehaviour
     private Transform rangeF;
     // 生成数
     private int numberOfObjectsMin = 1;
-    private int numberOfObjectMiddle = 3;
-    private int numberOfObjectsMax = 5;
+    private int numberOfObjectMiddle = 4;
+    private int numberOfObjectsMax = 6;
 
     // 初期生成間隔
     private float interval = 0.4f;
@@ -64,27 +64,29 @@ public class BreadAnimation : MonoBehaviour
 
     private void SpawnObjects()
     {
-        if (time < 1.5f)
+        // 生成位置を格納するリスト
+        List<Vector3> spawnPositions = new List<Vector3>();
+
+        if (time < 2.5f)
         {
             for (int i = 0; i < numberOfObjectsMin; i++)
             {
                 // rangeAとrangeBの範囲内でランダムな数値を生成
                 float x = Random.Range(rangeA.position.x, rangeB.position.x);
                 float y = Random.Range(rangeA.position.y, rangeB.position.y);
-                
-                // パン生成
-                Instantiate(createPrefab, new Vector3(x, y), createPrefab.transform.rotation);
+                // 生成位置をリストに追加
+                spawnPositions.Add(new Vector3(x, y));
             }
         }
-        else if (time < 3f)
+        else if (time < 4f)
         {
             for (int i = 0; i < numberOfObjectMiddle; i++)
             {
                 // rangeCとrangeDの範囲内でランダムな数値を生成
                 float x = Random.Range(rangeC.position.x, rangeD.position.x);
                 float y = Random.Range(rangeC.position.y, rangeD.position.y);
-                // 生成
-                Instantiate(createPrefab, new Vector3(x, y), createPrefab.transform.rotation);
+                // 生成位置をリストに追加
+                spawnPositions.Add(new Vector3(x, y));
             }
         }
         else
@@ -94,8 +96,22 @@ public class BreadAnimation : MonoBehaviour
                 // rangeEとrangeFの範囲内でランダムな数値を生成
                 float x = Random.Range(rangeE.position.x, rangeF.position.x);
                 float y = Random.Range(rangeE.position.y, rangeF.position.y);
+                // 生成位置をリストに追加
+                spawnPositions.Add(new Vector3(x, y));
+            }
+        }
+
+        // 生成位置の重なりをチェック
+        foreach (Vector3 spawnPosition in spawnPositions)
+        {
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(spawnPosition, 0.2f/*重ならない範囲*/);
+            if (colliders.Length == 0)
+            {
                 // 生成
-                Instantiate(createPrefab, new Vector3(x, y), createPrefab.transform.rotation);
+                GameObject newObject = Instantiate(createPrefab, spawnPosition, Quaternion.identity);
+                // 角度をランダムに設定
+                newObject.transform.rotation = Quaternion.Euler(0f, 0f, Random.Range(0f, 360f));
+
             }
         }
     }
