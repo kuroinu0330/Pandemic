@@ -30,6 +30,15 @@ public class TileScrollManager : MonoBehaviour
     [SerializeField]
     private List<GameObject> _enteredTriggers;
 
+    [SerializeField]
+    private float _riceBabyGenerationDelay = 10f;
+
+    private float _enerationDelayScale = 1f;
+
+    private float _generationTimer = 10f;
+
+    private bool _raiceBabyGenerationStart = false;
+
     //シングルトン処理(正味「SingletonMonoBehaviour」の書き方と理屈が知りたい)
     public static TileScrollManager Instance;
 
@@ -100,6 +109,48 @@ public class TileScrollManager : MonoBehaviour
                 _mapTiles.Add(obj.gameObject);
             }
         }
+    }
+
+    void Update()
+    {
+        //_raiceBabyGenerationStartがtrueなら以下の処理を実行する
+        if(_raiceBabyGenerationStart)
+        {        
+            //_generationTimerが_riceBabyGenerationDelay以上なら以下の処理を実行する
+            if(_generationTimer >= _riceBabyGenerationDelay)
+            {
+                //タイルの数だけ実行する
+                for(int i = 0; i < _mapTiles.Count;i++)
+                {
+                    //自信がいるタイル以外なら実行する
+                    if(_mapTiles[i] != _enteredTriggers[0])
+                    {
+                        //ランダム生成用の座標を用立てる
+                        Vector3 posRange = new Vector3(Random.Range(-1024,1024),Random.Range(-1366,1366),0f); 
+                        Vector3 createPos = _mapTiles[i].transform.position + posRange;
+
+                        //コメのランダム生成処理
+                        RiceBabyCreateManager.Instance.CreateRiceBaby(new Vector2(createPos.x,createPos.y),1);
+                        Debug.Log(i + " 番目 " + createPos + " の位置に米を生成したぞい！");
+                    }
+                }
+                //タイマーの初期化
+                _generationTimer = 0f;
+            }
+            else
+            {
+                //タイマーの加算
+                _generationTimer += _enerationDelayScale * Time.deltaTime;
+            }
+        }
+    }
+
+    /// <summary>
+    /// コメのランダム生成を実質的にスタートする関数
+    /// </summary>
+    public void RiceBabyRandomGenerationStart()
+    {
+        _raiceBabyGenerationStart = true;
     }
 
     /// <summary>
@@ -505,5 +556,14 @@ public class TileScrollManager : MonoBehaviour
 
                 break;
         }
+    }
+
+    /// <summary>
+    /// タイルの縦横幅を取得する関数
+    /// </summary>
+    /// <returns>タイルの縦幅と横幅を持ったVector配列</returns>
+    public Vector2 GetTileWidthHeight()
+    {
+        return DisplayResolution;
     }
 }
