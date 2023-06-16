@@ -1338,7 +1338,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1007579880
 Transform:
   m_ObjectHideFlags: 0
@@ -1829,10 +1829,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.12}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1843,7 +1843,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 15.13, y: 16.78}
+  m_Size: {x: 15.12, y: 16.78}
   m_EdgeRadius: 0
 --- !u!50 &1837274033
 Rigidbody2D:
@@ -1865,7 +1865,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &1837274034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1881,7 +1881,7 @@ MonoBehaviour:
   ScoreText: {fileID: 1158339562}
   soundManager: {fileID: 596030400}
   _level: 0
-  _speed: 100
+  _speed: 500
   _sppedRetio: 1
 --- !u!212 &1837274035
 SpriteRenderer:
@@ -2190,6 +2190,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5271770846055113546, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
+      propertyPath: _actionOn
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5271770846055113546, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
       propertyPath: soundManager
       value: 
       objectReference: {fileID: 596030400}
@@ -2306,15 +2310,15 @@ MonoBehaviour:
   TileBasePrefab: {fileID: 1396319974300759733, guid: 1864b317e11fa47bba83a73b5a418bc8, type: 3}
   _mapTiles: []
   _mapTileTextures:
-  - {fileID: 21300000, guid: cfac1f3448fefa14f81d07870282d7a3, type: 3}
-  - {fileID: 21300000, guid: 2a81608d7ec32544b86f3d18273f371e, type: 3}
-  - {fileID: 21300000, guid: b944cca704ddcc04eadb1a343510be72, type: 3}
-  - {fileID: 21300000, guid: 84beff18da3789f458eb80ff84ac083a, type: 3}
-  - {fileID: 21300000, guid: 015e68ff7d9bad04bba9de450a1abecc, type: 3}
-  - {fileID: 21300000, guid: cd796c7efc8061b49be6125a1536839b, type: 3}
-  - {fileID: 21300000, guid: a93b90fc43b00d6429f453ee630d4b87, type: 3}
-  - {fileID: 21300000, guid: b322ba9a774ea6940820cb051d17afa4, type: 3}
-  - {fileID: 21300000, guid: d22434438f605d54eb27173e73465f5a, type: 3}
+  - {fileID: 21300000, guid: a2fc76ea3de9b7542a81db81c47f11d8, type: 3}
+  - {fileID: 21300000, guid: 45c1334af0038f94a891535f4b6cdf08, type: 3}
+  - {fileID: 21300000, guid: 39eea4845b9c6f448bba000f55ea01ef, type: 3}
+  - {fileID: 21300000, guid: 75ba58516f8bb504991883072c79b810, type: 3}
+  - {fileID: 21300000, guid: ad0010d9bc1c77449a4f0e6713993d63, type: 3}
+  - {fileID: 21300000, guid: 2b4819b5c8b510f478a2af17cc161bc2, type: 3}
+  - {fileID: 21300000, guid: 31e18be1da147684aa2fdfe66fedc4ac, type: 3}
+  - {fileID: 21300000, guid: e3a0f83739de70c498adacd739d76af9, type: 3}
+  - {fileID: 21300000, guid: 6f5e629ee734cb644a92ad918361beea, type: 3}
   _centerCoordinateNum: {x: 1, y: 1}
   _enteredTriggers: []
 --- !u!4 &2026847664

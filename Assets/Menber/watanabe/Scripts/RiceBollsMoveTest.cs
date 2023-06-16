@@ -70,6 +70,8 @@ public class RiceBollsMoveTest : MonoBehaviour
             CameraMoveController.Instance.CameraPositionUpdate();
             //移動のメソッド
             RiceBollsMove();
+            anim.SetBool("blRot",true);
+        
 
             //自分自身の位置から相対的に移動する(_speedとdeltaTimeの間に速度倍率を挟んだけどこれは前のやつと同じ内容だよ : 外島)
             //transform.Translate(Vector3.forward * 0.1f);
@@ -90,6 +92,7 @@ public class RiceBollsMoveTest : MonoBehaviour
     {
         if (other.gameObject.CompareTag("RiceBaby"))
         {
+            Debug.Log("当たった");
             _level += 1;
             //_HighScore += 1;
             GameSceneIndex.instance.AddScore();
@@ -274,4 +277,8 @@ public class RiceBollsMoveTest : MonoBehaviour
         _nearObj.transform.position,
         _speed * _sppedRetio * Time.deltaTime);
     }
+    /*public void RiceBollsAnimetion()
+    {
+        anim.SetBool("blRot",true);
+    }*/
 }

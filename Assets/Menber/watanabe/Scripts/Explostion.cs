@@ -26,7 +26,7 @@ public class Explosion : MonoBehaviour
         {
             m_position = this.gameObject.transform.position;
 
-            // �͈͓���Rigidbody��AddExplosionForce
+            //当たり判定を持ったオブジェクトをm_positionから、m_radius(範囲)内のオブジェクトを配列に入れる
             Collider[] hitColliders = Physics.OverlapSphere(m_position, m_radius);
             for (int i = 0; i < hitColliders.Length; i++)
             {
