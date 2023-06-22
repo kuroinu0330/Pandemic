@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -7,7 +8,6 @@ using UnityEngine.UI;
 public class RiceBollsMoveTest : MonoBehaviour
 {
     private Animator anim;
-
     public TextMeshProUGUI ScoreText;
     [SerializeField]
     private SoundManager soundManager;
@@ -16,10 +16,11 @@ public class RiceBollsMoveTest : MonoBehaviour
     [SerializeField]
     private int _level = 0;
     //[SerializeField]
-    //public static int _HighScore;//米の獲得数
+   //public static int _HighScore;//米の獲得数
     #endregion
     #region 移動関係
     //最も近いオブジェクト
+    
     private GameObject _nearObj;
     private float _serchTime;
     //速度変数
@@ -34,6 +35,7 @@ public class RiceBollsMoveTest : MonoBehaviour
     // Start is called before the first frame updSate
     void Start()
     {
+        _gameObject = serchTag(gameObject, "RiceBaby");
         anim = gameObject.GetComponent<Animator>();
 
         GameSceneIndex.instance.ResetGameSceneScore();
@@ -43,8 +45,7 @@ public class RiceBollsMoveTest : MonoBehaviour
         _nearObj = serchTag(gameObject, "RiceBaby");
     }
 
-    // Update is called once per frame
-    /// <summary>
+    ///<summary>
     /// 近くにいる米Objの方向に向いて追従する。
     /// </summary>
     void Update()
@@ -52,16 +53,17 @@ public class RiceBollsMoveTest : MonoBehaviour
         _serchTime += Time.deltaTime;
         if (_serchTime >= 0)
         {
-            _nearObj = serchTag(gameObject, "RiceBaby");
+            _nearObj = _gameObject;
             _serchTime = 0;
             //対象の位置の方向を向く
             //transform.LookAt(_nearObj.transform);
-            if (_nearObj == null)
+            if (_gameObject == null)
             {
+                
                 return;
             }
 
-            Vector3 distance = _nearObj.transform.position - this.transform.position;
+            Vector3 distance = _gameObject.transform.position - this.transform.position;
 
             /*Vector3 diff = (this.gameObject.transform.position - _nearObj.transform.position);
 
@@ -175,6 +177,8 @@ public class RiceBollsMoveTest : MonoBehaviour
     }
     //一秒間米を獲得できなかったらスコアを0にする。
     bool _Clear = false;
+    private GameObject _gameObject;
+
     /// <summary>
     /// 3秒間米を獲得できなかったらスコアと速度を初期化にする。([番外]ここも速度倍率に変えたよ)
     /// </summary>
@@ -248,7 +252,7 @@ public class RiceBollsMoveTest : MonoBehaviour
 
             //Debug.Log(nearDis);
         }
-        if(nearDis >= 50f && !_moveNow)
+        if(nearDis >= 50f && !_moveNow) 
             {
                 SoundManager.instance.PlaySE(0);
                 _moveNow = true;
@@ -257,6 +261,8 @@ public class RiceBollsMoveTest : MonoBehaviour
             {
                 SoundManager.instance.TemporaryStopSE(0);
                 _moveNow = false;
+                anim.SetBool("blRot",false);
+                
             }
         //最も近かったオブジェクトを返す
         //return GameObject.Find(nearObjName);
@@ -281,4 +287,5 @@ public class RiceBollsMoveTest : MonoBehaviour
     {
         anim.SetBool("blRot",true);
     }*/
+    
 }
