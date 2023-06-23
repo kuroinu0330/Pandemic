@@ -30,7 +30,7 @@ public class bread : MonoBehaviour
     public GameObject player;
     public GameObject rice;
     public static bread instance;
-    //int judge = 1;
+    int judge = 1;
     //instance化の設定
     void Awake()
     {
@@ -58,12 +58,12 @@ public class bread : MonoBehaviour
         TargetObject.Add(other.gameObject);
         TargetSelectEXE();
     }
-    /*
+    
     void SetState(breadCreat Creatbread)
     {
 
     }
-   */
+   
     // Update is called once per frame
     /// <summary>
     /// 接触成功時の処理
@@ -146,7 +146,7 @@ public class bread : MonoBehaviour
             //移動処理
             transform.position= Vector3.MoveTowards(this.gameObject.transform.position, Target.transform.position, MoveSpeed * Time.deltaTime);
         }
-        /*
+        
         judge = Circle1.instance.Judge();
         switch (judge)
         {
@@ -155,7 +155,7 @@ public class bread : MonoBehaviour
                 // プレイヤーに向けて進む(おにぎり)
                 this.transform.position = Vector2.MoveTowards(
                                 this.transform.position,
-                              new Vector2(playerTr.position.x, playerTr.position.y),
+                              new Vector2(player.position.x, player.position.y),
                               MoveSpeed * Time.deltaTime);
                 break;
             case 2:
@@ -172,19 +172,19 @@ public class bread : MonoBehaviour
             //スピードの変化
             if (score < 21f)
             {
-                speed = 0.8f;
+                MoveSpeedRatio = 0.8f;
             }
             else if (score < 41f)
             {
-                speed = 1.0f;
+                MoveSpeedRatio = 1.0f;
             }
             else if (score < 61f)
             {
-                speed = 1.2f;
+                MoveSpeedRatio = 1.2f;
             }
             else if (score < 81f)
             {
-                speed = 1.5f;
+                MoveSpeedRatio = 1.5f;
             }
         
         
@@ -193,11 +193,11 @@ public class bread : MonoBehaviour
         if (Vector2.Distance(transform.position, playerTr.position) < 0.1f)
          return;
 
-        */
+        
     }
     //索敵範囲指定のプログラム開始地点
    
-    /* void OnTriggerEnter2D(Collider2D col)
+     void OnTriggerEnter2D(Collider2D col)
      {
         if (col.gameObject.tag == "Player")
         {
@@ -208,59 +208,62 @@ public class bread : MonoBehaviour
         {
             firststop();
         }
-     }*/
+     }
 
-    /*private IEnumerator firststop()
-    {
-        //1秒停止
-        Time.timeScale = 0;
-        yield return new WaitForSecondsRealtime(1.0f);
-        //再開
-        Time.timeScale = 1;
+     private IEnumerator firststop()
+     {
+         //1秒停止
+         Time.timeScale = 0;
+         yield return new WaitForSecondsRealtime(1.0f);
+         //再開
+         Time.timeScale = 1;
+
+
+
+         while (true)
+         {
+             // プレイヤーに向けて進む(おにぎり)
+             this.transform.position = Vector2.MoveTowards(
+                 this.transform.position,
+                 new Vector2(playerTr.position.x, playerTr.position.y),
+                 speed * Time.deltaTime);
+
+             // プレイヤーに向けて進む(米)
+             this.transform.position = Vector2.MoveTowards(
+                 this.transform.position,
+                 new Vector2(riceTr.position.x, riceTr.position.y),
+                 speed * Time.deltaTime);
+             
+
+             int score = 0;
+
+             //スピードの変化
+             if (score < 21f)
+             {
+                 speed = 0.8f;
+             }
+             else if (score < 41f)
+             {
+                 speed = 1.0f;
+             }
+             else if (score < 61f)
+             {
+                 speed = 1.2f;
+             }
+             else if (score < 81f)
+             {
+                 speed = 1.5f;
+             }
+
+             yield return null;
+         }
+         //yield break;
+     }
+
+     //索敵範囲指定のプログラム終了地点
+        public void breadIn(){
+            //Instantiate(bread);
+        }
     
-
-        
-            while (true)
-            {*/
-                // プレイヤーに向けて進む(おにぎり)
-                /*this.transform.position = Vector2.MoveTowards(
-                  this.transform.position,
-                  new Vector2(playerTr.position.x, playerTr.position.y),
-                  speed * Time.deltaTime);
-                */
-                // プレイヤーに向けて進む(米)
-                /*this.transform.position = Vector2.MoveTowards(
-                    this.transform.position,
-                    new Vector2(riceTr.position.x, riceTr.position.y),
-                    speed * Time.deltaTime);*/
-                /*
-                int score = 0;
-
-                //スピードの変化
-                if (score < 21f)
-                {
-                    speed = 0.8f;
-                }
-                else if (score < 41f)
-                {
-                    speed = 1.0f;
-                }
-                else if (score < 61f)
-                {
-                    speed = 1.2f;
-                }
-                else if (score < 81f)
-                {
-                    speed = 1.5f;
-                }*/
-               /* yield return null;
-            }
-            //yield break;
-        }*/
-        //索敵範囲指定のプログラム終了地点
-        //public void breadIn(){
-        //    //Instantiate(bread);
-        //}
-    
-   }
+}
 
