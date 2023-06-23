@@ -395,6 +395,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3562278115422932511, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
   m_PrefabInstance: {fileID: 1920188861}
   m_PrefabAsset: {fileID: 0}
+--- !u!58 &479064998 stripped
+CircleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 4401994465998131664, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
+  m_PrefabInstance: {fileID: 1920188861}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &479065000
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479064992}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0.25, y: 0.25, z: 0.25, w: 0.25}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.984375, y: 0.984375}
+    newSize: {x: 0.984375, y: 0.984375}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &596366780 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6518809822825990959, guid: 117684c7fa6364e4981084485f323687, type: 3}
@@ -543,6 +574,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2023588032309038470, guid: 117684c7fa6364e4981084485f323687, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4486829575329047366, guid: 117684c7fa6364e4981084485f323687, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -593,7 +628,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6518809822825990959, guid: 117684c7fa6364e4981084485f323687, type: 3}
       propertyPath: m_TagString
-      value: Bread
+      value: RiceBaby
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 117684c7fa6364e4981084485f323687, type: 3}
@@ -811,6 +846,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1327078350
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1327078347}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0.25, y: 0.25, z: 0.25, w: 0.25}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.984375, y: 0.984375}
+    newSize: {x: 0.984375, y: 0.984375}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.984375, y: 0.984375}
+  m_EdgeRadius: 0
 --- !u!1 &1691152802
 GameObject:
   m_ObjectHideFlags: 0
@@ -856,6 +917,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d243d68a3d5e5bd4280278e0455a5bc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nearObj1: {fileID: 0}
+  nearObj2: {fileID: 0}
+  isHit: 0
+  judge: 0
 --- !u!58 &1691152805
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -887,17 +952,37 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Bread
       objectReference: {fileID: 0}
+    - target: {fileID: 2365865480080351006, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2365865480080351006, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2365865480080351006, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2365865480080351006, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2365865480080351006, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3562278115422932511, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3562278115422932511, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2
+      value: -2.15
       objectReference: {fileID: 0}
     - target: {fileID: 3562278115422932511, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3
+      value: -3.61
       objectReference: {fileID: 0}
     - target: {fileID: 3562278115422932511, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -933,7 +1018,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4401994465998131664, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
       propertyPath: m_Radius
-      value: 0.5
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5089338651506872375, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5271770846055113546, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
       propertyPath: rice
@@ -952,6 +1041,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1327078347}
     - target: {fileID: 5271770846055113546, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
+      propertyPath: Trigger
+      value: 
+      objectReference: {fileID: 479064998}
+    - target: {fileID: 5271770846055113546, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
       propertyPath: circle1
       value: 
       objectReference: {fileID: 1691152804}
@@ -963,5 +1056,9 @@ PrefabInstance:
       propertyPath: circle3
       value: 
       objectReference: {fileID: 441706077}
+    - target: {fileID: 5271770846055113546, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
+      propertyPath: Collider
+      value: 
+      objectReference: {fileID: 479065000}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
