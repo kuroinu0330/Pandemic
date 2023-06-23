@@ -35,7 +35,7 @@ public class RiceBollsMoveTest : MonoBehaviour
     // Start is called before the first frame updSate
     void Start()
     {
-        _gameObject = serchTag(gameObject, "RiceBaby");
+
         anim = gameObject.GetComponent<Animator>();
 
         GameSceneIndex.instance.ResetGameSceneScore();
@@ -53,6 +53,7 @@ public class RiceBollsMoveTest : MonoBehaviour
         _serchTime += Time.deltaTime;
         if (_serchTime >= 0)
         {
+            _gameObject = serchTag(gameObject, "RiceBaby");
             _nearObj = _gameObject;
             _serchTime = 0;
             //対象の位置の方向を向く

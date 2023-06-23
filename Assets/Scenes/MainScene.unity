@@ -2151,6 +2151,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Bread
       objectReference: {fileID: 0}
+    - target: {fileID: 2365865480080351006, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2365865480080351006, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3562278115422932511, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
       propertyPath: m_RootOrder
       value: 7

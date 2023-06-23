@@ -5,7 +5,7 @@ using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class bread : MonoBehaviour
+/*public class bread : MonoBehaviour
 {
     //Transform playerTr;//プレイヤーのTransform
     //Transform riceTr;//米のTransform
@@ -155,7 +155,7 @@ public class bread : MonoBehaviour
                 // プレイヤーに向けて進む(おにぎり)
                 this.transform.position = Vector2.MoveTowards(
                                 this.transform.position,
-                              new Vector2(player.position.x, player.position.y),
+                              new Vector2(playertr.position.x, playertr.position.y),
                               MoveSpeed * Time.deltaTime);
                 break;
             case 2:
@@ -190,7 +190,7 @@ public class bread : MonoBehaviour
         
         // プレイヤーとの距離が0.1f未満になったらそれ以上実行しない
 
-        if (Vector2.Distance(transform.position, playerTr.position) < 0.1f)
+        if (Vector2.Distance(transform.position, playertr.position) < 0.1f)
          return;
 
         
@@ -265,5 +265,5 @@ public class bread : MonoBehaviour
             //Instantiate(bread);
         }
     
-}
+}*/
 
