@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,11 +21,12 @@ public class RiceBallsMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*if (Vector2.Distance(transform.position, _riceBaby.position) < 0.1f)
-            return;*/
+        *//*if (Vector2.Distance(transform.position, _riceBaby.position) < 0.1f)
+            return;*//*
         transform.position = Vector2.MoveTowards
             (transform.position,
             new Vector2(_riceBaby.position.x, _riceBaby.position.y),
             _speed * Time.deltaTime);
     }
 }
+*/

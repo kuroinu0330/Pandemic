@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 using System.Collections;
 
 public class nearTest : MonoBehaviour
@@ -65,3 +65,4 @@ public class nearTest : MonoBehaviour
         return targetObj;
     }
 }
+*/
