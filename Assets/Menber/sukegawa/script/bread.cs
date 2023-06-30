@@ -30,6 +30,7 @@ public class bread : MonoBehaviour
     public GameObject player;
     public GameObject rice;
     public static bread instance;
+    private Animator _aniem;
     //int judge = 1;
     //instance化の設定
     void Awake()
@@ -43,11 +44,11 @@ public class bread : MonoBehaviour
     void Start()
     {
         // プレイヤーのTransformを取得（プレイヤーのタグをPlayerに設定必要）
-       // playerTr = GameObject.FindGameObjectWithTag("Player").transform;
+        // playerTr = GameObject.FindGameObjectWithTag("Player").transform;
         //riceTr = GameObject.FindGameObjectWithTag("RiceBaby").transform;
         //StartCoroutine ("firststop");
-        
         //Bread = GetComponent<bread>();
+        _aniem = GetComponent<Animator>();
     }
     /// <summary>
     /// 探知成功時の処理
@@ -80,6 +81,7 @@ public class bread : MonoBehaviour
                 TargetObject.Remove(collisionInfo.gameObject);
                 //シーン上から対象のオブジェクトを削除
                 Target = null;
+                animetionfalse();
                 //ターゲットを初期化
                 break;
             
@@ -145,7 +147,11 @@ public class bread : MonoBehaviour
         {
             //移動処理
             transform.position= Vector3.MoveTowards(this.gameObject.transform.position, Target.transform.position, MoveSpeed * Time.deltaTime);
+            animetiontrue();
         }
+
+
+
         /*
         judge = Circle1.instance.Judge();
         switch (judge)
@@ -194,6 +200,14 @@ public class bread : MonoBehaviour
          return;
 
         */
+    }
+    private void animetiontrue()
+    {
+        _aniem.SetBool("bread Bool", true);
+    }
+    private void animetionfalse() 
+    {
+        _aniem.SetBool("bread Bool", false);
     }
     //索敵範囲指定のプログラム開始地点
    
@@ -262,5 +276,5 @@ public class bread : MonoBehaviour
         //    //Instantiate(bread);
         //}
     
-   }
+}
 
