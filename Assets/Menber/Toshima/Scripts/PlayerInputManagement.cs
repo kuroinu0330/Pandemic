@@ -236,7 +236,7 @@ public class PlayerInputManagement : MonoBehaviour
         if(_actionReady && hit.collider == null)
         {
             //他のソースコードに転移させた米を生成する処理を呼び出す
-            RiceBabyCreateManager.Instance.CreateRiceBaby(createPos);
+            RiceBabyCreateManager.Instance.CreateRiceBaby(createPos,0);
         }
         else
         {

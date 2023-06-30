@@ -74,19 +74,29 @@ public class RiceBabyCreateManager : MonoBehaviour
     /// 米粒の生成処理
     /// </summary>
     /// <param name="createPos"></param>
-    public void CreateRiceBaby(Vector2 createPos)
+    public void CreateRiceBaby(Vector2 createPos,int num)
     {
-        //現在のクリエイトポイントがクリエイトコスト以下なら以下の処理を実行する
-        if(_createEnergy >=_createCost)
+        switch(num)
         {
-            //現在のクリエイトポイントからコストを差し引く
-            _createEnergy -= _createCost;
+            case 0:
+            //現在のクリエイトポイントがクリエイトコスト以下なら以下の処理を実行する
+            if(_createEnergy >=_createCost)
+            {
+                //現在のクリエイトポイントからコストを差し引く
+                _createEnergy -= _createCost;
 
-            SoundManager.instance.PlaySE(1);
+                SoundManager.instance.PlaySE(1);
 
-            //米を生成する
-            Instantiate(_riceBaby,new Vector3(createPos.x,createPos.y,0f),Quaternion.identity);
+                //米を生成する
+                Instantiate(_riceBaby,new Vector3(createPos.x,createPos.y,0f),Quaternion.identity);
+            }
+            break;
+            case 1:
+                //米を生成する
+                Instantiate(_riceBaby,new Vector3(createPos.x,createPos.y,0f),Quaternion.identity);
+            break;
         }
+        
         
     }
 

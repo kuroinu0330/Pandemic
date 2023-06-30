@@ -7,6 +7,7 @@ public class InstantScripts : MonoBehaviour
     void InstantActionOn()
     {
         PlayerInputManagement.Instance.PlayerActionOn();
+        TileScrollManager.Instance.RiceBabyRandomGenerationStart();
     }
 
     void InstantActionOn2()
