@@ -2,10 +2,12 @@ using UnityEngine;
 
 public class WaveEffect : MonoBehaviour
 {
+    // 初期サイズのはずが最大サイズになってるっぽい
     [SerializeField]
-    private float initialSize = 0.2f; // 初期サイズ
+    private float initialSize = 0.75f;
+    // 拡大速度
     [SerializeField]
-    private float expandSpeed = 2f; // 拡大速度
+    private float expandSpeed = 2f; 
 
     private SpriteRenderer spriteRenderer;
     private bool isMouseClicked = false;
@@ -19,14 +21,17 @@ public class WaveEffect : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            isMouseClicked = true;
-
             // マウスの位置をワールド座標に変換
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = 0f;
 
             // エフェクトを生成する位置をマウスの位置に設定
             transform.position = mousePosition;
+
+            // エフェクト生成
+            GameObject effect = Instantiate(gameObject, mousePosition, Quaternion.identity);
+            WaveEffect waveEffect = effect.GetComponent<WaveEffect>();
+            waveEffect.isMouseClicked = true;
         }
 
         if (isMouseClicked)
