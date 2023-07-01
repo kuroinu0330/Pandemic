@@ -741,7 +741,7 @@ AnimationClip:
   - time: 4.0333333
     functionName: InstantActionOn2
     data: 
-    objectReferenceParameter: {fileID: 0}
+    objectReferenceParameter: {fileID: 11500000, guid: 98560cfd63a7b5c419d60da38fb2d959, type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0

@@ -637,7 +637,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 216283238}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8092790f40ed0146aa3b6fd34b16770, type: 3}
+  m_Script: {fileID: 11500000, guid: 422ce600955316048a43b9922acf0725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &316628450
@@ -1382,8 +1382,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98006e9c45ec2ae49b39fb748a55ff88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sizeCount: 0
-  size: 0
 --- !u!1 &1108957757
 GameObject:
   m_ObjectHideFlags: 0
@@ -1854,10 +1852,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1837274036}
   - component: {fileID: 1837274035}
-  - component: {fileID: 1837274034}
   - component: {fileID: 1837274033}
   - component: {fileID: 1837274032}
   - component: {fileID: 1837274037}
+  - component: {fileID: 1837274038}
   m_Layer: 0
   m_Name: RiceBoll
   m_TagString: Player
@@ -1912,23 +1910,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1837274034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1837274031}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1b770c77fa980b4eb632d6b5bf282c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ScoreText: {fileID: 1158339562}
-  soundManager: {fileID: 596030400}
-  _level: 0
-  _speed: 500
-  _sppedRetio: 1
 --- !u!212 &1837274035
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2018,6 +1999,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &1837274038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837274031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8fe719e007e4f643ba8dc7db66be617, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScoreText: {fileID: 1158339562}
+  soundManager: {fileID: 596030400}
+  _level: 0
+  _speed: 120
+  _sppedRetio: 1
+  _moveNow: 0
 --- !u!1 &1900096518
 GameObject:
   m_ObjectHideFlags: 0
@@ -2151,6 +2150,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Bread
       objectReference: {fileID: 0}
+    - target: {fileID: 2365865480080351006, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2365865480080351006, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.04
+      objectReference: {fileID: 0}
     - target: {fileID: 3562278115422932511, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -2210,11 +2217,11 @@ PrefabInstance:
     - target: {fileID: 5271770846055113546, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
       propertyPath: rice
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5263551367523517810, guid: 0f7db0ae449a74e75b1f009b60735f6b, type: 3}
     - target: {fileID: 5271770846055113546, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
       propertyPath: Bread
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1930530673}
     - target: {fileID: 5271770846055113546, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
       propertyPath: speed
       value: 120
@@ -2222,7 +2229,7 @@ PrefabInstance:
     - target: {fileID: 5271770846055113546, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1837274031}
     - target: {fileID: 5271770846055113546, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
       propertyPath: circle1
       value: 
@@ -2240,9 +2247,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5271770846055113546, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
+      propertyPath: isSearching
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5271770846055113546, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
       propertyPath: soundManager
       value: 
       objectReference: {fileID: 596030400}
+    - target: {fileID: 5271770846055113546, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
+      propertyPath: charArray.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5271770846055113546, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
+      propertyPath: charArray.Array.data[0]
+      value: 80
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
 --- !u!1 &1930530668 stripped
@@ -2323,6 +2342,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1930530673 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5271770846055113546, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
+  m_PrefabInstance: {fileID: 1930530667}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1930530668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98560cfd63a7b5c419d60da38fb2d959, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2026847662
 GameObject:
   m_ObjectHideFlags: 0
