@@ -346,6 +346,8 @@ public class bread : MonoBehaviour
     [SerializeField]
     private bool _actionOn = false;
 
+    [SerializeField]
+    private Animator anim;
 
     [SerializeField] private bread Bread;
     // [SerializeField] private Circle1 circle1;
@@ -400,7 +402,7 @@ public class bread : MonoBehaviour
 
         if (Vector2.Distance(transform.position, playerTr.position) < 0.1f)
             return;
-
+        
 
     }
     //索敵篁E��持E���Eプログラム開始地点
@@ -443,6 +445,9 @@ public class bread : MonoBehaviour
                   this.transform.position,
                   new Vector2(playerTr.position.x, playerTr.position.y),
                   speed * Time.deltaTime);
+                BreadAnimetion();
+                
+                
 
                 // プレイヤーに向けて進む(米)
                 /*this.transform.position = Vector2.MoveTowards(
@@ -479,6 +484,10 @@ public class bread : MonoBehaviour
     //public void breadIn(){
     //    //Instantiate(bread);
     //}
+    private void BreadAnimetion()
+    {
+        anim.SetBool("BreadBool",true);
+    }
 
 }
 

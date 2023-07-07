@@ -1928,14 +1928,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 14.92, y: 16.52}
+    oldSize: {x: 4, y: 3}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 15, y: 16}
+  m_Size: {x: 1.5, y: 1.7}
   m_EdgeRadius: 0
 --- !u!50 &1837274033
 Rigidbody2D:
@@ -1999,7 +1999,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: cdfcbb3989719154db9d119b7893c93e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7576634553b57924abae2bc9eb545fb2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2019,7 +2019,7 @@ Transform:
   m_GameObject: {fileID: 1837274031}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -2, z: 0}
-  m_LocalScale: {x: 30, y: 30, z: 1}
+  m_LocalScale: {x: 350, y: 350, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 216283241}
@@ -2085,7 +2085,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1878646940
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2191,8 +2191,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15d1719257a5157478a5cfa4463b7d45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speedAccelerationTime: 10
-  _speedAccelerationStart: 0
 --- !u!1 &1900096518
 GameObject:
   m_ObjectHideFlags: 0
@@ -2326,6 +2324,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Bread
       objectReference: {fileID: 0}
+    - target: {fileID: 1487884207571280563, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2365865480080351006, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.12
@@ -2340,11 +2342,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3562278115422932511, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 300
+      value: 340
       objectReference: {fileID: 0}
     - target: {fileID: 3562278115422932511, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 300
+      value: 340
       objectReference: {fileID: 0}
     - target: {fileID: 3562278115422932511, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2388,7 +2390,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4401994465998131664, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
       propertyPath: m_Radius
-      value: 0.44
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 5271770846055113546, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
       propertyPath: rice
@@ -2486,7 +2488,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: ad922d19b25555a49b29c5f7e735de46, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5cc7ce152571e0f48aff1a5c29494394, type: 3}
   m_Color: {r: 0.990566, g: 0.990566, b: 0.990566, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2529,6 +2531,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98560cfd63a7b5c419d60da38fb2d959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1930530676
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1930530668}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 68a20526712655948b8e2a41e3b83a77, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &2026847662
 GameObject:
   m_ObjectHideFlags: 0

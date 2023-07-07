@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class RiceBollsMoveTest : MonoBehaviour
 {
-    public AccelerationItems accelerationItems;
+    //public AccelerationItems accelerationItems;
 
     private Animator anim;
     public TextMeshProUGUI ScoreText;
@@ -73,7 +73,7 @@ public class RiceBollsMoveTest : MonoBehaviour
             CameraMoveController.Instance.CameraPositionUpdate();
             //移動のメソッド
             RiceBollsMove();
-            anim.SetBool("blRot",true);
+            RiceBollsAnimetion();
         
 
             //自分自身の位置から相対的に移動する(_speedとdeltaTimeの間に速度倍率を挟んだけどこれは前のやつと同じ内容だよ : 外島)
@@ -176,10 +176,10 @@ public class RiceBollsMoveTest : MonoBehaviour
         }
         if (other.gameObject.CompareTag("AccelerationItem"))
         {
-            AccelerationItems._itemSpeed = 2.0f;
+            //AccelerationItems._itemSpeed = 2.0f;
             //Debug.Log(AccelerationItems._itemSpeed);
-            other.gameObject.SetActive(false);
-            StartCoroutine(AccelerationItems.Item.Acceleration());
+            //other.gameObject.SetActive(false);
+            //StartCoroutine(AccelerationItems.Item.Acceleration());
         }
     }
     //一秒間米を獲得できなかったらスコアを0にする。
@@ -288,11 +288,11 @@ public class RiceBollsMoveTest : MonoBehaviour
         transform.position = Vector3.MoveTowards(
         transform.position,
         _nearObj.transform.position,
-        _speed * _sppedRetio * AccelerationItems._itemSpeed * Time.deltaTime);
+        _speed * _sppedRetio /* AccelerationItems._itemSpeed*/ * Time.deltaTime);
     }
-    /*public void RiceBollsAnimetion()
+    public void RiceBollsAnimetion()
     {
         anim.SetBool("blRot",true);
-    }*/
+    }
     
 }
