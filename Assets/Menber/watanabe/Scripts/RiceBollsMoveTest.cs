@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class RiceBollsMoveTest : MonoBehaviour
 {
+    public AccelerationItems accelerationItems;
+
     private Animator anim;
     public TextMeshProUGUI ScoreText;
     [SerializeField]
@@ -26,10 +28,12 @@ public class RiceBollsMoveTest : MonoBehaviour
     //速度変数
     [SerializeField]
     private float _speed;
-    /*(倍率を他所で持っておいて移動時にそれをかけた方が楽だよ！NEXT 72 CODELINE : 外島)*/
     //速度倍率
     [SerializeField]
-    private float _sppedRetio;
+    public float _sppedRetio;
+    
+
+
     [SerializeField]
     private bool _moveNow = false;
     #endregion
@@ -58,11 +62,7 @@ public class RiceBollsMoveTest : MonoBehaviour
             _serchTime = 0;
             //対象の位置の方向を向く
             //transform.LookAt(_nearObj.transform);
-            if (_gameObject == null)
-            {
-                
-                return;
-            }
+            if (_gameObject == null){ return; }
 
             Vector3 distance = _gameObject.transform.position - this.transform.position;
 
@@ -95,7 +95,7 @@ public class RiceBollsMoveTest : MonoBehaviour
     {
         if (other.gameObject.CompareTag("RiceBaby"))
         {
-            Debug.Log("当たった");
+            //Debug.Log("当たった");
             _level += 1;
             //_HighScore += 1;
             GameSceneIndex.instance.AddScore();
@@ -173,7 +173,13 @@ public class RiceBollsMoveTest : MonoBehaviour
             #endregion
 
             ScoreText.text = string.Format("{0}", GameSceneIndex.instance.GetGameSceneScore());
-
+        }
+        if (other.gameObject.CompareTag("AccelerationItem"))
+        {
+            AccelerationItems._itemSpeed = 2.0f;
+            //Debug.Log(AccelerationItems._itemSpeed);
+            other.gameObject.SetActive(false);
+            StartCoroutine(AccelerationItems.Item.Acceleration());
         }
     }
     //一秒間米を獲得できなかったらスコアを0にする。
@@ -282,7 +288,7 @@ public class RiceBollsMoveTest : MonoBehaviour
         transform.position = Vector3.MoveTowards(
         transform.position,
         _nearObj.transform.position,
-        _speed * _sppedRetio * Time.deltaTime);
+        _speed * _sppedRetio * AccelerationItems._itemSpeed * Time.deltaTime);
     }
     /*public void RiceBollsAnimetion()
     {
