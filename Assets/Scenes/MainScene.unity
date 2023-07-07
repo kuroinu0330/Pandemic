@@ -2060,7 +2060,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8fe719e007e4f643ba8dc7db66be617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  accelerationItems: {fileID: 1878646943}
   ScoreText: {fileID: 1158339562}
   soundManager: {fileID: 596030400}
   _level: 0
@@ -2392,6 +2391,10 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 0.7
       objectReference: {fileID: 0}
+    - target: {fileID: 5271770846055113546, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 1930530676}
     - target: {fileID: 5271770846055113546, guid: cc9475060b1c8b644bb52fb98855f30f, type: 3}
       propertyPath: rice
       value: 
