@@ -13,9 +13,9 @@ public class Score : MonoBehaviour
     {
         //_HighScore = RiceBollsMoveTest.getscore();
 
-        _HighScore = GameSceneIndex.instance.GetGameSceneScore();
+        //_HighScore = GameSceneIndex.instance.GetGameSceneScore();
 
-        ScoreText.text = string.Format("{0}", _HighScore);
+        //ScoreText.text = string.Format("{0}", _HighScore);
 
     }
 }
