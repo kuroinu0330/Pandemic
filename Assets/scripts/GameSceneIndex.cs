@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameSceneIndex : MonoBehaviour
 {
-    private int _gameSceneScoreIndex = 0;
+    public static int _gameSceneScoreIndex = 0;
 
     public static GameSceneIndex instance;
     private void Awake()

@@ -131,7 +131,7 @@ public class TileScrollManager : MonoBehaviour
 
                         //コメのランダム生成処理
                         RiceBabyCreateManager.Instance.CreateRiceBaby(new Vector2(createPos.x,createPos.y),1);
-                        Debug.Log(i + " 番目 " + createPos + " の位置に米を生成したぞい！");
+                        //Debug.Log(i + " 番目 " + createPos + " の位置に米を生成したぞい！");
                     }
                 }
                 //タイマーの初期化
