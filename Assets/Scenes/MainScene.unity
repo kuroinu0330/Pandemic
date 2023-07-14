@@ -2060,6 +2060,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8fe719e007e4f643ba8dc7db66be617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  accelerationItems: {fileID: 0}
   ScoreText: {fileID: 1158339562}
   soundManager: {fileID: 596030400}
   _level: 0
@@ -2084,7 +2085,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1878646940
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2190,6 +2191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15d1719257a5157478a5cfa4463b7d45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _AccelerationTime: 10
 --- !u!1 &1900096518
 GameObject:
   m_ObjectHideFlags: 0
