@@ -12,6 +12,7 @@ public class InstantScripts : MonoBehaviour
 
     void InstantActionOn2()
     {
-        bread.instance.ActionOnTheWay();
+        //bread.instance.ActionOnTheWay();
+        BreadManager.Instance.BreadsActionOn();
     }
 }
