@@ -222,26 +222,20 @@ public class PlayerInputManagement : MonoBehaviour
     {
         //枠とりお米の座標を更新する
         //_riceBabyPhantom.transform.position = createPos;
-
-        Vector2 center = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //Vector2 center = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         CapsuleDirection2D direction = new CapsuleDirection2D();
 
         //円形の光線を発射する(Circle型のRayCast)
         RaycastHit2D hit = 
         //Physics2D.CircleCast(center, _riceBabyRadius,Vector2.zero);
-        Physics2D.CapsuleCast(center,new Vector2(0.5f,1f) * _riceBabyRadius,direction,0f,Vector2.zero,0f);
+        Physics2D.CapsuleCast(createPos,new Vector2(0.5f,1f) * _riceBabyRadius,direction,0f,Vector2.zero,0f);
 
         //実行許可を持ちかつ光線がなんのオブジェクトも取得していない時に以下の処理を実行する
         if(_actionReady && hit.collider == null)
         {
             //他のソースコードに転移させた米を生成する処理を呼び出す
             RiceBabyCreateManager.Instance.CreateRiceBaby(createPos,0);
-        }
-        else
-        {
-            //オブジェクトを取得したときに流すログ
-            //Debug.Log("超強力スーパーシュート！！");
         }
 
         //円形の光線を発射して当たった全てのオブジェクトの情報を取得する(ボツ改善案)

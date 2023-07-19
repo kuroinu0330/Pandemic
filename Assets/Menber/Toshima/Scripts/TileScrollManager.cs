@@ -30,13 +30,17 @@ public class TileScrollManager : MonoBehaviour
     [SerializeField]
     private List<GameObject> _enteredTriggers;
 
+    //米粒の自動生成実行までのディレイ
     [SerializeField]
     private float _riceBabyGenerationDelay = 10f;
 
+    //米粒の自動生成までのディレイを拡縮するためのレシオ
     private float _enerationDelayScale = 1f;
 
+    //米粒自動生成の上限
     private float _generationTimer = 10f;
 
+    //最初の1回のみ高速で行うためのフラグ
     private bool _raiceBabyGenerationStart = false;
 
     //シングルトン処理(正味「SingletonMonoBehaviour」の書き方と理屈が知りたい)
@@ -98,7 +102,7 @@ public class TileScrollManager : MonoBehaviour
                 //タイルの柄を元々用意していたものに置き換える
                 obj.GetComponent<SpriteRenderer>().sprite = _mapTileTextures[y * 3 + x];
 
-                //整理用のオブジェクト参加にしてエディターを散らかさないようにする
+                //整理用のオブジェクト傘下にしてエディターを散らかさないようにする
                 obj.gameObject.transform.SetParent(EmptyObj.gameObject.transform);
 
                 //タイルのナンバリングを設定する(二次元化適応済み)
@@ -109,6 +113,7 @@ public class TileScrollManager : MonoBehaviour
                 _mapTiles.Add(obj.gameObject);
             }
         }
+        BreadTilesSpawn();
     }
 
     void Update()
@@ -573,5 +578,29 @@ public class TileScrollManager : MonoBehaviour
     public Vector2 GetTileWidthHeight()
     {
         return DisplayResolution;
+    }
+
+    /// <summary>
+    /// おにぎりがいるタイル以外のタイル全てにパンを生成させる関数
+    /// </summary>
+    /// <returns></returns>
+    private void BreadTilesSpawn()
+    {
+        Debug.Log(_enteredTriggers.Count);
+        //タイルの数だけ実行する
+        for(int i = 0; i < _mapTiles.Count;i++)
+        {
+            //これから指定するタイルがプレイヤーが立っているマスではなかった場合実行する
+            if(i != _centerCoordinateNum.y * 3 + _centerCoordinateNum.x)
+            {
+                //ランダム生成用の座標を用立てる
+                Vector3 posRange = new Vector3(Random.Range(-512,512),Random.Range(-783,1366),0f); 
+                Vector3 createPos = _mapTiles[i].transform.position + posRange;
+
+                //パンのランダム生成処理
+                BreadManager.Instance.GenerateBread(new Vector3(createPos.x,createPos.y,0f));
+                //Debug.Log(i + " 番目 " + createPos + " の位置に米を生成したぞい！");
+            }
+        }
     }
 }
