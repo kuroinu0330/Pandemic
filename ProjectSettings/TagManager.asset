@@ -7,6 +7,7 @@ TagManager:
   - rice
   - Bread
   - RiceBaby
+  - Fade
   layers:
   - Default
   - TransparentFX
