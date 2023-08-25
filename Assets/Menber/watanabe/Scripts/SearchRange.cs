@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+
 
 public class SearchRange : MonoBehaviour
 {
@@ -8,6 +10,7 @@ public class SearchRange : MonoBehaviour
     [SerializeField]
     private int _sizeCount;
 
+    RiceBollsMoveTest riceBollsMoveTest;
     public int size;
     // Start is called before the first frame update
     void Start()
@@ -19,10 +22,13 @@ public class SearchRange : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerStay2D(Collider2D collider)
     {
-        
+        if (collider.gameObject.CompareTag("RiceBaby"))
+        {
+            Debug.Log("aaaa");
+            riceBollsMoveTest.RiceBollsMove();
+        }
     }
-
-
+    
 }
