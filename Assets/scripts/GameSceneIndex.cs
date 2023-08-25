@@ -22,6 +22,19 @@ public class GameSceneIndex : MonoBehaviour
     public void AddScore()
     {
         _gameSceneScoreIndex++;
+
+        if (_gameSceneScoreIndex == 21)
+        {
+            BreadManager.Instance.SpeedRankUpMagic(1);
+        }
+        else if (_gameSceneScoreIndex == 41)
+        {
+            BreadManager.Instance.SpeedRankUpMagic(2);
+        }
+        else if (_gameSceneScoreIndex == 61)
+        {
+            BreadManager.Instance.SpeedRankUpMagic(3);
+        }
     }
 
     public int GetGameSceneScore()

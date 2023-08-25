@@ -91,7 +91,103 @@ public class RiceBollsMoveTest : MonoBehaviour
     /// 一個米を取得するごとに10%速度が上昇(速度倍率を他所で持ってるおかげでこれから移動速度が変化してもここを変更する必要はないよ NEXT 60 CODELINE : 外島)
     /// </summary>
     /// <param name="other"></param>
-    private void OnTriggerEnter2D(Collider2D other)
+    // private void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     if (other.gameObject.CompareTag("RiceBaby"))
+    //     {
+    //         //Debug.Log("当たった");
+    //         _level += 1;
+    //         //_HighScore += 1;
+    //         GameSceneIndex.instance.AddScore();
+    //         other.gameObject.SetActive(false);
+    //         #region Level
+    //         if (_level == 1)
+    //         {
+    //             //コルーチンStart
+    //             StartCoroutine(CountCoroutine());
+    //             //Debug.Log("1レベルだよ");
+    //             _sppedRetio = 1.1f;
+    //             _nearObj = null;
+    //         }
+    //         if (_level == 2)
+    //         {
+    //             StartCoroutine(CountCoroutine());
+    //             //Debug.Log("2レベルだよ");
+    //             _sppedRetio = 1.2f;
+    //         }
+    //         if (_level == 3)
+    //         {
+    //             StartCoroutine(CountCoroutine());
+    //             //Debug.Log("3レベルだよ");
+    //             _sppedRetio = 1.3f;
+    //         }
+    //         if (_level == 4)
+    //         {
+    //
+    //             StartCoroutine(CountCoroutine());
+    //             //Debug.Log("4レベルだよ");
+    //             _sppedRetio = 1.4f;
+    //         }
+    //         if (_level == 5)
+    //         {
+    //
+    //             StartCoroutine(CountCoroutine());
+    //             //Debug.Log("5レベルだよ");
+    //             _sppedRetio = 1.5f;
+    //         }
+    //         if (_level == 6)
+    //         {
+    //
+    //             StartCoroutine(CountCoroutine());
+    //             //Debug.Log("6レベルだよ");
+    //             _sppedRetio = 1.6f;
+    //         }
+    //         if (_level == 7)
+    //         {
+    //
+    //             StartCoroutine(CountCoroutine());
+    //             //Debug.Log("7レベルだよ");
+    //             _sppedRetio = 1.7f;
+    //         }
+    //         if (_level == 8)
+    //         {
+    //
+    //             StartCoroutine(CountCoroutine());
+    //             //Debug.Log("8レベルだよ");
+    //             _sppedRetio = 1.8f;
+    //         }
+    //         if (_level == 9)
+    //         {
+    //
+    //             StartCoroutine(CountCoroutine());
+    //             //Debug.Log("9レベルだよ");
+    //             _sppedRetio = 1.9f;
+    //         }
+    //         if (_level == 10)
+    //         {
+    //
+    //             StartCoroutine(CountCoroutine());
+    //             //Debug.Log("10レベルだよ");
+    //             _sppedRetio = 2f;
+    //         }
+    //         #endregion
+    //
+    //         ScoreText.text = string.Format("{0}", GameSceneIndex.instance.GetGameSceneScore());
+    //     }
+    //     if (other.gameObject.CompareTag("AccelerationItem"))
+    //     {
+    //         //AccelerationItems._itemSpeed = 2.0f;
+    //         //Debug.Log(AccelerationItems._itemSpeed);
+    //         //other.gameObject.SetActive(false);
+    //         //StartCoroutine(AccelerationItems.Item.Acceleration());
+    //     }
+    // }
+
+    /// <summary>
+    /// 一個米を取得するごとに10%速度が上昇(速度倍率を他所で持ってるおかげでこれから移動速度が変化してもここを変更する必要はないよ NEXT 60 CODELINE : 外島)
+    /// </summary>
+    /// <param name="other"></param>
+    private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("RiceBaby"))
         {
@@ -182,6 +278,7 @@ public class RiceBollsMoveTest : MonoBehaviour
             StartCoroutine(AccelerationItems.Item.Acceleration());
         }
     }
+
     //一秒間米を獲得できなかったらスコアを0にする。
     bool _Clear = false;
     private GameObject _gameObject;

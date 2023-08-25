@@ -122,7 +122,7 @@ public class TileScrollManager : MonoBehaviour
                 //タイルの数だけ実行する
                 for(int i = 0; i < _mapTiles.Count;i++)
                 {
-                    //自信がいるタイル以外なら実行する
+                    //自身がいるタイル以外なら実行する
                     if(_mapTiles[i] != _enteredTriggers[0])
                     {
                         //ランダム生成用の座標を用立てる
@@ -141,6 +141,28 @@ public class TileScrollManager : MonoBehaviour
             {
                 //タイマーの加算
                 _generationTimer += _enerationDelayScale * Time.deltaTime;
+            }
+        }
+    }
+
+    /// <summary>
+    /// ゲーム開始時にパンをある程度初期配置する
+    /// </summary>
+    public void GenerationBreadInit()
+    {
+        //タイルの数だけ実行する
+        for(int i = 0; i < _mapTiles.Count;i++)
+        {
+            //自身がいるタイル以外なら実行する
+            if(_mapTiles[i] != _enteredTriggers[0])
+            {
+                //ランダム生成用の座標を用立てる
+                Vector3 posRange = new Vector3(Random.Range(-512,512),Random.Range(-683,683),0f); 
+                Vector3 createPos = _mapTiles[i].transform.position + posRange;
+
+                //パンのランダム生成処理
+                BreadManager.Instance.GenerateBread(createPos);
+                //Debug.Log(i + " 番目 " + createPos + " の位置に米を生成したぞい！");
             }
         }
     }
