@@ -8,10 +8,12 @@ public class InstantScripts : MonoBehaviour
     {
         PlayerInputManagement.Instance.PlayerActionOn();
         TileScrollManager.Instance.RiceBabyRandomGenerationStart();
+        TileScrollManager.Instance.GenerationBreadInit();
     }
 
     void InstantActionOn2()
     {
-        bread.instance.ActionOnTheWay();
+        //bread.instance.ActionOnTheWay();
+        BreadManager.Instance.BreadsActionOn();
     }
 }
