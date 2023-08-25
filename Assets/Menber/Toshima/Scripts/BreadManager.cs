@@ -55,6 +55,9 @@ public class BreadManager : MonoBehaviour
         
         _breadObjects.Add(Bread);
         
+        // デバック
+        TestEnemyCount.instance.countUp();
+        
         NormalBreadEx obj =Bread.GetComponent<NormalBreadEx>(); 
         
         obj.SetPlayerPosition(_player);
