@@ -163,10 +163,12 @@ public class BreadManager : MonoBehaviour
             Bread = ReuseBread();
             
             //Debug.Log(Bread.name);
-            
-            Bread.transform.position = position;
-            NormalBreadEx breadEx = Bread.GetComponent<NormalBreadEx>();
-            StartCoroutine(breadEx.StopIt());
+            if (Bread != null)
+            {
+                Bread.transform.position = position;
+                NormalBreadEx breadEx = Bread.GetComponent<NormalBreadEx>();
+                StartCoroutine(breadEx.StopIt()); 
+            }
         }
         
         //パンの見た目を変更する
