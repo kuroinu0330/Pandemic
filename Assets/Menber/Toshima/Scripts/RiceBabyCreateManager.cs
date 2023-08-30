@@ -41,7 +41,7 @@ public class RiceBabyCreateManager : MonoBehaviour
     //米粒の生成コストを減少させるアイテムを取得したときにtrueになる
     private bool _createCostReductionReady = false;
 
-
+    private GameObject EmptyObject;
 
     void Awake() 
     {       
@@ -78,6 +78,7 @@ public class RiceBabyCreateManager : MonoBehaviour
         if(Instance == null)
         {
             Instance = this;
+            EmptyObject = new GameObject("RiceBabyOffice");
         }
 
         //クリエイトポイントを最大まで回復させる
@@ -90,6 +91,9 @@ public class RiceBabyCreateManager : MonoBehaviour
     /// <param name="createPos"></param>
     public void CreateRiceBaby(Vector2 createPos,int num)
     {
+        
+        GameObject obj;
+        
         switch(num)
         {
             case 0:
@@ -107,21 +111,28 @@ public class RiceBabyCreateManager : MonoBehaviour
                 if (_dualSabotRiceBaby)
                 {
                     //一つ目の米を生成する
-                    Instantiate(_riceBaby,new Vector3(createPos.x - 60f,createPos.y,0f),Quaternion.identity); 
+                    obj = Instantiate(_riceBaby,new Vector3(createPos.x - 60f,createPos.y,0f),Quaternion.identity); 
+                    
+                    obj.transform.SetParent(EmptyObject.transform);
+                    
                     //二つ目の米を生成する
-                    Instantiate(_riceBaby,new Vector3(createPos.x + 60f,createPos.y,0f),Quaternion.identity); 
+                    obj = Instantiate(_riceBaby,new Vector3(createPos.x + 60f,createPos.y,0f),Quaternion.identity); 
+                    
+                    obj.transform.SetParent(EmptyObject.transform);
                 }
                 else
                 {
                     //米を生成する
-                    Instantiate(_riceBaby,new Vector3(createPos.x,createPos.y,0f),Quaternion.identity);  
+                    obj = Instantiate(_riceBaby,new Vector3(createPos.x,createPos.y,0f),Quaternion.identity);  
+                    obj.transform.SetParent(EmptyObject.transform);
                 }
             }
             break;
             case 1:
                 //米を生成する
-                Instantiate(_riceBaby,new Vector3(createPos.x,createPos.y,0f),Quaternion.identity);
-            break;
+                obj = Instantiate(_riceBaby,new Vector3(createPos.x,createPos.y,0f),Quaternion.identity);
+                obj.transform.SetParent(EmptyObject.transform);
+                break;
         }
         
         

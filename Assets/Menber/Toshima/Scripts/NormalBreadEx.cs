@@ -1,14 +1,22 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 public class NormalBreadEx : MonoBehaviour
 {
     //探知したオブジェクトとプレイヤーをまとめておくリスト
     [SerializeField]
     private List<GameObject> _targerObject;
+    
+    //
+    [SerializeField]
+    private List<GameObject> _frindryBread;
 
     //自身の当たり判定を保持する変数
     [SerializeField] 
@@ -37,10 +45,28 @@ public class NormalBreadEx : MonoBehaviour
     [SerializeField]
     private Animator anim;
 
+    [SerializeField] private bool _reuseBread = false;
+    [SerializeField] private bool _reuseBreadInterval = false;
+
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(BreadMove());
+    }
+
+    public void ChangeReuseBreadPos(bool bow)
+    {
+        _reuseBread = bow;
+    }
+
+    public bool GetReuseBreadPos()
+    {
+        return _reuseBread;
+    }
+
+    public bool GetReuseBreadInterval()
+    {
+        return _reuseBreadInterval;
     }
 
     private void FixedUpdate()
@@ -62,15 +88,17 @@ public class NormalBreadEx : MonoBehaviour
         //本移動処理
         while (true)
         {
+            Vector3 vec = Vector3.MoveTowards(this.transform.position,
+                _targerObject[0].transform.position,
+                _moveSpeed * _moveSpeedResio * Time.deltaTime);
+            
             if (_actionOn && BreadManager.Instance.GetActionBool() && _targerObject.Count != 0)
             {
                 //アニメーションスタート
                 BreadAnimetion();
                 
                 //最寄りのオブジェクトに向けた1フレーム先の座標で更新
-                this.transform.position = Vector2.MoveTowards(this.transform.position,
-                    _targerObject[0].transform.position,
-                    _moveSpeed * _moveSpeedResio * Time.deltaTime);
+                this.transform.position = vec;
             }
             else
             {
@@ -82,7 +110,7 @@ public class NormalBreadEx : MonoBehaviour
         }
     }
 
-    private IEnumerator StopIt()
+    public IEnumerator StopIt()
     {
         ActionOff();
         yield return new WaitForSeconds(1f);
@@ -90,11 +118,32 @@ public class NormalBreadEx : MonoBehaviour
         yield break;
     }
 
+    public void SetReuseAnt()
+    {
+        _reuseBreadInterval = true;
+    }
+
+    public IEnumerator ReuseReset()
+    {
+        float timer = 0f;
+        
+        while (timer <= 30f)
+        {
+            //Debug.Log(timer);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        Debug.Log("外しはしない");
+        _reuseBreadInterval = false;
+        yield break;
+    }
+
     public void BreadAnimetion()
     {
         anim.SetBool("BreadBool",true);
     }
-    
+
     /// <summary>
     /// 接触判定
     /// </summary>
@@ -116,6 +165,25 @@ public class NormalBreadEx : MonoBehaviour
                 BreadManager.Instance.GenerateBread(this.transform.position + vec);
                 this.transform.position -= vec;
                 break;
+            case "Bread":
+                _frindryBread.Add(other.gameObject);
+                if (_frindryBread.Count >= 4)
+                {
+                    _reuseBread = true;
+                }
+                break;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Bread")
+        {
+            _frindryBread.Remove(other.gameObject);
+            if (_frindryBread.Count <= 3)
+            {
+                _reuseBread = false;
+            }
         }
     }
 

@@ -35,9 +35,13 @@ public class TileScrollManager : MonoBehaviour
 
     private float _enerationDelayScale = 1f;
 
-    private float _generationTimer = 10f;
+    private float _ricababyGenerationTimer = 10f;
 
     private bool _raiceBabyGenerationStart = false;
+
+    private float _breadGenerationDelay = 15f;
+
+    private float _breadGenerationTimer = 0;
 
     //シングルトン処理(正味「SingletonMonoBehaviour」の書き方と理屈が知りたい)
     public static TileScrollManager Instance;
@@ -117,7 +121,7 @@ public class TileScrollManager : MonoBehaviour
         if(_raiceBabyGenerationStart)
         {        
             //_generationTimerが_riceBabyGenerationDelay以上なら以下の処理を実行する
-            if(_generationTimer >= _riceBabyGenerationDelay)
+            if(_ricababyGenerationTimer >= _riceBabyGenerationDelay)
             {
                 //タイルの数だけ実行する
                 for(int i = 0; i < _mapTiles.Count;i++)
@@ -135,13 +139,42 @@ public class TileScrollManager : MonoBehaviour
                     }
                 }
                 //タイマーの初期化
-                _generationTimer = 0f;
+                _ricababyGenerationTimer = 0f;
             }
-            else
+            
+            //_generationTimerが_riceBabyGenerationDelay以上なら以下の処理を実行する
+            if(_breadGenerationTimer >= _breadGenerationDelay)
             {
-                //タイマーの加算
-                _generationTimer += _enerationDelayScale * Time.deltaTime;
+                //タイルの数だけ実行する
+                for(int i = 0; i < _mapTiles.Count;i++)
+                {
+                    //自身がいるタイル以外なら実行する
+                    if(_mapTiles[i] != _enteredTriggers[0])
+                    {
+                        //ランダム生成用の座標を用立てる
+                        Vector3 posRange = new Vector3(Random.Range(-512,512),Random.Range(-683,683),0f);
+
+                        Vector3 local = _enteredTriggers[0].transform.position - _mapTiles[i].transform.position;
+                        
+                        Vector3 vec = local.normalized *
+                                      (local.magnitude * 1.5f);
+                        
+                        Vector3 createPos = BreadManager.Instance.GetPlayerPosition() + vec + posRange;
+                        
+                        //Debug.Log(vec + ":" + createPos);
+
+                        //パンのランダム生成処理
+                        BreadManager.Instance.GenerateBread(createPos);
+                        //Debug.Log(i + " 番目 " + createPos + " の位置にパンを生成したぞい！");
+                    }
+                }
+                //タイマーの初期化
+                _breadGenerationTimer = 0f;
             }
+           
+                //タイマーの加算
+                _ricababyGenerationTimer += _enerationDelayScale * Time.deltaTime;
+                _breadGenerationTimer += _enerationDelayScale * Time.deltaTime;
         }
     }
 
