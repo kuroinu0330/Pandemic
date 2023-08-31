@@ -426,6 +426,42 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &479065001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479064992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 830700f5b401be441ad11d4539aed1d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  bread: {fileID: 0}
+  score: 0
+  moveSpeed: 0.8
+--- !u!95 &479065002
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479064992}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c6cf7ea2f8694f6429f134df4f9b4146, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &596366780 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6518809822825990959, guid: 117684c7fa6364e4981084485f323687, type: 3}
@@ -917,10 +953,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d243d68a3d5e5bd4280278e0455a5bc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nearObj1: {fileID: 0}
-  nearObj2: {fileID: 0}
-  isHit: 0
-  judge: 0
 --- !u!58 &1691152805
 CircleCollider2D:
   m_ObjectHideFlags: 0
