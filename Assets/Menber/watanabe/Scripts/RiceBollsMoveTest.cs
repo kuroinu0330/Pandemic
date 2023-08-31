@@ -272,15 +272,18 @@ public class RiceBollsMoveTest : MonoBehaviour
         }
         if (other.gameObject.CompareTag("AccelerationItem"))
         {
+           StartCoroutine(AccelerationItems.Item.Acceleration());
             AccelerationItems._itemSpeed = 2.0f;
             //Debug.Log(AccelerationItems._itemSpeed);
-            other.gameObject.SetActive(false);
-            StartCoroutine(AccelerationItems.Item.Acceleration());
+            //other.gameObject.SetActive(false);
+ 
+            Destroy(other.gameObject);
         }
         if (other.gameObject.CompareTag("Invincble"))
         {
             Debug.Log("当たった");
             StartCoroutine(InvincibleItems._Item.DamageLiberion());
+            Destroy(other.gameObject);
         }
 ;
     }
