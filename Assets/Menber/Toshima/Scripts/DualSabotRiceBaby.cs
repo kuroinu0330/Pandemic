@@ -10,6 +10,7 @@ public class DualSabotRiceBaby : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             RiceBabyCreateManager.Instance.RiceBabyDualSabotItemAcquisition();
+            Destroy(this.gameObject);
             Debug.Log("Go!On!!");
         }
     }
