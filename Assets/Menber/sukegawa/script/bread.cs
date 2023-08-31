@@ -424,7 +424,7 @@ public class bread : MonoBehaviour
 
         if (Vector2.Distance(transform.position, playerTr.position) < 0.1f)
             return;
-        
+
 
     }
     //索敵篁E��持E���Eプログラム開始地点
@@ -442,7 +442,7 @@ public class bread : MonoBehaviour
 
         }*/
 
-        if(other.gameObject.tag == "RiceBaby")
+        if (other.gameObject.tag == "RiceBaby")
         {
             firststop();
         }
@@ -468,8 +468,8 @@ public class bread : MonoBehaviour
                   new Vector2(playerTr.position.x, playerTr.position.y),
                   speed * Time.deltaTime);
                 BreadAnimetion();
-                
-                
+
+
 
                 // プレイヤーに向けて進む(米)
                 /*this.transform.position = Vector2.MoveTowards(
@@ -497,7 +497,6 @@ public class bread : MonoBehaviour
                     speed = 1.5f;
                 }
             }
-<<<<<<< HEAD
             yield return null;
 
         }
@@ -509,17 +508,16 @@ public class bread : MonoBehaviour
     //}
     private void BreadAnimetion()
     {
-        anim.SetBool("BreadBool",true);
+        anim.SetBool("BreadBool", true);
     }
 
-=======
-            //yield break;
-        }*/
-        //索敵範囲指定のプログラム終了地点
-        //public void breadIn(){
-        //    //Instantiate(bread);
-        //}
-    
->>>>>>> origin/sukegawa
+
+    //yield break;
 }
+//索敵範囲指定のプログラム終了地点
+//public void breadIn(){
+//    //Instantiate(bread);
+//}
+
+
 
