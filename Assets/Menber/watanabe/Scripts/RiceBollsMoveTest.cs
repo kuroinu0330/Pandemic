@@ -91,97 +91,97 @@ public class RiceBollsMoveTest : MonoBehaviour
     /// 一個米を取得するごとに10%速度が上昇(速度倍率を他所で持ってるおかげでこれから移動速度が変化してもここを変更する必要はないよ NEXT 60 CODELINE : 外島)
     /// </summary>
     /// <param name="other"></param>
-    // private void OnTriggerEnter2D(Collider2D other)
-    // {
-    //     if (other.gameObject.CompareTag("RiceBaby"))
-    //     {
-    //         //Debug.Log("当たった");
-    //         _level += 1;
-    //         //_HighScore += 1;
-    //         GameSceneIndex.instance.AddScore();
-    //         other.gameObject.SetActive(false);
-    //         #region Level
-    //         if (_level == 1)
-    //         {
-    //             //コルーチンStart
-    //             StartCoroutine(CountCoroutine());
-    //             //Debug.Log("1レベルだよ");
-    //             _sppedRetio = 1.1f;
-    //             _nearObj = null;
-    //         }
-    //         if (_level == 2)
-    //         {
-    //             StartCoroutine(CountCoroutine());
-    //             //Debug.Log("2レベルだよ");
-    //             _sppedRetio = 1.2f;
-    //         }
-    //         if (_level == 3)
-    //         {
-    //             StartCoroutine(CountCoroutine());
-    //             //Debug.Log("3レベルだよ");
-    //             _sppedRetio = 1.3f;
-    //         }
-    //         if (_level == 4)
-    //         {
-    //
-    //             StartCoroutine(CountCoroutine());
-    //             //Debug.Log("4レベルだよ");
-    //             _sppedRetio = 1.4f;
-    //         }
-    //         if (_level == 5)
-    //         {
-    //
-    //             StartCoroutine(CountCoroutine());
-    //             //Debug.Log("5レベルだよ");
-    //             _sppedRetio = 1.5f;
-    //         }
-    //         if (_level == 6)
-    //         {
-    //
-    //             StartCoroutine(CountCoroutine());
-    //             //Debug.Log("6レベルだよ");
-    //             _sppedRetio = 1.6f;
-    //         }
-    //         if (_level == 7)
-    //         {
-    //
-    //             StartCoroutine(CountCoroutine());
-    //             //Debug.Log("7レベルだよ");
-    //             _sppedRetio = 1.7f;
-    //         }
-    //         if (_level == 8)
-    //         {
-    //
-    //             StartCoroutine(CountCoroutine());
-    //             //Debug.Log("8レベルだよ");
-    //             _sppedRetio = 1.8f;
-    //         }
-    //         if (_level == 9)
-    //         {
-    //
-    //             StartCoroutine(CountCoroutine());
-    //             //Debug.Log("9レベルだよ");
-    //             _sppedRetio = 1.9f;
-    //         }
-    //         if (_level == 10)
-    //         {
-    //
-    //             StartCoroutine(CountCoroutine());
-    //             //Debug.Log("10レベルだよ");
-    //             _sppedRetio = 2f;
-    //         }
-    //         #endregion
-    //
-    //         ScoreText.text = string.Format("{0}", GameSceneIndex.instance.GetGameSceneScore());
+   /*      private void ontriggerenter2D(collider2D other)
+         {
+             if (other.gameobject.comparetag("ricebaby"))
+             {
+                 //debug.log("当たった");
+                 _level += 1;
+                //_highscore += 1;
+                gamesceneindex.instance.addscore();
+                other.gameobject.setactive(false);
+                 #region level
+                 if (_level == 1)
+                 {
+                     //コルーチンstart
+                     startcoroutine(countcoroutine());
+                     //debug.log("1レベルだよ");
+                     _sppedretio = 1.1f;
+                     _nearobj = null;
+                 }
+                 if (_level == 2)
+                 {
+                     startcoroutine(countcoroutine());
+                     //debug.log("2レベルだよ");
+                     _sppedretio = 1.2f;
+               }
+                 if (_level == 3)
+                 {
+                    startcoroutine(countcoroutine());
+                     //debug.log("3レベルだよ");
+                 _sppedretio = 1.3f;
+                 }
+                 if (_level == 4)
+                 {
+        
+                     startcoroutine(countcoroutine());
+                     //debug.log("4レベルだよ");
+                     _sppedretio = 1.4f;
+                 }
+                 if (_level == 5)
+                 {
+        
+                     startcoroutine(countcoroutine());
+                     //debug.log("5レベルだよ");
+                     _sppedretio = 1.5f;
+                 }
+                 if (_level == 6)
+                 {
+        
+                     startcoroutine(countcoroutine());
+                     //debug.log("6レベルだよ");
+                     _sppedretio = 1.6f;
+                 }
+                 if (_level == 7)
+                 {
+        
+                     startcoroutine(countcoroutine());
+                     //debug.log("7レベルだよ");
+                     _sppedretio = 1.7f;
+                 }
+                 if (_level == 8)
+                 {
+        
+                     startcoroutine(countcoroutine());
+                     //debug.log("8レベルだよ");
+                     _sppedretio = 1.8f;
+                 }
+                 if (_level == 9)
+                 {
+        
+                     startcoroutine(countcoroutine());
+                     //debug.log("9レベルだよ");
+                     _sppedretio = 1.9f;
+                 }
+                 if (_level == 10)
+                 {       
+                     startcoroutine(countcoroutine());
+                     //debug.log("10レベルだよ");
+                     _sppedretio = 2f;
+                 }
+    ////         #endregion
+    ////
+    //         scoretext.text = string.format("{0}", gamesceneindex.instance.getgamescenescore());
     //     }
-    //     if (other.gameObject.CompareTag("AccelerationItem"))
+    //     if (other.gameobject.comparetag("accelerationitem"))
     //     {
-    //         //AccelerationItems._itemSpeed = 2.0f;
-    //         //Debug.Log(AccelerationItems._itemSpeed);
-    //         //other.gameObject.SetActive(false);
-    //         //StartCoroutine(AccelerationItems.Item.Acceleration());
-    //     }
-    // }
+    //         //accelerationitems._itemspeed = 2.0f;
+    //         //debug.log(accelerationitems._itemspeed);
+    //         //other.gameobject.setactive(false);
+    //         //startcoroutine(accelerationitems.item.acceleration());
+         // }
+             }
+         }*/
 
     /// <summary>
     /// 一個米を取得するごとに10%速度が上昇(速度倍率を他所で持ってるおかげでこれから移動速度が変化してもここを変更する必要はないよ NEXT 60 CODELINE : 外島)
@@ -277,6 +277,12 @@ public class RiceBollsMoveTest : MonoBehaviour
             other.gameObject.SetActive(false);
             StartCoroutine(AccelerationItems.Item.Acceleration());
         }
+        if (other.gameObject.CompareTag("Invincble"))
+        {
+            Debug.Log("当たった");
+            StartCoroutine(InvincibleItems._Item.DamageLiberion());
+        }
+;
     }
 
     //一秒間米を獲得できなかったらスコアを0にする。

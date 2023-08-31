@@ -9,6 +9,7 @@ TagManager:
   - RiceBaby
   - MapTile
   - AccelerationItem
+  - Invincble
   layers:
   - Default
   - TransparentFX
