@@ -41,7 +41,7 @@ public class ResultTest : MonoBehaviour
         *for文でiがGameSceneIndex._gameSceneScoreIndex
         *より小さかったらループしてiをカウントアップする
         */
-        for (int i = 0; i < Score.score/*GameSceneIndex._gameSceneScoreIndex*/; i++)
+        for (int i = 0; i <GameSceneIndex._gameSceneScoreIndex; i++)
         {
             /*
              new Vector3(30,34,54)の部分を改良する
@@ -57,6 +57,7 @@ public class ResultTest : MonoBehaviour
             //0.5frameの間に実行する
             yield return new WaitForSeconds(0.05f);
         }
+        GameSceneIndex.instance.ResetGameSceneScore();
         yield return null;
     }
 }
