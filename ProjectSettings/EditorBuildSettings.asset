@@ -5,7 +5,6 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-<<<<<<< HEAD
   - enabled: 1
     path: Assets/Scenes/Title.unity
     guid: 2cda990e2423bbf4892e6590ba056729
@@ -15,18 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Result.unity
     guid: 6f319d532c1cad246803d7e3da61cc83
-  - enabled: 1
-    path: Assets/Scenes/Tutorial.unity
-    guid: bb9506f3befa898429c08bcae6ddb1c4
-=======
   - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
-    path: Assets/Scenes/FADE1.unity
-    guid: 7201259dd7252534ba340e1bf59f4bf9
-  - enabled: 1
-    path: Assets/Scenes/FADE2.unity
-    guid: 6f6eb7cc6bd3ed7438e57c3f48620ba1
->>>>>>> origin/sukegawa
+    path: Assets/Menber/Toshima/Scene/ScoreTestScene.unity
+    guid: 35862c2b984ef401291e2539ba416970
   m_configObjects: {}

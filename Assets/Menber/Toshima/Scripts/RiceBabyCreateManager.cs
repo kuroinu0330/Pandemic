@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,6 +28,19 @@ public class RiceBabyCreateManager : MonoBehaviour
 
     //プレイヤー操作と兼ね合いをとるシングルトン処理
     public static RiceBabyCreateManager Instance;
+
+    //米粒の生成数が上昇していることを示すbool型変数
+    private bool _dualSabotRiceBaby = false;
+    
+    //米粒も生成数上昇アイテムを取得した時にtrueになる
+    private bool _dealSabotRiceBabyReady = false;
+    
+    //米粒の生成コストが減少していることを示すbool型変数
+    private bool _createCostReduction = false;
+    
+    //米粒の生成コストを減少させるアイテムを取得したときにtrueになる
+    private bool _createCostReductionReady = false;
+
 
 
     void Awake() 
@@ -80,15 +94,28 @@ public class RiceBabyCreateManager : MonoBehaviour
         {
             case 0:
             //現在のクリエイトポイントがクリエイトコスト以下なら以下の処理を実行する
-            if(_createEnergy >=_createCost)
+            if(_createEnergy >=_createCost || _createCostReduction)
             {
-                //現在のクリエイトポイントからコストを差し引く
-                _createEnergy -= _createCost;
-
+                if (!_createCostReduction)
+                {
+                    //現在のクリエイトポイントからコストを差し引く
+                    _createEnergy -= _createCost; 
+                }
+                
                 SoundManager.instance.PlaySE(1);
 
-                //米を生成する
-                Instantiate(_riceBaby,new Vector3(createPos.x,createPos.y,0f),Quaternion.identity);
+                if (_dualSabotRiceBaby)
+                {
+                    //一つ目の米を生成する
+                    Instantiate(_riceBaby,new Vector3(createPos.x - 60f,createPos.y,0f),Quaternion.identity); 
+                    //二つ目の米を生成する
+                    Instantiate(_riceBaby,new Vector3(createPos.x + 60f,createPos.y,0f),Quaternion.identity); 
+                }
+                else
+                {
+                    //米を生成する
+                    Instantiate(_riceBaby,new Vector3(createPos.x,createPos.y,0f),Quaternion.identity);  
+                }
             }
             break;
             case 1:
@@ -115,5 +142,106 @@ public class RiceBabyCreateManager : MonoBehaviour
     public float CreateEnergyUpdate()
     {
         return _createEnergy;
+    }
+
+    /// <summary>
+    /// 米粒の生成量を上昇させるアイテムを獲得した際に呼ばれる関数
+    /// </summary>
+    public void RiceBabyDualSabotItemAcquisition()
+    {
+        _dealSabotRiceBabyReady = true;
+        StartCoroutine(RiceBabyDualSabotSystem());
+    }
+
+    /// <summary>
+    /// 米粒の生成量を上昇させるアイテムの効果時間を測定するコルーチン
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator RiceBabyDualSabotSystem()
+    {
+        if (_dualSabotRiceBaby)
+        {
+            yield break;
+        }
+        else
+        {
+            _dealSabotRiceBabyReady = false;
+        }
+
+        //15
+        float timeLimit = 5f;
+
+        float timer = 0f;
+        
+        _dualSabotRiceBaby = true;
+
+        while (timeLimit >= timer)
+        {
+            timer += Time.deltaTime;
+            
+            //Debug.Log(timer);
+
+            if (_dealSabotRiceBabyReady)
+            {
+                timer = 0f;
+                _dealSabotRiceBabyReady = false;
+            }
+
+            yield return null;
+        }
+
+        _dualSabotRiceBaby = false;
+        
+        yield break;
+    }
+    
+    /// <summary>
+    /// 米粒の生成量を上昇させるアイテムを獲得した際に呼ばれる関数
+    /// </summary>
+    public void InfiniteStaminaAcquisition()
+    {
+        _createCostReductionReady = true;
+        StartCoroutine(InfiniteStaminaSystem());
+    }
+
+    /// <summary>
+    /// 米粒の生成量を上昇させるアイテムの効果時間を測定するコルーチン
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator InfiniteStaminaSystem()
+    {
+        if (_createCostReduction)
+        {
+            yield break;
+        }
+        else
+        {
+            _createCostReductionReady = false;
+        }
+        
+        float timeLimit = 15f;
+
+        float timer = 0f;
+        
+        _createCostReduction = true;
+
+        while (timeLimit >= timer)
+        {
+            timer += Time.deltaTime;
+            
+            Debug.Log(timer);
+
+            if (_createCostReductionReady)
+            {
+                timer = 0f;
+                _createCostReductionReady = false;
+            }
+
+            yield return null;
+        }
+
+        _createCostReduction = false;
+        
+        yield break;
     }
 }
