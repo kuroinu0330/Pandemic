@@ -165,6 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targerObject: []
+  _frindryBread: []
   collider2D: {fileID: 8416900680486768268}
   _moveSpeed: 120
   _moveSpeedResio: 1
@@ -172,6 +173,8 @@ MonoBehaviour:
   _detectionRangeScale: 1
   _actionOn: 1
   anim: {fileID: 7446139297602006306}
+  _reuseBread: 0
+  _reuseBreadInterval: 0
 --- !u!58 &6503486593325153517
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -185,9 +188,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.03, y: 0.18}
   serializedVersion: 2
-  m_Radius: 0.7
+  m_Radius: 0.37
 --- !u!50 &7446139297602006329
 Rigidbody2D:
   serializedVersion: 4

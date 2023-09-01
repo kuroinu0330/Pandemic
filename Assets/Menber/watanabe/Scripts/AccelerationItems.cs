@@ -26,6 +26,7 @@ public class AccelerationItems : MonoBehaviour
             _Time += Time.deltaTime;
             if (_AccelerationTime <= _Time)
             {
+                //GetComponent<Renderer>().material.color = new Color32(250, 150, 40, 255);
                 _itemSpeed = 1.0f;
                 yield break;
             }

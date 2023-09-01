@@ -31,7 +31,10 @@ public class RiceBollsMoveTest : MonoBehaviour
     //速度倍率
     [SerializeField]
     public float _sppedRetio;
-    
+
+    [SerializeField]
+    private  float timer = 0.0f;
+
 
 
     [SerializeField]
@@ -191,6 +194,7 @@ public class RiceBollsMoveTest : MonoBehaviour
     {
         if (other.gameObject.CompareTag("RiceBaby"))
         {
+            timer = 0.0f;
             //Debug.Log("当たった");
             _level += 1;
             //_HighScore += 1;
@@ -202,69 +206,69 @@ public class RiceBollsMoveTest : MonoBehaviour
                 //コルーチンStart
                 StartCoroutine(CountCoroutine());
                 //Debug.Log("1レベルだよ");
-                _sppedRetio = 1.1f;
+                _sppedRetio = 1.3f;
                 _nearObj = null;
             }
             if (_level == 2)
             {
                 StartCoroutine(CountCoroutine());
                 //Debug.Log("2レベルだよ");
-                _sppedRetio = 1.2f;
+                _sppedRetio = 1.5f;
             }
             if (_level == 3)
             {
                 StartCoroutine(CountCoroutine());
                 //Debug.Log("3レベルだよ");
-                _sppedRetio = 1.3f;
+                _sppedRetio = 1.7f;
             }
             if (_level == 4)
             {
 
                 StartCoroutine(CountCoroutine());
                 //Debug.Log("4レベルだよ");
-                _sppedRetio = 1.4f;
+                _sppedRetio = 1.9f;
             }
             if (_level == 5)
             {
 
                 StartCoroutine(CountCoroutine());
                 //Debug.Log("5レベルだよ");
-                _sppedRetio = 1.5f;
+                _sppedRetio = 2.1f;
             }
             if (_level == 6)
             {
 
                 StartCoroutine(CountCoroutine());
                 //Debug.Log("6レベルだよ");
-                _sppedRetio = 1.6f;
+                _sppedRetio = 2.3f;
             }
             if (_level == 7)
             {
 
                 StartCoroutine(CountCoroutine());
                 //Debug.Log("7レベルだよ");
-                _sppedRetio = 1.7f;
+                _sppedRetio = 2.5f;
             }
             if (_level == 8)
             {
 
                 StartCoroutine(CountCoroutine());
                 //Debug.Log("8レベルだよ");
-                _sppedRetio = 1.8f;
+                _sppedRetio = 2.7f;
             }
             if (_level == 9)
             {
 
                 StartCoroutine(CountCoroutine());
                 //Debug.Log("9レベルだよ");
-                _sppedRetio = 1.9f;
+                _sppedRetio = 2.9f;
             }
             if (_level == 10)
             {
 
                 StartCoroutine(CountCoroutine());
                 //Debug.Log("10レベルだよ");
-                _sppedRetio = 2f;
+                _sppedRetio = 3.1f;
             }
             #endregion
 
@@ -300,7 +304,7 @@ public class RiceBollsMoveTest : MonoBehaviour
     {
         _Clear = true;
         yield return null;
-        float timer = 0.0f;
+        //float timer = 0.0f;
         _Clear = false;
         while (true)
         {
