@@ -82,6 +82,15 @@ public class BreadManager : MonoBehaviour
     }
 
     /// <summary>
+    /// リストから除外
+    /// </summary>
+    /// <param name="obj"></param>
+    public void RemoveListOOOOOOOOOOOOOOORU(GameObject obj)
+    {
+        _breadObjects.Remove(obj.GetComponent<NormalBreadEx>());
+    }
+
+    /// <summary>
     /// 特殊な方法で再利用対象オブジェクトに指定された際に実行する関数
     /// </summary>
     /// <param name="obj">再利用対象オブジェクトに指定された「Bread」オブジェクト</param>

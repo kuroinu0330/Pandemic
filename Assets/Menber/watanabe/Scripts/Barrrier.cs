@@ -6,13 +6,14 @@ public class Barrrier : MonoBehaviour
 {
     [SerializeField]
     private GameObject _destroyObj;
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Bread"))
         {
-            Debug.Log("atata");
-            //Destroy(other.gameObject);
-             other.gameObject.SetActive(false);
+            Debug.Log("bibinba");
+            BreadManager.Instance.RemoveListOOOOOOOOOOOOOOORU(other.gameObject);
+            Destroy(other.gameObject);
+             //other.gameObject.SetActive(false);
         }
     }
 }
