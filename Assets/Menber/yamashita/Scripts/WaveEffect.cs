@@ -3,9 +3,9 @@ using UnityEngine;
 public class WaveEffect : MonoBehaviour
 {
     [SerializeField]
-    private float initialSize = 0.2f; // ‰ŠúƒTƒCƒY
+    private float initialSize = 0.2f; // ï¿½ï¿½ï¿½ï¿½ï¿½Tï¿½Cï¿½Y
     [SerializeField]
-    private float expandSpeed = 2f; // Šg‘å‘¬“x
+    private float expandSpeed = 2f; // ï¿½gï¿½å‘¬ï¿½x
 
     private SpriteRenderer spriteRenderer;
     private bool isMouseClicked = false;
@@ -17,36 +17,22 @@ public class WaveEffect : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            isMouseClicked = true;
-
-            // ƒ}ƒEƒX‚ÌˆÊ’u‚ðƒ[ƒ‹ƒhÀ•W‚É•ÏŠ·
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mousePosition.z = 0f;
-
-            // ƒGƒtƒFƒNƒg‚ð¶¬‚·‚éˆÊ’u‚ðƒ}ƒEƒX‚ÌˆÊ’u‚ÉÝ’è
-            transform.position = mousePosition;
-        }
-
-        if (isMouseClicked)
-        {
-            // Šg‘åƒAƒjƒ[ƒVƒ‡ƒ“
+        // ï¿½gï¿½ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½
             transform.localScale += new Vector3(expandSpeed, expandSpeed, 0f) * Time.deltaTime;
 
-            // ƒAƒ‹ƒtƒ@’l‚ÌŒvŽZ
+            // ï¿½Aï¿½ï¿½ï¿½tï¿½@ï¿½lï¿½ÌŒvï¿½Z
             Color color = spriteRenderer.color;
-            float alpha = 1f - (transform.localScale.x / initialSize);
+            float alpha = transform.localScale.x / initialSize;
             color.a = alpha;
 
-            // ƒAƒ‹ƒtƒ@’l‚ðÝ’è
+            // ï¿½Aï¿½ï¿½ï¿½tï¿½@ï¿½lï¿½ï¿½Ý’ï¿½
             spriteRenderer.color = color;
 
-            // ƒGƒtƒFƒNƒg‚ÌI—¹”»’è
+            // ï¿½Gï¿½tï¿½Fï¿½Nï¿½gï¿½ÌIï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             if (transform.localScale.x >= initialSize)
             {
                 Destroy(gameObject);
             }
-        }
+        
     }
 }

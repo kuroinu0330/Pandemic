@@ -100,6 +100,8 @@ public class RiceBabyCreateManager : MonoBehaviour
             //現在のクリエイトポイントがクリエイトコスト以下なら以下の処理を実行する
             if(_createEnergy >=_createCost || _createCostReduction)
             {
+                PlayerInputManagement.Instance.CreatePerticle(createPos);
+                
                 if (!_createCostReduction)
                 {
                     //現在のクリエイトポイントからコストを差し引く
