@@ -6,14 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="29d45dd2-cdc8-44cb-b77e-6eb96e705815" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Pandemic/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Pandemic/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Menber/Toshima/Scripts/PlayerInputManagement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Menber/Toshima/Scripts/PlayerInputManagement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Menber/Toshima/Scripts/RiceBabyCreateManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Menber/Toshima/Scripts/RiceBabyCreateManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Menber/yamashita/Prefab/Wave.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Menber/yamashita/Prefab/Wave.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Menber/yamashita/Scripts/WaveEffect.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Menber/yamashita/Scripts/WaveEffect.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Menber/watanabe/Scripts/AccelerationItems.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Menber/watanabe/Scripts/AccelerationItems.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Menber/watanabe/Scripts/RiceBollsMoveTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Menber/watanabe/Scripts/RiceBollsMoveTest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resource/BreadEX.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resource/BreadEX.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/yamasita.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/yamasita/WaveEffect.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/yamasita/WaveEffect.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Result.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Result.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +125,8 @@
       <workItem from="1693361532364" duration="401000" />
       <workItem from="1693487412115" duration="598000" />
       <workItem from="1693490067078" duration="1986000" />
-      <workItem from="1693531666246" duration="2450000" />
+      <workItem from="1693531666246" duration="3046000" />
+      <workItem from="1693540947663" duration="558000" />
     </task>
     <servers />
   </component>
