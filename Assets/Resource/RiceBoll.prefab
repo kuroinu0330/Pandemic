@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 638058742120663015}
   - component: {fileID: 638058742120663014}
+  - component: {fileID: 7533077223386218073}
   m_Layer: 0
   m_Name: SearchManager
   m_TagString: Untagged
@@ -48,6 +49,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 5
+--- !u!114 &7533077223386218073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 638058742120663016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b7f1dcf4406a564fbf0deb73188144c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  riceBollsMoveTest: {fileID: 638058742900041401}
 --- !u!1 &638058742373748073
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,11 +320,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8fe719e007e4f643ba8dc7db66be617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  accelerationItems: {fileID: 0}
   ScoreText: {fileID: 0}
   soundManager: {fileID: 0}
   _level: 0
   _speed: 120
   _sppedRetio: 1
+  timer: 0
   _moveNow: 0
 --- !u!1 &638058743643785668
 GameObject:
