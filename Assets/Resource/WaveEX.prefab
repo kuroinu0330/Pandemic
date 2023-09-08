@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 458332641585829468}
   - component: {fileID: 458332641585829469}
-  - component: {fileID: 8702565524685581470}
+  - component: {fileID: 8798104260778929731}
   m_Layer: 0
-  m_Name: Wave
+  m_Name: WaveEX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 458332641585829471}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_LocalScale: {x: 100, y: 100, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8702565524685581470
+--- !u!114 &8798104260778929731
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,8 +94,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 458332641585829471}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2942c653f0f5474cb3977f710234e19, type: 3}
+  m_Script: {fileID: 11500000, guid: a5c95ddd478559b49be8b028f05ae02e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialSize: 0.2
-  expandSpeed: 2
+  initialSize: 200
+  expandSpeed: 300

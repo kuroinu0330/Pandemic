@@ -13,7 +13,7 @@ public class NormalBreadEx : MonoBehaviour
     //探知したオブジェクトとプレイヤーをまとめておくリスト
     [SerializeField]
     private List<GameObject> _targerObject;
-    
+
     //
     [SerializeField]
     private List<GameObject> _frindryBread;

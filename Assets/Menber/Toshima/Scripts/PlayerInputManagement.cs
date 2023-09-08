@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEditor;
 using System.Linq;
 using System;
+using TMPro;
+using Unity.Mathematics;
 
 public class PlayerInputManagement : MonoBehaviour
 {
@@ -26,6 +28,8 @@ public class PlayerInputManagement : MonoBehaviour
     // //生成したプレハブの実体をいじるための変数
     // [SerializeField]
     // private GameObject _riceBabyPhantomObject;
+
+    [SerializeField] private GameObject _perticleObject;
 
     //プレイヤーがタッチを始めた最初の座標
     [SerializeField]
@@ -105,6 +109,8 @@ public class PlayerInputManagement : MonoBehaviour
                 _originalTouchPosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, 
                                                                                     mousePos.y,10f));
 
+                CreatePerticle(_originalTouchPosition);
+                
                 //生成処理を実行する
                 CreateAction(_originalTouchPosition);
 
@@ -175,6 +181,8 @@ public class PlayerInputManagement : MonoBehaviour
 
                     //米を生成する(別ソースコードに転移)
                     //CreateRiceBaby(_originalTouchPosition);   
+
+                    CreatePerticle(_originalTouchPosition);
 
                     //生成処理を実行する
                     CreateAction(_originalTouchPosition);
@@ -308,5 +316,11 @@ public class PlayerInputManagement : MonoBehaviour
     public void PlayerActionOff()
     {
         _actionReady = false;
+    }
+
+    public void CreatePerticle(Vector3 pos)
+    {
+        //クリック時の演出処理を実行
+        Instantiate(_perticleObject, pos, quaternion.identity);
     }
 }
