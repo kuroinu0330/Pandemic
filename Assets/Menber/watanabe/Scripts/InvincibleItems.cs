@@ -6,13 +6,16 @@ public class InvincibleItems : MonoBehaviour
 {
     [SerializeField]
     private GameObject _Barria;
-    //–³“GŽžŠÔ
+    //ï¿½ï¿½ï¿½Gï¿½ï¿½ï¿½ï¿½
     [SerializeField]
     private float _InvincibleTime = 0;
 
     public static InvincibleItems _Item;
-   
-   
+
+    public void SetBarria(GameObject obj)
+    {
+        _Barria = obj;
+    }
 
     public IEnumerator DamageLiberion()
     {

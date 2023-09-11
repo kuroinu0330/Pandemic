@@ -13,6 +13,9 @@ public class RiceBollsMoveTest : MonoBehaviour
     public TextMeshProUGUI ScoreText;
     [SerializeField]
     private SoundManager soundManager;
+
+    [SerializeField] private List<GameObject> _targetObject;
+    [SerializeField] private RiceBollEXVoid _riceBollExVoid;
     #region 米獲得
     //レベル
     [SerializeField]
@@ -35,7 +38,8 @@ public class RiceBollsMoveTest : MonoBehaviour
     [SerializeField]
     private  float timer = 0.0f;
 
-
+    [SerializeField] 
+    private bool _searchAreaSwitch = false;
 
     [SerializeField]
     private bool _moveNow = false;
@@ -49,7 +53,30 @@ public class RiceBollsMoveTest : MonoBehaviour
 
         _level = 0;
         //最も近いオブジェクトを取得
-        _nearObj = serchTag(gameObject, "RiceBaby");
+        //_nearObj = serchTag(gameObject, "RiceBaby");
+        if (_targetObject.Count != 0)
+        {
+            _nearObj = _targetObject[0]; 
+        }
+        else
+        {
+            _nearObj = null;
+        }
+    }
+
+    public bool TargetIsNull()
+    {
+        if (_targetObject.Count == 0)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public void AreaFlashEXE(bool bol)
+    {
+        _searchAreaSwitch = bol;
     }
 
     ///<summary>
@@ -60,7 +87,18 @@ public class RiceBollsMoveTest : MonoBehaviour
         _serchTime += Time.deltaTime;
         if (_serchTime >= 0)
         {
-            _gameObject = serchTag(gameObject, "RiceBaby");
+            //_gameObject = serchTag(gameObject, "RiceBaby");
+            if (_targetObject.Count != 0) 
+            {
+                _gameObject = _targetObject[0];
+            }
+            else if (_targetObject.Count == 0 && !_searchAreaSwitch)
+            {
+                Debug.Log("GoOn");
+                _gameObject = null;
+                StartCoroutine(_riceBollExVoid.SwitchActive());
+            }
+            
             _nearObj = _gameObject;
             _serchTime = 0;
             //対象の位置の方向を向く
@@ -90,7 +128,24 @@ public class RiceBollsMoveTest : MonoBehaviour
         //ScoreText.text = _HighScore.ToString();
     }
 
-    /// <summary>
+    private void FixedUpdate()
+    {
+        //今世紀最大の気持ち悪コード
+        _targetObject.Sort((a, b) => MathF.Abs(Vector3.Distance(this.transform.position, a.transform.position))
+            .CompareTo(MathF.Abs(Vector3.Distance(this.transform.position, b.transform.position)))); 
+    }
+
+    public void GameObjectAdd(GameObject obj)
+    {
+        _targetObject.Add(obj);
+    }
+
+    public void GameObjectRemove(GameObject obj)
+    {
+        _targetObject.Remove(obj);
+    }
+
+        /// <summary>
     /// 一個米を取得するごとに10%速度が上昇(速度倍率を他所で持ってるおかげでこれから移動速度が変化してもここを変更する必要はないよ NEXT 60 CODELINE : 外島)
     /// </summary>
     /// <param name="other"></param>

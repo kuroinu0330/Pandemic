@@ -43,6 +43,10 @@ public class TileScrollManager : MonoBehaviour
 
     private float _breadGenerationTimer = 0;
 
+    private float _itemGenerationDelay = 30;
+
+    private float _itemGenerationTimer = 0;
+
     //シングルトン処理(正味「SingletonMonoBehaviour」の書き方と理屈が知りたい)
     public static TileScrollManager Instance;
 
@@ -130,19 +134,28 @@ public class TileScrollManager : MonoBehaviour
                     if(_mapTiles[i] != _enteredTriggers[0])
                     {
                         //ランダム生成用の座標を用立てる
-                        Vector3 posRange = new Vector3(Random.Range(-1024,1024),Random.Range(-1366,1366),0f); 
-                        Vector3 createPos = _mapTiles[i].transform.position + posRange;
+                        Vector3 posRange = new Vector3(Random.Range(-1024,1024),Random.Range(-1336,1336),0f);
 
-                        //コメのランダム生成処理
-                        RiceBabyCreateManager.Instance.CreateRiceBaby(new Vector2(createPos.x,createPos.y),1);
-                        //Debug.Log(i + " 番目 " + createPos + " の位置に米を生成したぞい！");
+                        Vector3 local = _enteredTriggers[0].transform.position - _mapTiles[i].transform.position;
+                        
+                        Vector3 vec = local.normalized *
+                                      (local.magnitude * 1.5f);
+                        
+                        Vector3 createPos = BreadManager.Instance.GetPlayerPosition() + vec + posRange;
+                        
+                        //Debug.Log(vec + ":" + createPos);
+
+                        //パンのランダム生成処理
+                        RiceBabyCreateManager.Instance.CreateRiceBaby(createPos,1);
+                        //Debug.Log(i + " 番目 " + createPos + " の位置にパンを生成したぞい！");
                     }
                 }
-                //タイマーの初期化
+
+                    //タイマーの初期化
                 _ricababyGenerationTimer = 0f;
             }
             
-            //_generationTimerが_riceBabyGenerationDelay以上なら以下の処理を実行する
+            //_bereadGenerationTimerが_breadGenerationDelay以上なら以下の処理を実行する
             if(_breadGenerationTimer >= _breadGenerationDelay)
             {
                 //タイルの数だけ実行する
@@ -171,10 +184,35 @@ public class TileScrollManager : MonoBehaviour
                 //タイマーの初期化
                 _breadGenerationTimer = 0f;
             }
+            
+            //_itemGenerationTimerが_itemGenerationDelay以上なら以下の処理を実行する
+            if(_itemGenerationTimer >= _itemGenerationDelay)
+            {
+                int num = Random.Range(0, _mapTiles.Count);
+
+                while (_mapTiles[num] == _enteredTriggers[0])
+                {
+                    num = Random.Range(0, _mapTiles.Count);
+                }
+
+                //ランダム生成用の座標を用立てる
+                Vector3 posRange = new Vector3(Random.Range(-1024, 1024), Random.Range(-1366, 1366), 0f);
+                Vector3 createPos = _mapTiles[num].transform.position + posRange;
+                        
+                //Debug.Log(vec + ":" + createPos);
+
+                //アイテムのランダム生成処理
+                ItemGenarationManager.instance.GenarationItem(createPos);
+                        
+                //Debug.Log(i + " 番目 " + createPos + " の位置にアイテムを生成したぞい！");
+                //タイマーの初期化
+                _itemGenerationTimer = 0f;
+            }
            
                 //タイマーの加算
                 _ricababyGenerationTimer += _enerationDelayScale * Time.deltaTime;
                 _breadGenerationTimer += _enerationDelayScale * Time.deltaTime;
+                _itemGenerationTimer += _enerationDelayScale * Time.deltaTime;
         }
     }
 
