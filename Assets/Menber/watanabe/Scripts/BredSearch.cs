@@ -20,7 +20,7 @@ public class BredSearch : MonoBehaviour
     {
         if (other.gameObject.CompareTag("RiceBaby"))
         {
-            riceBollsMoveTest.BreadSearch();
+            //riceBollsMoveTest.BreadSearch();
         }
     }
 }

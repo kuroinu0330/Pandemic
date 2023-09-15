@@ -70,9 +70,7 @@ public class RiceBollsMoveTest : MonoBehaviour
         if (other.gameObject.CompareTag("RiceBaby"))
         {
             timer = 0.0f;
-            //Debug.Log("当たった");
             _level += 1;
-            //_HighScore += 1;
             GameSceneIndex.instance.AddScore();
             other.gameObject.SetActive(false);
             #region Level
@@ -153,8 +151,6 @@ public class RiceBollsMoveTest : MonoBehaviour
         {
            StartCoroutine(AccelerationItems.Item.Acceleration());
             AccelerationItems._itemSpeed = 2.0f;
-            //Debug.Log(AccelerationItems._itemSpeed);
-            //other.gameObject.SetActive(false);
  
             Destroy(other.gameObject);
         }
@@ -225,10 +221,6 @@ public class RiceBollsMoveTest : MonoBehaviour
         GameObject targetObj = null;
         foreach (GameObject obs in GameObject.FindGameObjectsWithTag(tagName))
         {
-            /*メモ
-             * boolでfalseとtrueを使って画面内に要るときはtrueいないときはfalse
-             *Vector2.DistanceではなくsqrMagnitudeを使った方が処理が軽い
-             */
             //自身と取得したオブジェクトの距離を取得
 
             tmpDis = Vector3.Distance(obs.transform.position, nowObj.transform.position);
