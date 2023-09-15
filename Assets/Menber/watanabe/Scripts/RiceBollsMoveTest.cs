@@ -13,6 +13,9 @@ public class RiceBollsMoveTest : MonoBehaviour
     public TextMeshProUGUI ScoreText;
     [SerializeField]
     private SoundManager soundManager;
+
+    [SerializeField] private List<GameObject> _targetObject;
+    [SerializeField] private RiceBollEXVoid _riceBollExVoid;
     #region 米獲得
     //レベル
     [SerializeField]
@@ -35,7 +38,8 @@ public class RiceBollsMoveTest : MonoBehaviour
     [SerializeField]
     private  float timer = 0.0f;
 
-
+    [SerializeField] 
+    private bool _searchAreaSwitch = false;
 
     [SerializeField]
     private bool _moveNow = false;
@@ -49,7 +53,30 @@ public class RiceBollsMoveTest : MonoBehaviour
 
         _level = 0;
         //最も近いオブジェクトを取得
-        _nearObj = serchTag(gameObject, "RiceBaby");
+        //_nearObj = serchTag(gameObject, "RiceBaby");
+        if (_targetObject.Count != 0)
+        {
+            _nearObj = _targetObject[0]; 
+        }
+        else
+        {
+            _nearObj = null;
+        }
+    }
+
+    public bool TargetIsNull()
+    {
+        if (_targetObject.Count == 0)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public void AreaFlashEXE(bool bol)
+    {
+        _searchAreaSwitch = bol;
     }
 
     ///<summary>
@@ -57,9 +84,162 @@ public class RiceBollsMoveTest : MonoBehaviour
     /// </summary>
     void Update()
     {
-        BreadSearch();
+        _serchTime += Time.deltaTime;
+        if (_serchTime >= 0)
+        {
+            //_gameObject = serchTag(gameObject, "RiceBaby");
+            if (_targetObject.Count != 0) 
+            {
+                _gameObject = _targetObject[0];
+            }
+            else if (_targetObject.Count == 0 && !_searchAreaSwitch)
+            {
+                Debug.Log("GoOn");
+                _gameObject = null;
+                StartCoroutine(_riceBollExVoid.SwitchActive());
+            }
+            
+            _nearObj = _gameObject;
+            _serchTime = 0;
+            //対象の位置の方向を向く
+            //transform.LookAt(_nearObj.transform);
+            if (_gameObject == null){ return; }
+
+            Vector3 distance = _gameObject.transform.position - this.transform.position;
+
+            /*Vector3 diff = (this.gameObject.transform.position - _nearObj.transform.position);
+
+            this.transform.rotation = Quaternion.FromToRotation(Vector3.up, -diff);*/
+
+            CameraMoveController.Instance.CameraPositionUpdate();
+            //移動のメソッド
+            RiceBollsMove();
+            RiceBollsAnimetion();
+        
+
+            //自分自身の位置から相対的に移動する(_speedとdeltaTimeの間に速度倍率を挟んだけどこれは前のやつと同じ内容だよ : 外島)
+            //transform.Translate(Vector3.forward * 0.1f);
+            //transform.position = Vector3.MoveTowards(
+            //transform.position,
+            //_nearObj.transform.position,
+            //_speed * _sppedRetio * Time.deltaTime);
+
+        }
         //ScoreText.text = _HighScore.ToString();
     }
+
+    private void FixedUpdate()
+    {
+        //今世紀最大の気持ち悪コード
+        _targetObject.Sort((a, b) => MathF.Abs(Vector3.Distance(this.transform.position, a.transform.position))
+            .CompareTo(MathF.Abs(Vector3.Distance(this.transform.position, b.transform.position)))); 
+    }
+
+    public void GameObjectAdd(GameObject obj)
+    {
+        _targetObject.Add(obj);
+    }
+
+    public void GameObjectRemove(GameObject obj)
+    {
+        _targetObject.Remove(obj);
+    }
+
+        /// <summary>
+    /// 一個米を取得するごとに10%速度が上昇(速度倍率を他所で持ってるおかげでこれから移動速度が変化してもここを変更する必要はないよ NEXT 60 CODELINE : 外島)
+    /// </summary>
+    /// <param name="other"></param>
+   /*      private void ontriggerenter2D(collider2D other)
+         {
+             if (other.gameobject.comparetag("ricebaby"))
+             {
+                 //debug.log("当たった");
+                 _level += 1;
+                //_highscore += 1;
+                gamesceneindex.instance.addscore();
+                other.gameobject.setactive(false);
+                 #region level
+                 if (_level == 1)
+                 {
+                     //コルーチンstart
+                     startcoroutine(countcoroutine());
+                     //debug.log("1レベルだよ");
+                     _sppedretio = 1.1f;
+                     _nearobj = null;
+                 }
+                 if (_level == 2)
+                 {
+                     startcoroutine(countcoroutine());
+                     //debug.log("2レベルだよ");
+                     _sppedretio = 1.2f;
+               }
+                 if (_level == 3)
+                 {
+                    startcoroutine(countcoroutine());
+                     //debug.log("3レベルだよ");
+                 _sppedretio = 1.3f;
+                 }
+                 if (_level == 4)
+                 {
+        
+                     startcoroutine(countcoroutine());
+                     //debug.log("4レベルだよ");
+                     _sppedretio = 1.4f;
+                 }
+                 if (_level == 5)
+                 {
+        
+                     startcoroutine(countcoroutine());
+                     //debug.log("5レベルだよ");
+                     _sppedretio = 1.5f;
+                 }
+                 if (_level == 6)
+                 {
+        
+                     startcoroutine(countcoroutine());
+                     //debug.log("6レベルだよ");
+                     _sppedretio = 1.6f;
+                 }
+                 if (_level == 7)
+                 {
+        
+                     startcoroutine(countcoroutine());
+                     //debug.log("7レベルだよ");
+                     _sppedretio = 1.7f;
+                 }
+                 if (_level == 8)
+                 {
+        
+                     startcoroutine(countcoroutine());
+                     //debug.log("8レベルだよ");
+                     _sppedretio = 1.8f;
+                 }
+                 if (_level == 9)
+                 {
+        
+                     startcoroutine(countcoroutine());
+                     //debug.log("9レベルだよ");
+                     _sppedretio = 1.9f;
+                 }
+                 if (_level == 10)
+                 {       
+                     startcoroutine(countcoroutine());
+                     //debug.log("10レベルだよ");
+                     _sppedretio = 2f;
+                 }
+    ////         #endregion
+    ////
+    //         scoretext.text = string.format("{0}", gamesceneindex.instance.getgamescenescore());
+    //     }
+    //     if (other.gameobject.comparetag("accelerationitem"))
+    //     {
+    //         //accelerationitems._itemspeed = 2.0f;
+    //         //debug.log(accelerationitems._itemspeed);
+    //         //other.gameobject.setactive(false);
+    //         //startcoroutine(accelerationitems.item.acceleration());
+         // }
+             }
+         }*/
 
     /// <summary>
     /// 一個米を取得するごとに10%速度が上昇(速度倍率を他所で持ってるおかげでこれから移動速度が変化してもここを変更する必要はないよ NEXT 60 CODELINE : 外島)
@@ -70,7 +250,9 @@ public class RiceBollsMoveTest : MonoBehaviour
         if (other.gameObject.CompareTag("RiceBaby"))
         {
             timer = 0.0f;
+            //Debug.Log("当たった");
             _level += 1;
+            //_HighScore += 1;
             GameSceneIndex.instance.AddScore();
             other.gameObject.SetActive(false);
             #region Level
@@ -151,6 +333,8 @@ public class RiceBollsMoveTest : MonoBehaviour
         {
            StartCoroutine(AccelerationItems.Item.Acceleration());
             AccelerationItems._itemSpeed = 2.0f;
+            //Debug.Log(AccelerationItems._itemSpeed);
+            //other.gameObject.SetActive(false);
  
             Destroy(other.gameObject);
         }
@@ -221,6 +405,10 @@ public class RiceBollsMoveTest : MonoBehaviour
         GameObject targetObj = null;
         foreach (GameObject obs in GameObject.FindGameObjectsWithTag(tagName))
         {
+            /*メモ
+             * boolでfalseとtrueを使って画面内に要るときはtrueいないときはfalse
+             *Vector2.DistanceではなくsqrMagnitudeを使った方が処理が軽い
+             */
             //自身と取得したオブジェクトの距離を取得
 
             tmpDis = Vector3.Distance(obs.transform.position, nowObj.transform.position);
@@ -270,30 +458,6 @@ public class RiceBollsMoveTest : MonoBehaviour
     public void RiceBollsAnimetion()
     {
         anim.SetBool("blRot",true);
-    }
-    public void BreadSearch()
-    {
-        _serchTime += Time.deltaTime;
-        if (_serchTime >= 0)
-        {
-            _gameObject = serchTag(gameObject, "RiceBaby");
-            _nearObj = _gameObject;
-            _serchTime = 0;
-            //対象の位置の方向を向く
-            //transform.LookAt(_nearObj.transform);
-            if (_gameObject == null) { return; }
-
-            Vector3 distance = _gameObject.transform.position - this.transform.position;
-
-            /*Vector3 diff = (this.gameObject.transform.position - _nearObj.transform.position);
-
-            this.transform.rotation = Quaternion.FromToRotation(Vector3.up, -diff);*/
-
-            CameraMoveController.Instance.CameraPositionUpdate();
-            //移動のメソッド
-            RiceBollsMove();
-            RiceBollsAnimetion();
-        }
     }
     
 }
