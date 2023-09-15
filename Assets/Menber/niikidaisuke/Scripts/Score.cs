@@ -12,7 +12,6 @@ public class Score : MonoBehaviour
     void Start()
     {
         score = ScoreData.getscore();
-
         ScoreText.text = string.Format("{0}", 0);
         timeLine = 0;
     }
