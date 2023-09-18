@@ -19,6 +19,10 @@ public class BreadManager : MonoBehaviour
     [SerializeField]
     private GameObject _breadBase;
     
+    //パンのプレハブを保持する
+    [SerializeField]
+    private GameObject _breadExtreem;
+    
     //生成したパンの全てを保持する配列
     [SerializeField] 
     private List<NormalBreadEx> _breadObjects;
@@ -34,6 +38,10 @@ public class BreadManager : MonoBehaviour
     //パンの個体数を保持する変数
     private int _breadindividual = 0;
 
+    //パンの個体数を保持する変数
+    [SerializeField]
+    private int _breadindividualEX = 0;
+    
     //パンの画像集
     //[SerializeField] 
     //private List<Sprite> _breadTextures;
@@ -184,7 +192,31 @@ public class BreadManager : MonoBehaviour
         //Bread.GetComponent<SpriteRenderer>().sprite = _breadTextures[typeNum];
 
     }
-    
+
+    public void GenerateAbnormalBread(Vector3 position,Vector2 direction)
+    {
+        GameObject Bread = null;
+
+        if (_breadindividualEX < 10)
+        {
+            //パンの生成をする
+            Bread = Instantiate(_breadExtreem, position, Quaternion.identity);
+
+            StartCoroutine(Bread.GetComponent<AbNormalBreadEX>().Move(direction));
+
+            _breadindividualEX++;
+
+            Bread.name = Bread.name + "EX";
+
+            Bread.transform.SetParent(EmptyObject.transform);
+        }
+    }
+
+    public void BreadIndividualEXSub()
+    {
+        _breadindividualEX--;
+    }
+
     //パンの一斉行動開始処理
     public void BreadsActionOn()
     {

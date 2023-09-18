@@ -1684,6 +1684,8 @@ MonoBehaviour:
   _itemHangar: {fileID: 404976819}
   _pulseShield: {fileID: 776854398}
   _genarationTemporaryCount: 00000000000000000000000000000000
+  timer: 0
+  count: 0
 --- !u!4 &946566556
 Transform:
   m_ObjectHideFlags: 0
@@ -1965,8 +1967,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 1837274031}
   _breadBase: {fileID: 8449576421869051920, guid: 15b40fc0d48bb4924b2337d35418ff68, type: 3}
+  _breadExtreem: {fileID: 1574047651064097566, guid: 5c572da39e02140ffb66efc2f37c49ba, type: 3}
   _breadObjects: []
   _isolationBread: []
+  _breadindividualEX: 0
 --- !u!4 &1352393673
 Transform:
   m_ObjectHideFlags: 0
@@ -2403,6 +2407,7 @@ MonoBehaviour:
   _centerCoordinateNum: {x: 1, y: 1}
   _enteredTriggers: []
   _riceBabyGenerationDelay: 10
+  _tileMoveCount: 0
 --- !u!4 &2026847664
 Transform:
   m_ObjectHideFlags: 0

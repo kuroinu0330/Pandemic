@@ -10,6 +10,10 @@ public class InfiniteStaminaRiceBaby : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             RiceBabyCreateManager.Instance.InfiniteStaminaAcquisition();
+            
+            // ここに点滅アニメーションのスタート処理を書く
+            
+            
             Destroy(this.gameObject);
             Debug.Log("Go!On!!");
         }

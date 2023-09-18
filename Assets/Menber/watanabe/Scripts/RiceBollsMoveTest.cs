@@ -94,7 +94,7 @@ public class RiceBollsMoveTest : MonoBehaviour
             }
             else if (_targetObject.Count == 0 && !_searchAreaSwitch)
             {
-                Debug.Log("GoOn");
+                //Debug.Log("GoOn");
                 _gameObject = null;
                 StartCoroutine(_riceBollExVoid.SwitchActive());
             }
