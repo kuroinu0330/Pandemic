@@ -11,9 +11,9 @@ public class Score : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // score = ScoreData.getscore();
+         score = ScoreData.getscore();
 
-        score = 100;
+      
         ScoreText.text = string.Format("{0}", 0);
         timeLine = 0;
     }
