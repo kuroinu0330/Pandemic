@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6885947615894825770}
   - component: {fileID: 6885947615894825768}
   m_Layer: 0
-  m_Name: InfinitStamina]
+  m_Name: InfinitStamina
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

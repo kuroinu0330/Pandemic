@@ -6,18 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="29d45dd2-cdc8-44cb-b77e-6eb96e705815" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Pandemic/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Pandemic/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Menber/Toshima/Scripts/BreadManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Menber/Toshima/Scripts/BreadManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Menber/Toshima/Scripts/DualSabotRiceBaby.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Menber/Toshima/Scripts/DualSabotRiceBaby.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Menber/Toshima/Scripts/InfiniteStaminaRiceBaby.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Menber/Toshima/Scripts/InfiniteStaminaRiceBaby.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Menber/Toshima/Scripts/ItemGenarationManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Menber/Toshima/Scripts/ItemGenarationManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Menber/Toshima/Scripts/NonTouchScripts/RiceBollEXVoid.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Menber/Toshima/Scripts/NonTouchScripts/RiceBollEXVoid.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Menber/Toshima/Scripts/TileScrollManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Menber/Toshima/Scripts/TileScrollManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Menber/Toshima/TestFolder/TestSceneT/Test.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Menber/Toshima/TestFolder/TestSceneT/Test.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Menber/watanabe/Animetion/RiceBoll.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Menber/watanabe/Animetion/RiceBoll.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Menber/watanabe/Scripts/RiceBollsMoveTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Menber/watanabe/Scripts/RiceBollsMoveTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resource/BreadEX.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resource/BreadEX.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/scripts/InstantScripts.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/scripts/InstantScripts.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +129,7 @@
       <workItem from="1694232856787" duration="8783000" />
       <workItem from="1694388940791" duration="2567000" />
       <workItem from="1694736523647" duration="14651000" />
-      <workItem from="1695014668790" duration="5703000" />
+      <workItem from="1695014668790" duration="6242000" />
     </task>
     <servers />
   </component>
