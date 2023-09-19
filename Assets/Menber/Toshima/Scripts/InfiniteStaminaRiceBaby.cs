@@ -12,6 +12,10 @@ public class InfiniteStaminaRiceBaby : MonoBehaviour
         {
             infinitStaminaUI.InfinitStaminaUITrue();
             RiceBabyCreateManager.Instance.InfiniteStaminaAcquisition();
+            
+            // ここに点滅アニメーションのスタート処理を書く
+            
+            
             Destroy(this.gameObject);
             Debug.Log("Go!On!!");
         }

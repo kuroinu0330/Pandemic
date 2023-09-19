@@ -16,7 +16,7 @@ public class RiceBollEXVoid : MonoBehaviour
       float timer = 0.0f;
       while (scripts.TargetIsNull())
       {
-         Debug.Log("あの山の頂へ！！");
+         //Debug.Log("あの山の頂へ！！");
          if (this.gameObject.activeSelf && timelimit <= timer)
          {
             this.gameObject.SetActive(false);
@@ -32,7 +32,7 @@ public class RiceBollEXVoid : MonoBehaviour
          yield return null;
       }
       scripts.AreaFlashEXE(false);
-      Debug.Log("スペース");
+      //Debug.Log("スペース");
       yield break;
    }
    
@@ -47,7 +47,7 @@ public class RiceBollEXVoid : MonoBehaviour
       {
          //米粒オブジェクトを配列に叩き込む
          scripts.GameObjectAdd(other.gameObject);
-         Debug.Log("米粒検知");
+         //Debug.Log("米粒検知");
       }
    }
 

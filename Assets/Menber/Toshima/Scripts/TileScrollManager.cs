@@ -43,9 +43,12 @@ public class TileScrollManager : MonoBehaviour
 
     private float _breadGenerationTimer = 0;
 
-    private float _itemGenerationDelay = 30;
+    private float _itemGenerationDelay = 10f;
 
     private float _itemGenerationTimer = 0;
+
+    [SerializeField]
+    private int _tileMoveCount = 0;
 
     //シングルトン処理(正味「SingletonMonoBehaviour」の書き方と理屈が知りたい)
     public static TileScrollManager Instance;
@@ -184,6 +187,84 @@ public class TileScrollManager : MonoBehaviour
                 //タイマーの初期化
                 _breadGenerationTimer = 0f;
             }
+
+            if (_tileMoveCount >= 5)
+            {
+                int num = Random.Range(1, 8);
+
+                Vector2 dir = Vector2.zero;
+
+                ScrollDirection scrollDirection = ScrollDirection.None;
+
+                switch (num)
+                {
+                    case 1:
+                        scrollDirection = ScrollDirection.UpperLeft;
+                        dir = new Vector2(1, -1).normalized;
+                        break;
+                    case 2:
+                        scrollDirection = ScrollDirection.UpperRight;
+                        dir = new Vector2(-1, -1).normalized;
+                        break;
+                    case 3:
+                        scrollDirection = ScrollDirection.BottomLeft;
+                        dir = new Vector2(1, 1).normalized;
+                        break;
+                    case 4:
+                        scrollDirection = ScrollDirection.BottomRight;
+                        dir = new Vector2(-1, 1).normalized;
+                        break;
+                    case 5:
+                        scrollDirection = ScrollDirection.Right;
+                        dir = new Vector2(-1, 0).normalized;
+                        break;
+                    case 6:
+                        scrollDirection = ScrollDirection.Left;
+                        dir = new Vector2(1, 0).normalized;
+                        break;
+                    case 7:
+                        scrollDirection = ScrollDirection.Up;
+                        dir = new Vector2(0, -1).normalized;
+                        break;
+                    case 8:
+                        scrollDirection = ScrollDirection.Under;
+                        dir = new Vector2(0, 1).normalized;
+                        break;
+                    default:
+                        break;
+                }
+                Debug.Log("出現方向 : " + scrollDirection + "\n進行方向 : " + dir);
+                
+                //タイルの数だけ実行する
+                for(int i = 0; i < _mapTiles.Count;i++)
+                {
+                    ScrollDirection direction = TileMoveDirectionJudg(_mapTiles[i].GetComponent<MapTileIndex>().GetThisTileNumber());
+                    //自身がいるタイル以外なら実行する
+                    if(scrollDirection == direction)
+                    {
+                        //ランダム生成用の座標を用立てる
+                        Vector3 posRange = new Vector3(Random.Range(-512,512),Random.Range(-683,683),0f);
+
+                        // Vector3 local = _enteredTriggers[0].transform.position + _mapTiles[i].transform.position;
+                        //
+                        // Vector3 vec = local.normalized *
+                        //               (local.magnitude * 1.5f);
+
+                        Vector3 vec = new Vector3(-dir.x,-dir.y,0) * 4098f;
+
+                        Vector3 createPos = BreadManager.Instance.GetPlayerPosition() + vec + posRange;
+                        
+                        //Debug.Log(vec + ":" + createPos);
+
+                        //パンのランダム生成処理
+                        BreadManager.Instance.GenerateAbnormalBread(createPos,dir);
+                        //Debug.Log(i + " 番目 " + createPos + " の位置にパンを生成したぞい！");
+                    }
+                }
+                
+                //タイマーの初期化
+                _tileMoveCount = 0;
+            }
             
             //_itemGenerationTimerが_itemGenerationDelay以上なら以下の処理を実行する
             if(_itemGenerationTimer >= _itemGenerationDelay)
@@ -308,6 +389,8 @@ public class TileScrollManager : MonoBehaviour
         //移動させる必要があるタイルを選定し、タイルの移動処理に繋ぐ(見栄えが良くなるから分けたかったが、脳筋の定めよな、無理だった。)
         //Vector3 tilesNum = selectReusableTile(direction,next);
         selectReusableTile(direction,next);
+
+        _tileMoveCount++;
 
         //タイルを移動させる
         //ShiftTileToAdjacentPosition(direction,tilesNum,next);     
@@ -666,5 +749,10 @@ public class TileScrollManager : MonoBehaviour
     public Vector2 GetTileWidthHeight()
     {
         return DisplayResolution;
+    }
+
+    private void CreateAbNormalBreadEX(ScrollDirection scrollDirection)
+    {
+        
     }
 }

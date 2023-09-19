@@ -12,6 +12,10 @@ public class DualSabotRiceBaby : MonoBehaviour
         {
             dualSabotUI.DualSabotUITrue();
             RiceBabyCreateManager.Instance.RiceBabyDualSabotItemAcquisition();
+            
+            // ここに点滅アニメーションのスタート処理を書く
+
+            
             Destroy(this.gameObject);
             Debug.Log("Go!On!!");
         }

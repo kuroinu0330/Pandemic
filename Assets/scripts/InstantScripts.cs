@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class InstantScripts : MonoBehaviour
@@ -9,6 +10,7 @@ public class InstantScripts : MonoBehaviour
         PlayerInputManagement.Instance.PlayerActionOn();
         TileScrollManager.Instance.RiceBabyRandomGenerationStart();
         TileScrollManager.Instance.GenerationBreadInit();
+        StartCoroutine(ItemGenarationManager.instance.timerCountUpper());
     }
 
     void InstantActionOn2()

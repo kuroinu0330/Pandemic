@@ -6,7 +6,7 @@ public class ItemGenarationManager : MonoBehaviour
 {
     [SerializeField] 
     private List<GameObject> _itemPrefabs;
-
+    
     [SerializeField] 
     private GameObject _itemHangar;
 
@@ -15,6 +15,9 @@ public class ItemGenarationManager : MonoBehaviour
 
     [SerializeField]
     private int[] _genarationTemporaryCount = { 0, 0, 0, 0 };
+    
+    [SerializeField] private float timer;
+    [SerializeField] private int count;
     
     public enum ItemList
     {
@@ -33,6 +36,34 @@ public class ItemGenarationManager : MonoBehaviour
         {
             instance = this;
         }
+
+        timer = 0.0f;
+        count = 4;
+    }
+
+    public IEnumerator timerCountUpper()
+    {
+        while (timer <= 40)
+        {
+            if (timer >= 10 && count == 4)
+            {
+                count--;
+            }
+            else if (timer >= 20 && count == 3)
+            {
+                count--;
+            }
+            else if (timer >= 30 && count == 2)
+            {
+                count--;
+            }
+
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        count--;
+        yield break;
     }
 
     public void GenarationItem(Vector2 pos,ItemList Item = ItemList.None)
@@ -48,19 +79,23 @@ public class ItemGenarationManager : MonoBehaviour
         {
             case ItemList.Acceleration:
                 gameObject = _itemPrefabs[0];
+                Debug.Log("加速アイテム");
                 StartCoroutine(CountUpDown(0));
                 break;
             case ItemList.invincible:
                 gameObject = _itemPrefabs[1];
+                Debug.Log("無敵アイテム");
                 gameObject.GetComponent<InvincibleItems>().SetBarria(_pulseShield);
                 StartCoroutine(CountUpDown(1));
                 break;
             case ItemList.infinite:
                 gameObject = _itemPrefabs[2]; 
+                Debug.Log("無限アイテム");
                 StartCoroutine(CountUpDown(2));
                 break;
             case ItemList.Double:
                 gameObject = _itemPrefabs[3];
+                Debug.Log("増加アイテム");
                StartCoroutine(CountUpDown(3));
                 break;
             default:
@@ -86,7 +121,7 @@ public class ItemGenarationManager : MonoBehaviour
 
         int[] ItemMixingRatio = {3,3,3,3};
 
-        for (int i = 0; i < _genarationTemporaryCount.Length; i++)
+        for (int i = 0; i < _genarationTemporaryCount.Length - count; i++)
         {
             ItemMixingRatio[i] -= _genarationTemporaryCount[i];
             SerectNum += ItemMixingRatio[i];    
@@ -115,8 +150,13 @@ public class ItemGenarationManager : MonoBehaviour
             Item = ItemList.None;
             Debug.Log("ロジックエラー");
         }
-        
-        return Item;
+
+        if (count != 4)
+        {
+            return Item;
+        }
+
+        return ItemList.None;
     }
 
     private IEnumerator CountUpDown(int num)
@@ -124,7 +164,7 @@ public class ItemGenarationManager : MonoBehaviour
         //Debug.Log("カウントスタート");
         _genarationTemporaryCount[num] += 1;
 
-        float TimeLimit = 120f;
+        float TimeLimit = 20f;
 
         float timer = 0.0f;
 
