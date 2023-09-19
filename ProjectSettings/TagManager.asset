@@ -9,6 +9,8 @@ TagManager:
   - Bread
   - MapTile
   - Invincble
+  - EXBread
+  - okome
   layers:
   - Default
   - TransparentFX

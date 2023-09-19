@@ -14,6 +14,8 @@ public class AbNormalBreadEX : MonoBehaviour
 
     [SerializeField] private List<Sprite> _sprite;
 
+    [SerializeField] private bool _alive = true;
+
     private void Start()
     {
         // Vector2 vec = new Vector2(1, -1);
@@ -25,15 +27,27 @@ public class AbNormalBreadEX : MonoBehaviour
     {
         float timer = 0.0f;
         
-        while (timer <= 30f)
+        while (timer <= 30f && _alive)
         {
             _rigidbody.velocity = direction * _moveSpeed;
-            timer += Time.deltaTime;
+            timer += Time.deltaTime;         
+
             yield return null;
         }
+
+        DereatAction();
+        yield break;
+    }
+
+    public void DereatAction()
+    {
         BreadManager.Instance.BreadIndividualEXSub();
         Destroy(this.gameObject);
-        yield break;
+    }
+
+    public void Dead()
+    {
+        _alive = false;
     }
 
     private IEnumerator Animation()

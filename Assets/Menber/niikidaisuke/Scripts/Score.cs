@@ -5,16 +5,15 @@ using UnityEngine.UI;
 
 public class Score : MonoBehaviour
 {
-    [SerializeField]
     public Text ScoreText;
-    [SerializeField]
     public static int score;
     float timeLine;
     // Start is called before the first frame update
     void Start()
     {
-        score = GameSceneIndex.instance.GetGameSceneScore()/*ScoreData.getscore()*/;
+         score = ScoreData.getscore();
 
+      
         ScoreText.text = string.Format("{0}", 0);
         timeLine = 0;
     }

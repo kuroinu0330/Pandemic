@@ -125,4 +125,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Barria: {fileID: 0}
-  _InvincibleTime: 10
+  _InvincibleTime: 5

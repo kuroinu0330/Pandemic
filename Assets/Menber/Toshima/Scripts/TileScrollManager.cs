@@ -31,6 +31,11 @@ public class TileScrollManager : MonoBehaviour
     private List<GameObject> _enteredTriggers;
 
     [SerializeField]
+    private InvincibleUI invincibleUI;
+
+    [SerializeField]
+    private AccelerationUi _accelerationUI;
+
     private float _riceBabyGenerationDelay = 10f;
 
     private float _enerationDelayScale = 1f;

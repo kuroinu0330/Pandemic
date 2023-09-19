@@ -199,6 +199,7 @@ public class BreadManager : MonoBehaviour
 
         if (_breadindividualEX < 10)
         {
+            Debug.Log("新型ブレッドエキスパンション");
             //パンの生成をする
             Bread = Instantiate(_breadExtreem, position, Quaternion.identity);
 

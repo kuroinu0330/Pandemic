@@ -1,0 +1,19 @@
+diff a/ProjectSettings/TagManager.asset b/ProjectSettings/TagManager.asset	(rejected hunks)
+@@ -11,7 +11,7 @@
+   - 
+   - Water
+   - UI
+-  - 
++  - okome
+   - 
+   - 
+   - 
+@@ -41,7 +41,7 @@
+   - name: Default
+     uniqueID: 0
+     locked: 0
+-  - name: New Layer 1
++  - name: okome
+     uniqueID: 1704146231
+     locked: 0
+   - name: New Layer 2
