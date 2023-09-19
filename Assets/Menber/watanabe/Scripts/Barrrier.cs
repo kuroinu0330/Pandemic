@@ -15,5 +15,9 @@ public class Barrrier : MonoBehaviour
             Destroy(other.gameObject);
              //other.gameObject.SetActive(false);
         }
+        else if(other.gameObject.tag == "EXBread")
+        {
+            other.gameObject.GetComponent<AbNormalBreadEX>().Dead();
+        }
     }
 }

@@ -24,7 +24,7 @@ public class InvincibleItems : MonoBehaviour
         yield return null;
         while (true)
         {
-            Debug.Log("kkkkkk");
+            Debug.Log(_Time);
             _Time += Time.deltaTime;
             if (_InvincibleTime >= _Time)
             {
@@ -34,10 +34,11 @@ public class InvincibleItems : MonoBehaviour
             else
             {
                 _Barria.SetActive(false);
-
+                yield break;
             }
             yield return null;
         }
+        yield break;
     }
     private void Awake()
     {

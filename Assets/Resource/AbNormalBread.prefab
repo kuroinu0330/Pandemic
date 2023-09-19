@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1574047651064097563}
   m_Layer: 0
   m_Name: AbNormalBread
-  m_TagString: Untagged
+  m_TagString: EXBread
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -144,3 +144,4 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9b5c4cb96324e4d508985462426acb96, type: 3}
   - {fileID: 21300000, guid: b03924f44755b4fbbbd752112c40ebab, type: 3}
   - {fileID: 21300000, guid: 53d73d0f239d849a59d99a374b819bc6, type: 3}
+  _alive: 1

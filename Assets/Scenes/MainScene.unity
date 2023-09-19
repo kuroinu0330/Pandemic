@@ -1915,6 +1915,8 @@ MonoBehaviour:
   _itemHangar: {fileID: 404976819}
   _pulseShield: {fileID: 776854398}
   _genarationTemporaryCount: 00000000000000000000000000000000
+  _initStaminaUI: {fileID: 1718513356}
+  _dualSabotUI: {fileID: 1769672874}
   timer: 0
   count: 0
 --- !u!4 &946566556
@@ -3046,7 +3048,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 6f5e629ee734cb644a92ad918361beea, type: 3}
   _centerCoordinateNum: {x: 1, y: 1}
   _enteredTriggers: []
-  _riceBabyGenerationDelay: 10
+  invincibleUI: {fileID: 1485812950}
+  _accelerationUI: {fileID: 687298708}
   _tileMoveCount: 0
 --- !u!4 &2026847664
 Transform:

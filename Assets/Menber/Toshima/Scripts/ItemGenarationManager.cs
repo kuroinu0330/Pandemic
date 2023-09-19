@@ -15,7 +15,13 @@ public class ItemGenarationManager : MonoBehaviour
 
     [SerializeField]
     private int[] _genarationTemporaryCount = { 0, 0, 0, 0 };
-    
+
+    [SerializeField]
+    private InfinitStaminaUI _initStaminaUI;
+
+    [SerializeField]
+    private DualSabotUI _dualSabotUI;
+
     [SerializeField] private float timer;
     [SerializeField] private int count;
     
@@ -37,7 +43,7 @@ public class ItemGenarationManager : MonoBehaviour
             instance = this;
         }
 
-        timer = 0.0f;
+        timer = 40.0f;
         count = 4;
     }
 
@@ -89,12 +95,14 @@ public class ItemGenarationManager : MonoBehaviour
                 StartCoroutine(CountUpDown(1));
                 break;
             case ItemList.infinite:
-                gameObject = _itemPrefabs[2]; 
+                gameObject = _itemPrefabs[2];
+                gameObject.GetComponent<InfiniteStaminaRiceBaby>().infinitStaminaUI = _initStaminaUI;
                 Debug.Log("無限アイテム");
                 StartCoroutine(CountUpDown(2));
                 break;
             case ItemList.Double:
                 gameObject = _itemPrefabs[3];
+                gameObject.GetComponent<DualSabotRiceBaby>().dualSabotUI = _dualSabotUI;
                 Debug.Log("増加アイテム");
                StartCoroutine(CountUpDown(3));
                 break;
