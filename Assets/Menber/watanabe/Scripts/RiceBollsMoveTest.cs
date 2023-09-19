@@ -7,6 +7,11 @@ using UnityEngine.UI;
 
 public class RiceBollsMoveTest : MonoBehaviour
 {
+
+    public AccelerationUi accelerationUi;
+
+    public InvincibleUI invincibleUi;
+
     public AccelerationItems accelerationItems;
 
     private Animator anim;
@@ -331,20 +336,23 @@ public class RiceBollsMoveTest : MonoBehaviour
         }
         if (other.gameObject.CompareTag("AccelerationItem"))
         {
-           StartCoroutine(AccelerationItems.Item.Acceleration());
+            //Ui_gameObject.SetActive(true);
+            accelerationUi.AccelerationAnimetionTrue();
+            StartCoroutine(AccelerationItems.Item.Acceleration());
             AccelerationItems._itemSpeed = 2.0f;
-            //Debug.Log(AccelerationItems._itemSpeed);
-            //other.gameObject.SetActive(false);
- 
             Destroy(other.gameObject);
         }
+        else { accelerationUi.AccelerationAnimetionfalse(); }
+
         if (other.gameObject.CompareTag("Invincble"))
         {
+            invincibleUi.InvincibleAnimetionTrue();
             Debug.Log("当たった");
             StartCoroutine(InvincibleItems._Item.DamageLiberion());
             Destroy(other.gameObject);
         }
-;
+        else { invincibleUi.InvincibleAnimetionfalse(); }
+
     }
 
     //一秒間米を獲得できなかったらスコアを0にする。
@@ -459,5 +467,6 @@ public class RiceBollsMoveTest : MonoBehaviour
     {
         anim.SetBool("blRot",true);
     }
-    
+
+
 }
