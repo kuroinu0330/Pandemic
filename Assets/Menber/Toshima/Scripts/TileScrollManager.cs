@@ -48,7 +48,7 @@ public class TileScrollManager : MonoBehaviour
 
     private float _breadGenerationTimer = 0;
 
-    private float _itemGenerationDelay = 0.5f;
+    private float _itemGenerationDelay = 10f;
 
     private float _itemGenerationTimer = 0;
 

@@ -43,7 +43,7 @@ public class ItemGenarationManager : MonoBehaviour
             instance = this;
         }
 
-        timer = 40.0f;
+        timer = 0.0f;
         count = 4;
     }
 
