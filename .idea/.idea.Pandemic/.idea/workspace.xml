@@ -6,7 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="29d45dd2-cdc8-44cb-b77e-6eb96e705815" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Pandemic/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Pandemic/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Menber/Toshima/TestFolder/TestSceneT/Test.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Menber/Toshima/TestFolder/TestSceneT/Test.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Menber/Toshima/Scripts/TileScrollManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Menber/Toshima/Scripts/TileScrollManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Menber/niikidaisuke/Scripts/ResultTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Menber/niikidaisuke/Scripts/ResultTest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Menber/niikidaisuke/Scripts/Score.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Menber/niikidaisuke/Scripts/Score.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Menber/watanabe/Scripts/RiceBollsMoveTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Menber/watanabe/Scripts/RiceBollsMoveTest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Menber/yamashita/Scripts/SoundManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Menber/yamashita/Scripts/SoundManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resource/AccelerationItem.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resource/AccelerationItem.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resource/DualSabot.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resource/DualSabot.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resource/InfinitStamina.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resource/InfinitStamina.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resource/Invincible.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resource/Invincible.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Result.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Result.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Title.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Title.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,6 +140,8 @@
       <workItem from="1694388940791" duration="2567000" />
       <workItem from="1694736523647" duration="14651000" />
       <workItem from="1695014668790" duration="6242000" />
+      <workItem from="1695094649401" duration="1938000" />
+      <workItem from="1695180862630" duration="2127000" />
     </task>
     <servers />
   </component>

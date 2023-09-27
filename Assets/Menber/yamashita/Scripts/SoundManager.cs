@@ -77,7 +77,7 @@ public class SoundManager : MonoBehaviour
     {
         var clip = bgmClipList[i];
         bgmAudioSource.clip = clip;
-        bgmAudioSource.volume = 0.5f;
+        bgmAudioSource.volume = 1.25f;
         bgmAudioSource.Play();
     }
 

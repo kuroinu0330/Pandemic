@@ -3162,6 +3162,10 @@ PrefabInstance:
       value: RiceBoll
       objectReference: {fileID: 0}
     - target: {fileID: 638058742900041401, guid: 63549cd6533914c88a292cad452dd938, type: 3}
+      propertyPath: _speed
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 638058742900041401, guid: 63549cd6533914c88a292cad452dd938, type: 3}
       propertyPath: ScoreText
       value: 
       objectReference: {fileID: 1158339562}
