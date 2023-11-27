@@ -37,11 +37,11 @@ public class SoundManager : MonoBehaviour
         seAudioSourceList = AudiioList;
 
         // �V�[���J�ڂ��Ă��j������Ȃ�
-        if(instance == null)
+        if (instance == null)
         {
             DontDestroyOnLoad(gameObject);
             instance = this;
-            for(int i=0;i<seClipList.Count;i++)
+            for (int i = 0; i < seClipList.Count; i++)
             {
                 seAudioSourceList.Add(this.gameObject.AddComponent<AudioSource>());
                 seAudioSourceList[i].clip = seClipList[i];
@@ -98,10 +98,10 @@ public class SoundManager : MonoBehaviour
         {
             case 0:
                 seAudioSourceList[i].Play();
-            break;
+                break;
             case 1:
 
-                if(seAudioSourceList[i].isPlaying)
+                if (seAudioSourceList[i].isPlaying)
                 {
                     AudioSource audioSource = gameObject.AddComponent<AudioSource>();
                     seAudioSourceList.Add(audioSource);
@@ -114,7 +114,7 @@ public class SoundManager : MonoBehaviour
                     seAudioSourceList[i].Play();
                 }
 
-            break;
+                break;
         }
 
 
@@ -129,7 +129,7 @@ public class SoundManager : MonoBehaviour
 
     public void AllMute()
     {
-        for(int i=0;i<seAudioSourceList.Count;i++ )
+        for (int i = 0; i < seAudioSourceList.Count; i++)
         {
             seAudioSourceList[i].Stop();
         }

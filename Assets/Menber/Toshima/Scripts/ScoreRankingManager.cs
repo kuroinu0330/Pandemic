@@ -60,32 +60,6 @@ public class ScoreRankingManager : MonoBehaviour
     //シングルトン用のインスタンス
     public static ScoreRankingManager instance;
 
-    private void Awake() 
-    {
-        //シングルトン化
-        if (instance == null) {
-            instance = this;
-        }
-
-        //CSVにアクセスするためのパスを取得する(パスの内容が変わるためたくさん分岐する)
-        //エディターだった場合以下の処理を実行する
-        if (Application.isEditor) 
-        { 
-            //「StreamingAssets」内の「Test.csv」ファイルを指定する(エディター用)
-            _csvFilePath = Application.streamingAssetsPath + "/Test.csv";
-        }
-        //実機だった場合(正確にはエディターではないなら)以下の処理を実行する
-        else 
-        {
-            //現状ではiPhoneもしくはiPad環境でのファイルパスを指定
-            //_csvFilePath = Application.dataPath + "/Raw" + "/Test.csv";
-            _csvFilePath = Application.persistentDataPath + "/ScoreRankingData.csv";
-            if (_csvFilePath == null) 
-            {
-                _csvFilePath = "ScoreRankingData.csv";
-            }
-        }
-    }
 
     // Start is called before the first frame update
     void Start()
