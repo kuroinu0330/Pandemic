@@ -11,7 +11,7 @@ public class Score : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-         score = ScoreData.getscore();
+         score = GameSceneIndex.instance.GetGameSceneScore();
 
       
         ScoreText.text = string.Format("{0}", 0);

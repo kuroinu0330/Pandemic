@@ -5,18 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class ResultTest : MonoBehaviour
 {
-    //À•W
+    //ï¿½ï¿½ï¿½W
     [SerializeField]
     public Vector3 _imagePos;
-    //•Ä‚ÌPrefab
+    //ï¿½Ä‚ï¿½Prefab
     [SerializeField]
     public GameObject _monsterImage;
-    //•Ä‚ÌˆÊ’u
+    //ï¿½Ä‚ÌˆÊ’u
     [SerializeField]
     public Transform _transform;
 
-    //•Ê‚ÌƒXƒNƒŠƒvƒg‚ğŒÄ‚Ño‚µ‚Ä‚¢‚é•Ï”
-    //‚±‚ÌƒXƒNƒŠƒvƒg‚ª–³‚¢‚Æmissing(–³‚¢‚æ)‚Á‚Ä“{‚ç‚ê‚é 
+    //ï¿½Ê‚ÌƒXï¿½Nï¿½ï¿½ï¿½vï¿½gï¿½ï¿½ï¿½Ä‚Ñoï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½Ïï¿½
+    //ï¿½ï¿½ï¿½ÌƒXï¿½Nï¿½ï¿½ï¿½vï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½missing(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½ï¿½Ä“{ï¿½ï¿½ï¿½ï¿½ 
     //GameSceneIndex gameSceneIndex;
     Score score;
 
@@ -24,7 +24,7 @@ public class ResultTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //ƒRƒ‹[ƒ`ƒ“‚ÌŒÄ‚Ño‚µ
+        //ï¿½Rï¿½ï¿½ï¿½[ï¿½`ï¿½ï¿½ï¿½ÌŒÄ‚Ñoï¿½ï¿½
         StartCoroutine("ResultImage", 0.2f);
         //GameSceneIndex gameSceneIndex = GetComponent<GameSceneIndex>();
     }
@@ -34,27 +34,27 @@ public class ResultTest : MonoBehaviour
     {
         
     }
-    //ƒRƒ‹[ƒ`ƒ“‚ÌŠÖ”
+    //ï¿½Rï¿½ï¿½ï¿½[ï¿½`ï¿½ï¿½ï¿½ÌŠÖï¿½
     IEnumerator ResultImage()
     {
         /*
-        *for•¶‚Åi‚ªGameSceneIndex._gameSceneScoreIndex
-        *‚æ‚è¬‚³‚©‚Á‚½‚çƒ‹[ƒv‚µ‚Äi‚ğƒJƒEƒ“ƒgƒAƒbƒv‚·‚é
+        *forï¿½ï¿½ï¿½ï¿½iï¿½ï¿½GameSceneIndex._gameSceneScoreIndex
+        *ï¿½ï¿½è¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½çƒ‹ï¿½[ï¿½vï¿½ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½Jï¿½Eï¿½ï¿½ï¿½gï¿½Aï¿½bï¿½vï¿½ï¿½ï¿½ï¿½
         */
         for (int i = 0; i <GameSceneIndex._gameSceneScoreIndex; i++)
         {
             /*
-             new Vector3(30,34,54)‚Ì•”•ª‚ğ‰ü—Ç‚·‚é
+             new Vector3(30,34,54)ï¿½Ì•ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç‚ï¿½ï¿½ï¿½
              */
-            //ƒ‹[ƒv‚µ‚Ä‚¢‚é‚É‚±‚±‚Ìˆ—‚ğ‚·‚é
+            //ï¿½ï¿½ï¿½[ï¿½vï¿½ï¿½ï¿½Ä‚ï¿½ï¿½éï¿½É‚ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             GameObject obj = Instantiate(_monsterImage, new Vector3(0, 0, 0), Quaternion.identity, _transform);
             
-            obj.transform.localPosition = new Vector3(-22, 1340, 0);
+            obj.transform.localPosition = new Vector3(-22, 1550, 0);
 
             
 
             //Instantiate(_monsterImage, Vector3.zero, Quaternion.identity, _transform);
-            //0.5frame‚ÌŠÔ‚ÉÀs‚·‚é
+            //0.5frameï¿½ÌŠÔ‚Éï¿½ï¿½sï¿½ï¿½ï¿½ï¿½
             yield return new WaitForSeconds(0.05f);
         }
         GameSceneIndex.instance.ResetGameSceneScore();

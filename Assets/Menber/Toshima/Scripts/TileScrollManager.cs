@@ -283,7 +283,13 @@ public class TileScrollManager : MonoBehaviour
 
                 //ランダム生成用の座標を用立てる
                 Vector3 posRange = new Vector3(Random.Range(-1024, 1024), Random.Range(-1366, 1366), 0f);
-                Vector3 createPos = _mapTiles[num].transform.position + posRange;
+                
+                Vector3 local = _enteredTriggers[0].transform.position - _mapTiles[num].transform.position;
+                        
+                Vector3 vec = local.normalized *
+                              (local.magnitude * 1.5f);
+
+                Vector3 createPos = BreadManager.Instance.GetPlayerPosition() + vec + posRange;
                         
                 //Debug.Log(vec + ":" + createPos);
 
