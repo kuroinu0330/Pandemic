@@ -11,6 +11,8 @@ TagManager:
   - Invincble
   - EXBread
   - okome
+  - Stamina
+  - DualKome
   layers:
   - Default
   - TransparentFX

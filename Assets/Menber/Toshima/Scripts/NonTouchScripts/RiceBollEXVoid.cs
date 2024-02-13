@@ -8,6 +8,16 @@ public class RiceBollEXVoid : MonoBehaviour
    [SerializeField]
    private RiceBollsMoveTest scripts;
 
+   public static RiceBollEXVoid instance;
+
+   private void Awake()
+   {
+      if (instance == null)
+      {
+         instance = this;
+      }
+   }
+
    public IEnumerator SwitchActive()
    {
       scripts.AreaFlashEXE(true);
@@ -43,7 +53,7 @@ public class RiceBollEXVoid : MonoBehaviour
    private void OnTriggerEnter2D(Collider2D other)
    {
       //米粒タグの場合以下の処理を実行する
-      if (other.gameObject.tag == "RiceBaby")
+      if (JudgeThis(other.gameObject))
       {
          //米粒オブジェクトを配列に叩き込む
          scripts.GameObjectAdd(other.gameObject);
@@ -58,11 +68,24 @@ public class RiceBollEXVoid : MonoBehaviour
    private void OnTriggerExit2D(Collider2D other)
    {
       //米粒タグの場合以下の処理を実行する
-      if (other.gameObject.tag == "RiceBaby")
+      if (JudgeThis(other.gameObject))
       {
          //米粒オブジェクトを配列から叩き出す
          scripts.GameObjectRemove(other.gameObject);
          Debug.Log("米粒損失");
+      }
+   }
+
+   private bool JudgeThis(GameObject other)
+   {
+      if (other.CompareTag("RiceBaby") || other.CompareTag("AccelerationItem") ||
+          other.CompareTag("Invincble") || other.CompareTag("Stamina") || other.CompareTag("DualKome"))
+      {
+         return true;
+      }
+      else
+      {
+         return false;
       }
    }
 }
